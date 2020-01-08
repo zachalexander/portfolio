@@ -1,0 +1,39 @@
+/* You can add global styles to this file, and also import other style files */
+
+@import '~bootstrap/dist/css/bootstrap.min.css';
+@import url('https://fonts.googleapis.com/css?family=Cormorant+Garamond|Eczar|Gentium+Basic|Libre+Baskerville|Libre+Franklin|Proza+Libre|Rubik|Taviraj|Trirong|Work+Sans&display=swap');
+
+html, body {
+  margin: 0;
+  padding: 0;
+}
+
+nav {
+  background-color: transparent !important;
+  -webkit-box-shadow: none !important;
+	-moz-box-shadow: none !important;
+  box-shadow: none !important;
+  position: fixed !important;
+
+
+  a {
+    color: #ffb354 !important;
+  }
+
+  i {
+    color: #ffb354 !important;
+  }
+
+  a:hover {
+    text-decoration: none !important;
+  }
+}
+
+.page-footer {
+  background-color: #fdf9f3 !important;
+  font-family: 'Rubik', sans-serif;
+
+  * {
+    color: #404651 !important;
+  }
+}
