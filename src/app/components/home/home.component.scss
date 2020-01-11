@@ -8,6 +8,8 @@
 
 body, nav {
   font-family: 'Rubik', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
 }
 
 .nav-wrapper {
@@ -124,6 +126,8 @@ body, nav {
     color: #fdf9f3;
     font-family: 'Rubik', sans-serif;
     font-weight: 800;
+    padding: 10px;
+    text-align: center;
   }
 }
 
@@ -174,6 +178,8 @@ body, nav {
     color: #404651;
     font-family: 'Rubik', sans-serif;
     font-weight: 800;
+    padding: 10px;
+    text-align: center;
   }
 }
 
@@ -195,7 +201,7 @@ body, nav {
 }
 
 .mid2-right {
-  background-image: url('../../../assets/bg3.jpg');
+  background-image: url('../../../assets/bg4.jpeg');
   background-size: cover;
 }
 
@@ -216,6 +222,8 @@ body, nav {
     color: #404651;
     font-family: 'Rubik', sans-serif;
     font-weight: 800;
+    padding: 10px;
+    text-align: center;
   }
 }
 
@@ -242,6 +250,8 @@ body, nav {
     color: #404651;
     font-family: 'Rubik', sans-serif;
     font-weight: 800;
+    padding: 10px;
+    text-align: center;
   }
 }
 
@@ -262,6 +272,8 @@ body, nav {
     color: #fdf9f3;
     font-family: 'Rubik', sans-serif;
     font-weight: 800;
+    padding: 10px;
+    text-align: center;
   }
 
 
