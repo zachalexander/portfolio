@@ -1,4 +1,18 @@
-  <nav>
+  <nav (scroll)="onWindowScroll($event)" *ngIf="mobile" class="navigation-mobile">
+    <div class="nav-wrapper">
+      <ul id="nav-mobile" class="left">
+          <a class="btn-floating btn-small waves-effect waves-light white navs"><i class="fa fa-envelope"></i></a>
+          <a class="btn-floating btn-small waves-effect waves-light white navs"><i class="fa fa-medium" aria-hidden="true"></i></a>
+          <a class="btn-floating btn-small waves-effect waves-light white navs"><i class="fa fa-github" aria-hidden="true"></i></a>
+      </ul>
+      <ul id="nav-mobile" class="right">
+          <a class="btn-floating btn-small waves-effect waves-light white navs"><i class="fa fa-twitter" aria-hidden="true"></i></a>
+          <a class="btn-floating btn-small waves-effect waves-light white navs"><i class="fa fa-instagram" aria-hidden="true"></i></a>
+      </ul>
+    </div>
+  </nav>  
+  
+  <nav (scroll)="onWindowScroll($event)" *ngIf="!mobile">
       <div class="nav-wrapper">
         <ul id="nav-mobile" class="left">
             <a class="btn-floating btn-large waves-effect waves-light white navs"><i class="fa fa-envelope"></i></a>
@@ -87,7 +101,6 @@
     <div class="footer-copyright">
       <div class="container">
        © 2020 Zach Alexander. All rights reserved.
-      <a class="grey-text text-lighten-4 right" href="#!">More Links</a>
       </div>
     </div>
   </footer>
