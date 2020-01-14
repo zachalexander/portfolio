@@ -1,7 +1,7 @@
 @import './../../../styles.scss';
 
 @mixin phone {
-  @media only screen and (max-width: 767px) {
+  @media only screen and (max-width: 980px) {
     @content;
   }
 }
@@ -16,6 +16,24 @@ body, nav {
   text-transform: none;
   line-height: 1;
   z-index: 1;
+}
+
+.medium-posts {
+  font-family: 'Rubik', sans-serif !important;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+  padding: 15px;
+  background: #fff;
+  margin: 10px;
+}
+
+section.medium-widget {
+  color: pink;
 }
 
 .nav-wrapper {

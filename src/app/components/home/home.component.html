@@ -46,7 +46,16 @@
 <div class="mid2">
     <div class="mid2-left">
       <h2>Publications</h2>
-      <h5>My Data Science Medium Articles</h5>
+      <h5>My Most Recent Data Science Medium Articles</h5>
+      <div class="medium-posts">
+        <ngx-medium-widget resource="https://medium.com/@zdalexander"
+        postsLimit="3"
+        postsPerLine="1"
+        pictureSize="small"
+        [postfields]="['description', 'claps', 'publishAt']"
+        postRatio="landscape">
+      </ngx-medium-widget>
+      </div>
     </div>
     <div class="mid2-right">
     </div>

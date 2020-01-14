@@ -6,6 +6,7 @@ import { AppComponent } from './app.component';
 import { HomeComponent } from './components/home/home.component';
 
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { MediumWidgetModule } from 'ngx-medium-widget';
 
 @NgModule({
   declarations: [
@@ -15,7 +16,8 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    FontAwesomeModule
+    FontAwesomeModule,
+    MediumWidgetModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -31,6 +31,7 @@
     "font-awesome-sass": "^4.7.0",
     "materialize-css": "^1.0.0-rc.2",
     "ngx-bootstrap": "^5.2.0",
+    "ngx-medium-widget": "^1.0.5",
     "rxjs": "^6.0.0",
     "zone.js": "~0.8.26"
   },

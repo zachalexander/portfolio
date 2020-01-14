@@ -12,12 +12,12 @@ export class MediumService {
 
   constructor(private http: Http) { }
 
-  searchBirds(): Observable<XMLDocument> {
-    const headers = new Headers();
-    headers.set('Authorization', 'Bearer 294520ce84c9c56dbe530bc32dcddd480bf0122f8708260bc8d42909e9c29c5dc');
-    return this.http.get('https://medium.com/feed/@zdalexander', {headers: headers})
-      .map(resp => resp);
-  }
+  // searchPubs(): Observable<XMLDocument> {
+  //   const headers = new Headers();
+  //   headers.set('Authorization', 'Bearer 294520ce84c9c56dbe530bc32dcddd480bf0122f8708260bc8d42909e9c29c5dc');
+  //   return this.http.get('https://medium.com/feed/@zdalexander', {headers: headers})
+  //     .map(resp => resp);
+  // }
 
 
 }
