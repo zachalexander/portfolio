@@ -1,15 +1,15 @@
 @import './../../../styles.scss';
 
 @mixin phone {
-  @media only screen and (max-width: 980px) {
+  @media only screen and (max-width: 767px) {
     @content;
   }
 }
 
 body, nav {
-  font-family: 'Rubik', sans-serif;
+  font-family: 'Lato', 'Arial', sans-serif;
   -webkit-font-smoothing: antialiased;
-  text-rendering: optimizeLegibility;
+  text-rendering: geometricPrecision;
   font-style: normal;
   font-weight: normal;
   font-variant: normal;
@@ -45,9 +45,6 @@ nav.navigation-mobile {
   height: 100vh;
   align-items: center;
   margin: auto;
-  // background-image: url('../../../assets/bg2.jpg');
-  // background-size: cover;
-  // transition: background 300ms ease-in 200ms;
 
   button {
     display: flex !important;
@@ -68,8 +65,6 @@ nav.navigation-mobile {
     justify-content: center;
     align-items: center;
     color: #333;
-    font-family: 'Rubik', sans-serif;
-    font-weight: 800;
   }
 }
 
@@ -155,7 +150,7 @@ nav.navigation-mobile {
       text-align: center;
       font-size: 2em;
       line-height: normal;
-      font-weight: 600;
+      font-weight: 700;
       color: #5e626b;
     }
 
@@ -247,8 +242,7 @@ nav.navigation-mobile {
     justify-content: center;
     align-items: center;
     color: #333;
-    font-family: 'Rubik', sans-serif;
-    font-weight: 800;
+    font-weight: 700;
     padding: 10px;
     text-align: center;
   }
@@ -299,8 +293,7 @@ nav.navigation-mobile {
     justify-content: center;
     align-items: center;
     color: #333;
-    font-family: 'Rubik', sans-serif;
-    font-weight: 800;
+    font-weight: 700;
     padding: 10px;
     text-align: center;
   }
@@ -378,32 +371,7 @@ nav.navigation-mobile {
     }
   }
 
-  @include phone {
-    .medium-posts {
-      margin: 90px 10px 10px 10px;
-      font-family: 'Rubik', sans-serif !important;
-      -webkit-font-smoothing: antialiased;
-      text-rendering: optimizeLegibility;
-      font-style: normal;
-      font-weight: normal;
-      font-variant: normal;
-      text-transform: none;
-      line-height: 1;
-      padding: 15px;
-      background: #fff;
-      border-radius: 10px;
-      display: flex;
-    }
-  }
-
   .medium-posts {
-    font-family: 'Rubik', sans-serif !important;
-    -webkit-font-smoothing: antialiased;
-    text-rendering: optimizeLegibility;
-    font-style: normal;
-    font-weight: normal;
-    font-variant: normal;
-    text-transform: none;
     line-height: 1;
     padding: 15px;
     background: #fff;
@@ -412,13 +380,23 @@ nav.navigation-mobile {
     display: flex;
   }
 
+  @include phone {
+    .medium-posts {
+      margin: 0px 10px 10px 10px;
+      padding: 15px;
+      background: #fff;
+      border-radius: 10px;
+      display: flex;
+    }
+  }
+
+
+
   h3 {
     display: flex;
     justify-content: center;
     align-items: center;
     color: #333;
-    font-family: 'Rubik', sans-serif;
-    font-weight: 800;
     padding: 10px;
     text-align: center;
   }
@@ -445,8 +423,6 @@ nav.navigation-mobile {
     justify-content: center;
     align-items: center;
     color: #333;
-    font-family: 'Rubik', sans-serif;
-    font-weight: 800;
     padding: 10px;
     text-align: center;
   }
@@ -464,8 +440,6 @@ nav.navigation-mobile {
     justify-content: center;
     align-items: center;
     color: #333;
-    font-family: 'Rubik', sans-serif;
-    font-weight: 800;
     padding: 10px;
     text-align: center;
   }
@@ -479,7 +453,6 @@ nav.navigation-mobile {
 }
 
 .bottom-right {
-  font-family: 'Rubik', sans-serif;
   background: #333;  /* fallback for old browsers */
   background: -webkit-linear-gradient(to right, #222, #333);  /* Chrome 10-25, Safari 5.1-6 */
   background: linear-gradient(to right, #222, #333); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
@@ -492,8 +465,6 @@ nav.navigation-mobile {
     justify-content: center;
     align-items: center;
     color: #fff;
-    font-family: 'Rubik', sans-serif;
-    font-weight: 800;
     padding: 10px;
     text-align: center;
   }

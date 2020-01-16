@@ -43,7 +43,7 @@ export class HomeComponent implements OnInit {
         element.classList.remove('nav-wrapper-light');
       }
     } else {
-      if (topOfOrangeDiv < 1800) {
+      if (topOfOrangeDiv < 2500) {
         element.classList.add('nav-wrapper-light');
       } else {
         element.classList.remove('nav-wrapper-light');
