@@ -2,11 +2,9 @@
     <div class="nav-wrapper">
       <ul id="nav-mobile" class="left">
           <a class="btn-floating btn-small waves-effect waves-light white navs"><i class="fa fa-envelope"></i></a>
-          <a class="btn-floating btn-small waves-effect waves-light white navs"><i class="fa fa-github" aria-hidden="true"></i></a>
       </ul>
       <ul id="nav-mobile" class="right">
-          <a class="btn-floating btn-small waves-effect waves-light white navs"><i class="fa fa-medium" aria-hidden="true"></i></a>
-          <a class="btn-floating btn-small waves-effect waves-light white navs"><i class="fa fa-twitter" aria-hidden="true"></i></a>
+          <a class="btn-floating btn-small waves-effect waves-light white navs"><i class="fa fa-github" aria-hidden="true"></i></a>
       </ul>
     </div>
   </nav>  
@@ -15,54 +13,79 @@
       <div class="nav-wrapper">
         <ul id="nav-mobile" class="left">
             <a class="btn-floating btn-large waves-effect waves-light white navs"><i class="fa fa-envelope"></i></a>
-            <a class="btn-floating btn-large waves-effect waves-light white navs"><i class="fa fa-github" aria-hidden="true"></i></a>
         </ul>
         <ul id="nav-mobile" class="right">
-            <a class="btn-floating btn-large waves-effect waves-light white navs"><i class="fa fa-medium" aria-hidden="true"></i></a>
-            <a class="btn-floating btn-large waves-effect waves-light white navs"><i class="fa fa-twitter" aria-hidden="true"></i></a>
+            <a class="btn-floating btn-large waves-effect waves-light white navs"><i class="fa fa-github" aria-hidden="true"></i></a>
         </ul>
       </div>
   </nav>
 
 
 <div class="top">
-  <div class="top-left">
-  </div>
-  <div class="top-right">  
-    <h1>My Work</h1>
-    <a class="btn-floating btn-large waves-effect waves-light grey darken-3"><i class="material-icons center">arrow_downward</i></a>
+  <div class="top-wrapper">
+    <svg class="line1">
+      <text transform="translate(15 35)" ></text>
+    </svg>
+    <svg *ngIf="showDiv" class="line2">
+      <text transform="translate(15 35)" ></text>
+    </svg>
+    <a class="waves-effect waves-light btn square-btn">Explore</a>
   </div>
 </div>
 
-<div class="mid1">
-  <div class="mid1-left">
+<div class="navigate">
+  <div class="cuny">
+    <div class="cuny_info">
+      <img src="../../../assets/cunyspslogo.png" />
+      <p>My Master's in Data Science Graduate Work</p>
+    </div>
+    <div class="cuny_hover">
+      <a class="waves-effect waves-light btn square-btn">Explore</a>
+    </div>
   </div>
-  <div class="mid1-right">
-    <h2>Data Science Graduate School</h2>
-    <h5>Current Master's Student at the CUNY School of Professional Studies</h5>
+  <div class="d3_misc">
+    <div class="d3_misc_info">
+      <div class="logos">
+        <img src="../../../assets/angularlogo.png" />
+        <p class="plus">+</p>
+        <img src="../../../assets/d3logo.png" />
+      </div>
+      <p>Data Stories using Javascript, Angular 2+, and d3.js</p>
+    </div>
+  </div>
+  <div class="work">
+    <div class="work_info">
+        <img src="../../../assets/ccilogo.png" />
+        <p>Data Science in the criminal justice field</p>
+    </div>
   </div>
 </div>
 
 <div class="mid2">
     <div class="mid2-left">
-      <h2>Publications</h2>
-      <h5>My Most Recent Data Science Medium Articles</h5>
-      <div class="medium-posts">
-        <ngx-medium-widget resource="https://medium.com/@zdalexander"
-        postsLimit="3"
-        postsPerLine="1"
-        pictureSize="small"
-        [postfields]="['description', 'claps', 'publishAt']"
-        postRatio="landscape">
-      </ngx-medium-widget>
+      <div class="medium-container">
+        <div class="medium-logo">
+          <img src="../../../assets/mediumlogo.png" />
+          <h2>Publications</h2>
+          <a class="waves-effect waves-light btn square-btn">Check them out</a>
+        </div>
       </div>
     </div>
     <div class="mid2-right">
+      <div class="tds_title">
+        <img src="../../../assets/tdslogo.png" />
+        <h3>Features in Towards Data Science</h3>
+      </div>
+        <div class="medium-posts">
+            <ngx-medium-widget resource="https://medium.com/@zdalexander"
+            postsLimit="4"
+            postsPerLine="1"
+            pictureSize="small"
+            [postfields]="['description', 'claps', 'publishAt']"
+            postRatio="landscape">
+          </ngx-medium-widget>
+        </div>
     </div>
-</div>
-
-<div class="breaker">
-
 </div>
 
 <div class="bottom">

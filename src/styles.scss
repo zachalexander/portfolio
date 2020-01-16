@@ -24,11 +24,13 @@ nav {
 
 
   a {
-    color: #404651 !important;
+    color: #343a40 !important;
+    margin: 0;
+    border-radius: 0 !important;
   }
 
   i {
-    color: #404651 !important;
+    color: #343a40!important;
   }
 
   a:hover {
@@ -36,11 +38,27 @@ nav {
   }
 }
 
+.square-btn {
+  height: 4em !important;
+  color: #333;
+  font-weight: 700;
+  font-size: 20px;
+  background-color: transparent !important;
+  border: 3px solid #333;
+  margin: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1;
+}
+
 .page-footer {
-  background-color: #fdf9f3 !important;
+  background-color: #E4E4E1;
+  background-image: radial-gradient(at top center, rgba(255,255,255,0.03) 0%, rgba(0,0,0,0.03) 100%), linear-gradient(to top, rgba(255,255,255,0.1) 0%, rgba(143,152,157,0.60) 100%);
+    background-blend-mode: normal, multiply;
   font-family: 'Rubik', sans-serif;
 
   * {
-    color: #404651 !important;
+    color: #333 !important;
   }
 }
