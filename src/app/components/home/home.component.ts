@@ -14,7 +14,7 @@ export class HomeComponent implements OnInit {
   showDiv = false;
 
   constructor() { }
-  
+
   ngOnInit() {
     if(window.innerWidth <= 767) {
       this.mobile = true;
@@ -28,7 +28,7 @@ export class HomeComponent implements OnInit {
       this.typingAnimation(text2, '.line2');
     }, 3400);
   }
-  
+
   @HostListener('window:scroll', ['$event'])
 
   onWindowScroll(e) {
@@ -64,11 +64,11 @@ export class HomeComponent implements OnInit {
           progress += 0.01;
         }
         // console.log(progress);
-        
+
       const text_val = text;
-    
+
       const text_progress = Math.max(0, Math.min( text_val.length + 1, Math.floor(progress * text_val.length)));
-  
+
       d3.select(classname)
         .attr('height', '4em')
         .attr('width', '310px')

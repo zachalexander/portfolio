@@ -3,6 +3,37 @@
 @import '~bootstrap/dist/css/bootstrap.min.css';
 @import url('https://fonts.googleapis.com/css?family=Lato:400,700,900&display=swap');
 
+
+@mixin phone {
+  @media only screen and (max-width: 600px) {
+    @content;
+  }
+}
+
+@mixin smalldevice {
+  @media only screen and (min-width: 600px) {
+    @content;
+  }
+}
+
+@mixin meddevice {
+  @media only screen and (min-width: 768px) {
+    @content;
+  }
+}
+
+@mixin lgdevice {
+  @media only screen and (min-width: 992px) {
+    @content;
+  }
+}
+
+@mixin xldevice {
+  @media only screen and (min-width: 1200px) {
+    @content;
+  }
+}
+
 html, body {
   margin: 0;
   padding: 0;
