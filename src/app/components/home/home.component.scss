@@ -230,6 +230,10 @@ nav.navigation-mobile {
       grid-row: 1;
       height: 50%;
     }
+
+    .cuny_info, .d3_misc_info, .work_info {
+      padding: 3em;
+    }
   }
 
   @include xldevice {
@@ -258,6 +262,11 @@ nav.navigation-mobile {
       grid-row: 1;
       height: 50%;
       width: 90%;
+    }
+
+
+    .cuny_info, .d3_misc_info, .work_info {
+      padding: 3em;
     }
   }
 
