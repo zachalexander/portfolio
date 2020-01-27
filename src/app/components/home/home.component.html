@@ -94,6 +94,12 @@
       <div class="email-form-wrapper">
         <h2>Want to Collaborate?</h2>
         <p>Please send me an e-mail if you are interested in collaborating on a project or have an idea for a data visualization or analysis.</p>
+        
+        <p *ngFor="let x of users | async; let i=index">{{x.first_name}}&nbsp;
+          {{x.last_name}}&nbsp;
+          ({{x.email}})
+        </p>
+        
         <form class="email-form">
             <div class="input-field">
               <input id="email" type="email" class="validate">

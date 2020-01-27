@@ -57,7 +57,10 @@ nav {
   a {
     color: #343a40 !important;
     margin: 0;
-    border-radius: 0 !important;
+  }
+
+  a.waves-effect.waves-light.btn.square-btn {
+    border-radius: 10px !important;
   }
 
   i {

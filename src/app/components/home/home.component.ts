@@ -1,6 +1,9 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { HostListener } from '@angular/core';
 import * as d3 from 'd3';
+import { Observable } from 'rxjs';
+import { User } from '../../models/users';
+import { DjangoService } from '../../services/django.service';
 
 @Component({
   selector: 'app-home',
@@ -12,8 +15,9 @@ export class HomeComponent implements OnInit {
 
   mobile = false;
   showDiv = false;
+  users: Observable<User[]>;
 
-  constructor() { }
+  constructor(private djangoService: DjangoService) { }
 
   ngOnInit() {
     if(window.innerWidth <= 767) {
@@ -27,13 +31,20 @@ export class HomeComponent implements OnInit {
       const text2 = 'to my portfolio.';
       this.typingAnimation(text2, '.line2');
     }, 3400);
+
+    this.loadData();
+  }
+
+  loadData() {
+    // test
+    this.users = this.djangoService.getAllUsers();
   }
 
   @HostListener('window:scroll', ['$event'])
 
   onWindowScroll(e) {
     const element = document.querySelector('.nav-wrapper');
-    const orangeDiv = document.querySelector('.mid2-left');
+    const orangeDiv = document.querySelector('.mid1-left');
     const topOfOrangeDiv = orangeDiv.getBoundingClientRect()['y'];
 
     if (window.innerWidth >= 767) {
