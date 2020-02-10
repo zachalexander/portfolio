@@ -111,6 +111,28 @@ nav.navigation-mobile {
     display: flex;
     align-items: center;
     justify-content: center;
+    border: 1px solid #9290906c;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+
+    img {
+      max-width: 60% !important;
+      max-height: 40% !important;
+    }
+
+    .custom-button {
+      padding: 1em 3em;
+      margin-top: 1.5em;
+      border: 1px solid #ccc;
+      font-weight: 700;
+      background-color: #2c3e50;
+      border-radius: 5px;
+      color: #fff;
+      text-decoration: none !important;
+    }
+
+    .custom-button:hover {
+      background-color: #2c3e5098;
+    }
   }
 
   .work_info, .d3_misc_info, .cuny_info {
@@ -122,9 +144,9 @@ nav.navigation-mobile {
     flex-direction: column;
 
     p {
-      padding: 2em 1em 1em 1em;
       text-align: center;
-      font-size: 2em;
+      font-size: 1.35em;
+      padding: 2em 2.25em 0em 2.25em;
       line-height: normal;
       font-weight: 700;
       color: #5e626b;
@@ -146,8 +168,8 @@ nav.navigation-mobile {
       justify-content: space-between;
 
       img {
-        height: 80px;
-        width: 80px;
+        height: 70px;
+        width: 70px;
       }
     }
 
@@ -203,6 +225,7 @@ nav.navigation-mobile {
     .work {
       grid-column: 1 / 3;
       grid-row: 2;
+      width: 50%;
     }
 }
 
@@ -216,23 +239,20 @@ nav.navigation-mobile {
     .cuny {
       grid-column: 1 / 2;
       grid-row: 1;
-      height: 50%;
+      height: 70%;
     }
 
     .d3_misc {
       grid-column: 2 / 3;
       grid-row: 1;
-      height: 50%;
+      height: 70%;
     }
 
     .work {
       grid-column: 3 / 4;
       grid-row: 1;
-      height: 50%;
-    }
-
-    .cuny_info, .d3_misc_info, .work_info {
-      padding: 3em;
+      height: 70%;
+      width: 90%
     }
   }
 
@@ -246,28 +266,24 @@ nav.navigation-mobile {
     .cuny {
       grid-column: 1 / 2;
       grid-row: 1;
-      height: 50%;
+      height: 70%;
       width: 90%;
     }
 
     .d3_misc {
       grid-column: 2 / 3;
       grid-row: 1;
-      height: 50%;
+      height: 70%;
       width: 90%;
     }
 
     .work {
       grid-column: 3 / 4;
       grid-row: 1;
-      height: 50%;
+      height: 70%;
       width: 90%;
     }
 
-
-    .cuny_info, .d3_misc_info, .work_info {
-      padding: 3em;
-    }
   }
 
 }

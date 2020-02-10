@@ -17,3 +17,4 @@ INSERT INTO portfolio_users (id, first_name, last_name, email)
 values (4, 'John', 'Baimas', 'jbaimas@gmail.com');
 INSERT INTO portfolio_users (id, first_name, last_name, email)
 values (5, 'Nick', 'Alexander', 'nichalexander6@gmail.com');
+
