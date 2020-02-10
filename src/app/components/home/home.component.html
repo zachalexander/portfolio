@@ -37,8 +37,22 @@
   <div class="cuny">
     <div class="cuny_info">
       <img src="../../../assets/cunyspslogo.png" />
-      <p><i class="fa fa-graduation-cap" aria-hidden="true"></i>&nbsp;&nbsp;&nbsp;&nbsp;My Master's in Data Science Graduate Work</p>
-      <a href="#"><div class="custom-button">Explore</div></a>
+      <p>My Master's in Data Science Graduate Work</p>
+        <div class="list_container">
+        <div class="item">
+          <i class="fa fa-graduation-cap fa-2x" aria-hidden="true"></i>
+          <p>Python and Tweepy to Analyze Reaction to the Coronavirus</p>
+        </div>
+        <div class="item">
+          <i class="fa fa-graduation-cap fa-2x" aria-hidden="true"></i>
+          <p>Harlem Housing Repair Compliance</p>
+        </div>
+        <div class="item">
+          <i class="fa fa-graduation-cap fa-2x" aria-hidden="true"></i>
+          <p>Regression Modeling of Case Outcomes</p>
+        </div>
+      </div>
+      <a href="#"><div class="custom-button">Explore All</div></a>
     </div>
   </div>
   <div class="d3_misc">
@@ -48,15 +62,43 @@
         <p class="plus">+</p>
         <img src="../../../assets/d3logo.png" />
       </div>
-      <p><i class="fa fa-line-chart" aria-hidden="true"></i>&nbsp;&nbsp;&nbsp;&nbsp;Data Stories using Javascript, Angular 2+, and d3.js</p>
-      <a href="#"><div class="custom-button">Explore</div></a>
+      <p>Data Stories with interactive web visualizations in d3.js</p>
+      <div class="list_container">
+        <div class="item">
+          <i class="fa fa-line-chart fa-2x" aria-hidden="true"></i>
+          <p>A Value Based Linear Regression Model to Predict the 2016 Presidential Election</p>
+        </div>
+        <div class="item">
+          <i class="fa fa-line-chart fa-2x" aria-hidden="true"></i>
+          <p>Showing Chess Elo Ratings Pre- and Post- Tournament</p>
+        </div>
+        <div class="item">
+          <i class="fa fa-line-chart fa-2x" aria-hidden="true"></i>
+          <p>115th Congress Voting Records</p>
+        </div>
+      </div>
+      <a href="#"><div class="custom-button">Explore All</div></a>
     </div>
   </div>
   <div class="work">
     <div class="work_info">
         <img src="../../../assets/ccilogo.png" />
-        <p><i class="fa fa-gavel" aria-hidden="true"></i>&nbsp;&nbsp;&nbsp;&nbsp;Data Science in the criminal justice field</p>
-        <a href="#"><div class="custom-button">Explore</div></a>
+        <p>Data Science in the criminal justice field</p>
+        <div class="list_container">
+          <div class="item">
+            <i class="fa fa-gavel fa-2x" aria-hidden="true"></i>
+            <p>Using R and SQL to Advocate for Harlem Housing Repairs</p>
+          </div>
+          <div class="item">
+            <i class="fa fa-gavel fa-2x" aria-hidden="true"></i>
+            <p>Harlem Housing Repair Compliance</p>
+          </div>
+          <div class="item">
+            <i class="fa fa-gavel fa-2x" aria-hidden="true"></i>
+            <p>Regression Modeling of Case Outcomes</p>
+          </div>
+        </div>
+        <a href="#"><div class="custom-button">Explore All</div></a>
     </div>
   </div>
 </div>
@@ -67,7 +109,6 @@
         <div class="medium-logo">
           <img src="../../../assets/mediumlogo.png" />
           <h2>Publications</h2>
-          <a class="waves-effect waves-light btn square-btn">Check them out</a>
         </div>
       </div>
     </div>
@@ -97,12 +138,12 @@
       <div class="email-form-wrapper">
         <h2>Want to Collaborate?</h2>
         <p>Please send me an e-mail if you are interested in collaborating on a project or have an idea for a data visualization or analysis.</p>
-        
+
         <p *ngFor="let x of users | async; let i=index">{{x.first_name}}&nbsp;
           {{x.last_name}}&nbsp;
           ({{x.email}})
         </p>
-        
+
         <form class="email-form">
             <div class="input-field">
               <input id="email" type="email" class="validate">
