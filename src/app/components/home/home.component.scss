@@ -127,6 +127,7 @@ nav.navigation-mobile {
     .custom-button {
       padding: 1em 3em;
       margin-top: 1.5em;
+      margin-bottom: 1em;
       border: 1px solid #ccc;
       font-weight: 700;
       background-color: #2c3e50;
@@ -153,7 +154,7 @@ nav.navigation-mobile {
     -webkit-box-direction: normal;
     flex-direction: column;
     height: 100%;
-    padding: 3em;
+    // padding: 3em;
 
     p {
       text-align: center;
@@ -194,7 +195,7 @@ nav.navigation-mobile {
 
       p {
         text-align: left;
-        padding: 0;
+        padding:0;
         margin:0;
       }
 
@@ -213,11 +214,19 @@ nav.navigation-mobile {
     grid-template-areas: "."
                          "."
                          ".";
-    height: 150vh;
+    height: 250vh;
 
     .work, .d3_misc, .cuny {
       height: 90%;
       width: 95%;
+    }
+
+    .work_info, .d3_misc_info, .cuny_info {
+      padding: 1em 0em 1em 0em;
+    }
+
+    .item {
+      padding: 0em 2em 0em 2em;
     }
   }
 
@@ -228,12 +237,20 @@ nav.navigation-mobile {
       grid-template-areas: "."
                            "."
                            ".";
-      height: 150vh;
+      height: 200vh;
 
       .work, .d3_misc, .cuny {
         height: 90%;
         width: 95%;
       }
+
+    .work_info, .d3_misc_info, .cuny_info {
+      padding: 2em 2.25em 0em 2.25em;
+    }
+
+    .item {
+      padding: 0em 2em 0em 2em;
+    }
   }
 
   @include meddevice {
@@ -241,7 +258,7 @@ nav.navigation-mobile {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     grid-template-rows: repeat(2, 1fr);
-    height: 100vh;
+    height: 150vh;
 
     .cuny {
       grid-column: 1 / 2;
@@ -258,6 +275,14 @@ nav.navigation-mobile {
       grid-row: 2;
       width: 50%;
     }
+
+    .work_info, .d3_misc_info, .cuny_info {
+      padding: 2em 2.25em 0em 2.25em;
+    }
+
+    .item {
+      padding: 0em 2em 0em 2em;
+    }
 }
 
   @include lgdevice {
@@ -265,29 +290,33 @@ nav.navigation-mobile {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     grid-template-rows: repeat(1, 1fr);
-    height: 75vh;
+    height: 100vh;
 
     .cuny {
       grid-column: 1 / 2;
       grid-row: 1;
-      height: 70%;
+      height: 90%;
     }
 
     .d3_misc {
       grid-column: 2 / 3;
       grid-row: 1;
-      height: 70%;
+      height: 90%;
     }
 
     .work {
       grid-column: 3 / 4;
       grid-row: 1;
-      height: 70%;
+      height: 90%;
       width: 90%
     }
 
     .list_container {
       max-width: 70%;
+    }
+
+    .item {
+      padding: 0;
     }
   }
 
@@ -301,26 +330,30 @@ nav.navigation-mobile {
     .cuny {
       grid-column: 1 / 2;
       grid-row: 1;
-      height: 70%;
+      height: 90%;
       width: 90%;
     }
 
     .d3_misc {
       grid-column: 2 / 3;
       grid-row: 1;
-      height: 70%;
+      height: 90%;
       width: 90%;
     }
 
     .work {
       grid-column: 3 / 4;
       grid-row: 1;
-      height: 70%;
+      height: 90%;
       width: 90%;
     }
 
     .list_container {
       max-width: 70%;
+    }
+
+    .item {
+      padding: 0;
     }
 
   }
