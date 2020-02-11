@@ -358,6 +358,42 @@ nav.navigation-mobile {
 
   }
 
+  @include xxldevice {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: repeat(1, 1fr);
+    height: 100vh;
+
+    .cuny {
+      grid-column: 1 / 2;
+      grid-row: 1;
+      height: 70%;
+      width: 90%;
+    }
+
+    .d3_misc {
+      grid-column: 2 / 3;
+      grid-row: 1;
+      height: 70%;
+      width: 90%;
+    }
+
+    .work {
+      grid-column: 3 / 4;
+      grid-row: 1;
+      height: 70%;
+      width: 90%;
+    }
+
+    .list_container {
+      max-width: 70%;
+    }
+
+    .item {
+      padding: 0;
+    }
+  }
+
 }
 
 
@@ -381,7 +417,7 @@ nav.navigation-mobile {
     grid-template-rows: 1fr 1fr;
     grid-template-areas: "."
                          ".";
-    height: 150vh;
+    height: 250vh;
   }
 
   @include smalldevice {
@@ -390,7 +426,7 @@ nav.navigation-mobile {
     grid-template-rows: 1fr 1fr;
     grid-template-areas: "."
                          ".";
-    height: 150vh;
+    height: 250vh;
   }
 
   @include meddevice {

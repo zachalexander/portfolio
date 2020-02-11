@@ -4,6 +4,8 @@
 @import url('https://fonts.googleapis.com/css?family=Lato:400,700,900&display=swap');
 
 
+
+
 @mixin phone {
   @media only screen and (max-width: 600px) {
     @content;
@@ -29,10 +31,30 @@
 }
 
 @mixin xldevice {
-  @media only screen and (min-width: 1200px) {
-    @content;
+/* ----------- Non-Retina Screens ----------- */
+  @media screen
+    and (min-device-width: 1200px)
+    and (max-device-width: 1600px)
+    and (-webkit-min-device-pixel-ratio: 1) {
+      @content;
+  }
+
+  /* ----------- Retina Screens ----------- */
+  @media screen
+    and (min-device-width: 1200px)
+    and (max-device-width: 1600px)
+    and (-webkit-min-device-pixel-ratio: 2)
+    and (min-resolution: 192dpi) {
+      @content;
   }
 }
+
+@mixin xxldevice {
+  @media only screen  and (min-width : 1600px) {
+      @content;
+  }
+}
+
 
 html, body {
   margin: 0;
