@@ -4,6 +4,10 @@ h2 {
   text-align: center;
 }
 
+.state_title {
+  text-align: center !important;
+}
+
 .feature {
   fill: #ccc;
 }
@@ -112,30 +116,22 @@ align-content: center;
 
 div#tooltip {
   margin: auto;
-  margin-bottom: 3em;
-  margin-top: 3em;
   width: 350px;
   align-content: center;
   pointer-events: none !important;
   text-align: center;
-  height: 260px;
   border: 1px dashed #ddd;
   padding: 1em;
   align-items: center;
 }
 
 div#tooltip.hidden {
-  border: 1px dashed #ddd;
-  padding: 20px;
+  margin: auto;
   width: 350px;
-  align-items: center;
+  border: 1px dashed #ddd;
   align-content: center;
   pointer-events: none !important;
   text-align: center;
-  margin: auto;
-  margin-bottom: 3em;
-  margin-top: 3em;
-  height: 260px;
   border: 1px dashed #ddd;
   padding: 1em;
   align-items: center;
