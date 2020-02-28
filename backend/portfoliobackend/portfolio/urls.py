@@ -8,5 +8,6 @@ urlpatterns = [
     # path('', include(router.urls))
     url(r'users/', views.user_list),
     url(r'users/^(?P<pk>[0-9]+)$', views.user_detail),
-    url(r'tweets/', views.tweet_list)
+    url(r'tweets/', views.tweet_list),
+    url(r'tweet_count/', views.tweetcount_list)
 ]

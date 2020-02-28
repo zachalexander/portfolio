@@ -8,8 +8,12 @@ class Users(models.Model):
     email           = models.CharField(max_length=200)
 
 class Tweets(models.Model):
-    id             = models.IntegerField(primary_key=True, default='NA')
-    tweetText      = models.CharField(max_length=200, default='NA')
-    user           = models.CharField(max_length=200, default='NA')
-    followers      = models.CharField(max_length=200, default='NA')
-    date           = models.DateField(max_length=200, default='NA')
+    id             = models.IntegerField(primary_key=True)
+    tweetText      = models.CharField(max_length=200, default='NA', null=True)
+    user           = models.CharField(max_length=200, default='NA', null=True)
+    followers      = models.IntegerField(default='NA', null=True)
+    date           = models.DateTimeField(max_length=200, default='NA', null=True)
+    location       = models.CharField(max_length=200, default='NA', null=True)
+
+class TweetCount(models.Model):
+    count          = models.IntegerField(default='NA', null=True)

@@ -29,7 +29,7 @@
     <svg *ngIf="showDiv" class="line2">
       <text transform="translate(15 35)" ></text>
     </svg>
-    <a class="waves-effect waves-light btn square-btn">Explore</a>
+    <a class="waves-effect waves-light btn square-btn" *ngFor="let x of tweetcount">{{x}}</a>
   </div>
 </div>
 
@@ -131,10 +131,13 @@
         <h2>Want to Collaborate?</h2>
         <p>Please send me an e-mail if you are interested in collaborating on a project or have an idea for a data visualization or analysis.</p>
 
-        <p *ngFor="let x of users | async; let i=index">{{x.first_name}}&nbsp;
-          {{x.last_name}}&nbsp;
-          ({{x.email}})
+
+        <h4 *ngIf="tweets$ | async;let tweets">Length: {{tweets.length}}</h4>
+
+        <p *ngFor="let x of tweets | async; let i=index">
+          {{x.tweetText}}
         </p>
+
 
         <form class="email-form">
             <div class="input-field">

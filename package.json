@@ -38,7 +38,7 @@
     "mdbootstrap": "^4.11.0",
     "ngx-bootstrap": "^5.2.0",
     "ngx-medium-widget": "^1.0.5",
-    "ngx-spinner": "^7.0.0",
+    "ngx-spinner": "^7.2.0",
     "rxjs": "^6.0.0",
     "zone.js": "~0.8.26"
   },

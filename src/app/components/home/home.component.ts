@@ -3,6 +3,8 @@ import { HostListener } from '@angular/core';
 import * as d3 from 'd3';
 import { Observable } from 'rxjs';
 import { User } from '../../models/users';
+import { Tweets } from '../../models/tweets';
+import { TweetCount } from '../../models/tweetcount';
 import { DjangoService } from '../../services/django.service';
 
 @Component({
@@ -16,6 +18,8 @@ export class HomeComponent implements OnInit {
   mobile = false;
   showDiv = false;
   users: Observable<User[]>;
+  tweets: Observable<Tweets[]>;
+  tweetcount: Observable<TweetCount[]>;
 
   constructor(private djangoService: DjangoService) { }
 
@@ -32,12 +36,20 @@ export class HomeComponent implements OnInit {
       this.typingAnimation(text2, '.line2');
     }, 3400);
 
-    this.loadData();
+    // this.loadUserData();
+    this.loadTwitterData();
   }
 
-  loadData() {
+  loadUserData() {
     // test
     this.users = this.djangoService.getAllUsers();
+  }
+
+
+  loadTwitterData() {
+    // test
+    this.tweets = this.djangoService.getAllTweets();
+    this.tweetcount = this.djangoService.getTweetCount();
   }
 
   @HostListener('window:scroll', ['$event'])
