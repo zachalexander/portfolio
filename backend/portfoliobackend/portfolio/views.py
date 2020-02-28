@@ -80,7 +80,7 @@ class MyStreamListener(tweepy.StreamListener):
     # When data is received
     def on_data(self, data):
 
-        # Error handling because teachers say to do this
+        # Error handling
         try:
 
             # Make it JSON
@@ -105,10 +105,9 @@ class MyStreamListener(tweepy.StreamListener):
                 tweet_data.insertTweet()
 
                 tweet_count = Tweets.objects.count()
-                print(tweet_count)
+                tweetcount = json.loads(data)
 
                 current_count = TweetCount(tweet_count)
-
                 current_count.insertTweetCount()
 
 
@@ -128,7 +127,7 @@ def index(request):
     return HttpResponse("<h1>Hello, Zach</h1>")
 
 class UserViewSet(viewsets.ModelViewSet):
-    queryset = User.objects.all() 
+    queryset = User.objects.all()
     serializer_class = UsersSerializer
 
 class TweetsViewSet(viewsets.ModelViewSet):
@@ -170,7 +169,7 @@ def user_list(request):
         users = Users.objects.all()
         users_serializer = UsersSerializer(users, many=True)
         return JsonResponse(users_serializer.data, safe=False)
-    
+
     # Add one
     if request.method == 'POST':
         user_data = JSONParser().parse(request)
@@ -185,7 +184,7 @@ def user_list(request):
         Users.objects.all().delete()
         return HttpResponse(status=status.HTTP_204_NO_CONTENT)
 
-@csrf_exempt 
+@csrf_exempt
 def user_detail(request, pk):
     try:
         user = Users.objects.get(pk=pk)
@@ -196,7 +195,7 @@ def user_detail(request, pk):
     if request.method == 'GET':
         user_serializer = UsersSerializer(user)
         return JsonResponse(user_serializer.data)
-    
+
     # Update one record
     if request.method == 'PUT':
         user_data = JSONParser().parse(request)
@@ -205,7 +204,7 @@ def user_detail(request, pk):
             user_serializer.save()
             return JsonResponse(user_serializer.data)
         return JsonResponse(user_serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-    
+
     # Delete on record
     if request.method == 'DELETE':
         user.delete()
