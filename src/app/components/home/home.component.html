@@ -4,7 +4,7 @@
           <a class="btn-floating btn-small waves-effect waves-light white navs"><i class="fa fa-envelope"></i></a>
       </ul>
       <ul id="nav-mobile" class="right">
-          <a class="btn-floating btn-small waves-effect waves-light white navs"><i class="fa fa-github" aria-hidden="true"></i></a>
+          <a class="btn-floating btn-small waves-effect waves-light white navs"><i class="fab fa-github"></i></a>
       </ul>
     </div>
   </nav>
@@ -15,7 +15,7 @@
             <a class="btn-floating btn-large waves-effect waves-light white navs"><i class="fa fa-envelope"></i></a>
         </ul>
         <ul id="nav-mobile" class="right">
-            <a class="btn-floating btn-large waves-effect waves-light white navs"><i class="fa fa-github" aria-hidden="true"></i></a>
+            <a class="btn-floating btn-large waves-effect waves-light white navs"><i class="fab fa-github"></i></a>
         </ul>
       </div>
   </nav>
@@ -27,9 +27,9 @@
       <text transform="translate(15 35)" ></text>
     </svg>
     <svg *ngIf="showDiv" class="line2">
-      <text transform="translate(15 35)" ></text>
+      <text transform="translate(15 35)"></text>
     </svg>
-    <a class="waves-effect waves-light btn square-btn" *ngFor="let x of tweetcount">{{x}}</a>
+    <a class="waves-effect waves-light btn square-btn">Explore</a>
   </div>
 </div>
 
@@ -58,14 +58,18 @@
         <p class="plus">+</p>
         <img src="../../../assets/d3logo.png" />
       </div>
-      <p>Data Stories with interactive web visualizations in d3.js</p>
+      <p>Web Development Projects Utilizing Angular 2+ and D3.js</p>
       <div class="list_container">
         <div class="item">
-          <i class="fa fa-line-chart fa-2x" aria-hidden="true"></i>
+          <i class="far fa-chart-bar" style="font-size: 3em;"></i>
+          <p><a href='https://www.codingchallenge.site' target="_blank">Complete CRUD Application built in Angular 2+, Node.js, and MongoDB backend</a></p>
+        </div>
+        <div class="item">
+          <i class="far fa-chart-bar" style="font-size: 3em;"></i>
           <p><a href="/pres2016-regression">A Value Based Linear Regression Model to Predict the 2016 Presidential Election</a></p>
         </div>
         <div class="item">
-          <i class="fa fa-line-chart fa-2x" aria-hidden="true"></i>
+          <i class="far fa-chart-bar" style="font-size: 3em;"></i>
           <p><a href='/chess-elo'>Showing Chess Elo Ratings Pre- and Post- Tournament</a></p>
         </div>
       </div>
@@ -126,6 +130,12 @@
       <div class="email-form-wrapper">
         <h2>Want to Collaborate?</h2>
         <p>Please send me an e-mail if you are interested in collaborating on a project or have an idea for a data visualization or analysis.</p>
+
+
+       <!-- <h4 *ngIf="tweets$ | async;let tweets">Length: {{tweets.length}}</h4>
+        <p *ngFor="let x of tweets | async; let i=index">
+          {{x.tweetText}}
+        </p> -->
 
 
         <form class="email-form">
