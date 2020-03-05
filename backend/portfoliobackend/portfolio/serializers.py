@@ -2,7 +2,7 @@ from django.contrib.auth.models import User
 from rest_framework import serializers
 from portfolio.models import Users
 from portfolio.models import Tweets
-from portfolio.models import TweetCount
+from portfolio.models import TweetsCount
 
 class UsersSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
@@ -15,7 +15,7 @@ class TweetsSerializer(serializers.HyperlinkedModelSerializer):
         model = Tweets   
         fields = ('id', 'tweetText', 'user', 'followers', 'date', 'location')
 
-class TweetCountSerializer(serializers.HyperlinkedModelSerializer):
+class TweetsCountSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
-        model = TweetCount
-        fields = ('count', )
+        model = TweetsCount
+        fields = ('count', 'date')

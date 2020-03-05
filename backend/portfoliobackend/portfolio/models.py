@@ -15,5 +15,6 @@ class Tweets(models.Model):
     date           = models.DateTimeField(max_length=200, default='NA', null=True)
     location       = models.CharField(max_length=200, default='NA', null=True)
 
-class TweetCount(models.Model):
+class TweetsCount(models.Model):
     count          = models.IntegerField(default='NA', null=True)
+    date           = models.DateTimeField(null=True, default='2012-09-04 06:00:00')

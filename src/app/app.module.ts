@@ -10,6 +10,7 @@ import { AppComponent } from './app.component';
 import { HomeComponent } from './components/home/home.component';
 import { PresRegressionComponent } from './components/pres-regression/pres-regression.component';
 import { ChessEloComponent } from './components/chess-elo/chess-elo.component';
+import { CoronavirusComponent } from './components/coronavirus/coronavirus.component';
 
 
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
@@ -21,7 +22,8 @@ import { MediumWidgetModule } from 'ngx-medium-widget';
     AppComponent,
     HomeComponent,
     PresRegressionComponent,
-    ChessEloComponent
+    ChessEloComponent,
+    CoronavirusComponent
   ],
   imports: [
     BrowserModule,

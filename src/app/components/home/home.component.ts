@@ -18,8 +18,7 @@ export class HomeComponent implements OnInit {
   mobile = false;
   showDiv = false;
   users: Observable<User[]>;
-  tweets: Observable<Tweets[]>;
-  tweetcount: Observable<TweetCount[]>;
+
 
   constructor(private djangoService: DjangoService) { }
 
@@ -35,9 +34,6 @@ export class HomeComponent implements OnInit {
       const text2 = 'to my portfolio.';
       this.typingAnimation(text2, '.line2');
     }, 3400);
-
-    // this.loadUserData();
-    this.loadTwitterData();
   }
 
   loadUserData() {
@@ -45,12 +41,6 @@ export class HomeComponent implements OnInit {
     this.users = this.djangoService.getAllUsers();
   }
 
-
-  loadTwitterData() {
-    // test
-    this.tweets = this.djangoService.getAllTweets();
-    this.tweetcount = this.djangoService.getTweetCount();
-  }
 
   @HostListener('window:scroll', ['$event'])
 

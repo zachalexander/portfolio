@@ -1,0 +1,6 @@
+
+<h4 *ngIf="tweets$ | async;let tweets">Length: {{tweets.length}}</h4>
+
+<p *ngFor="let x of tweets | async; let i=index">
+  {{x.tweetText}}
+</p>

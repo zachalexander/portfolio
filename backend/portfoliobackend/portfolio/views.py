@@ -5,8 +5,8 @@ from portfolio.models import Users
 from portfolio.serializers import UsersSerializer
 from portfolio.models import Tweets
 from portfolio.serializers import TweetsSerializer
-from portfolio.models import TweetCount
-from portfolio.serializers import TweetCountSerializer
+from portfolio.models import TweetsCount
+from portfolio.serializers import TweetsCountSerializer
 from rest_framework import viewsets, status
 from rest_framework.parsers import JSONParser
 from django.http.response import JsonResponse
@@ -15,14 +15,6 @@ import tweepy
 import sqlite3
 import json
 from datetime import datetime as dt
-# from django.shortcuts import render
-# from pusher import Pusher
-
-# Pusher API information
-# pusher = Pusher(app_id=u'671229', key=u'2b38a148d0f0b015c494', secret=u'fb6f845d4db0f4c7631c')
-# def chat(request):
-#     return render(request,"chat.html");
-
 
 # Twitter Streaming API credentials
 
@@ -39,8 +31,9 @@ api = tweepy.API(auth)
 class TweetCount():
 
     # Data on the tweet
-    def __init__(self, count):
+    def __init__(self, count, date):
         self.count = count
+        self.date = str(date)
 
             # Inserting that data into the DB
     def insertTweetCount(self):
@@ -48,8 +41,10 @@ class TweetCount():
         conn = sqlite3.connect('users.sqlite3')
         c = conn.cursor()
 
-        c.execute("UPDATE portfolio_tweet_count SET count=(?) WHERE (SELECT * FROM portfolio_tweet_count ORDER BY count LIMIT 1)",
-            (self.count,))
+
+        ### ERROR HERE
+        c.execute("UPDATE portfolio_tweet_count SET count=%s, date=%r WHERE (SELECT count FROM portfolio_tweet_count ORDER BY count LIMIT 1)" %
+            (self.count, self.date))
         conn.commit()
 
 # Class for defining a Tweet
@@ -80,7 +75,7 @@ class MyStreamListener(tweepy.StreamListener):
     # When data is received
     def on_data(self, data):
 
-        # Error handling
+        # Error handling because teachers say to do this
         try:
 
             # Make it JSON
@@ -101,13 +96,19 @@ class MyStreamListener(tweepy.StreamListener):
                     dt.strptime(tweet['created_at'], '%a %b %d %H:%M:%S %z %Y'),
                     tweet['user']['location'])
 
+
                 # Insert that data into the DB
                 tweet_data.insertTweet()
 
                 tweet_count = Tweets.objects.count()
-                tweetcount = json.loads(data)
+                time = str(dt.now())
+                print(time)
+                print(tweet_count)
 
-                current_count = TweetCount(tweet_count)
+                current_count = TweetCount(
+                    tweet_count,
+                    time
+                )
                 current_count.insertTweetCount()
 
 
@@ -127,12 +128,17 @@ def index(request):
     return HttpResponse("<h1>Hello, Zach</h1>")
 
 class UserViewSet(viewsets.ModelViewSet):
-    queryset = User.objects.all()
+    queryset = User.objects.all() 
     serializer_class = UsersSerializer
 
 class TweetsViewSet(viewsets.ModelViewSet):
     queryset = Tweets.objects.all()
     serializer_class = TweetsSerializer
+
+class TweetsCountViewSet(viewsets.ModelViewSet):
+    queryset = TweetsCount.objects.all()
+    serializer_class = TweetsCountSerializer
+
 
 # APIs
 
@@ -144,23 +150,15 @@ def tweet_list(request):
         tweets_serializer = TweetsSerializer(tweets, many=True)
         return JsonResponse(tweets_serializer.data, safe=False)
 
-
 @csrf_exempt
 def tweetcount_list(request):
     # Get all
     if request.method == 'GET':
-        tweetcount = Tweets.objects.count()
-        # tweetcount_serializer = TweetsSerializer(tweetcount)
-        # test = JsonResponse(tweetcount_serializer.data)
-        return JsonResponse(tweetcount, safe=False)
+        tweetcount = TweetsCount.objects.all()
+        tweetcount_serializer = TweetsCountSerializer(tweetcount)
+        print(tweetcount_serializer.data)
+        return JsonResponse(tweetcount_serializer.data, safe=False)
 
-# @csrf_exempt
-# def tweetcount_list(request):
-#     # Get all
-#     if request.method == 'GET':
-#         tweetcount = TweetCount.objects.all()
-#         tweetcount_serializer = TweetCountSerializer(tweetcount, many=True)
-#         return JsonResponse(tweetcount_serializer.data, safe=False)
 
 @csrf_exempt
 def user_list(request):
@@ -169,7 +167,7 @@ def user_list(request):
         users = Users.objects.all()
         users_serializer = UsersSerializer(users, many=True)
         return JsonResponse(users_serializer.data, safe=False)
-
+    
     # Add one
     if request.method == 'POST':
         user_data = JSONParser().parse(request)
@@ -184,7 +182,7 @@ def user_list(request):
         Users.objects.all().delete()
         return HttpResponse(status=status.HTTP_204_NO_CONTENT)
 
-@csrf_exempt
+@csrf_exempt 
 def user_detail(request, pk):
     try:
         user = Users.objects.get(pk=pk)
@@ -195,7 +193,7 @@ def user_detail(request, pk):
     if request.method == 'GET':
         user_serializer = UsersSerializer(user)
         return JsonResponse(user_serializer.data)
-
+    
     # Update one record
     if request.method == 'PUT':
         user_data = JSONParser().parse(request)
@@ -204,7 +202,7 @@ def user_detail(request, pk):
             user_serializer.save()
             return JsonResponse(user_serializer.data)
         return JsonResponse(user_serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-
+    
     # Delete on record
     if request.method == 'DELETE':
         user.delete()
