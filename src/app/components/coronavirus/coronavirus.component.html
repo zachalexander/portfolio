@@ -1,6 +1,17 @@
 
-<h4 *ngIf="tweets$ | async;let tweets">Length: {{tweets.length}}</h4>
+<div class = "tweetstorm">
+  <div>
+    <h3>The number of <strong>coronavirus</strong> tweets today: </h3>
+    <h1 class = "tweetcounter" *ngFor="let x of tweetcount | async; let i=index">
+      {{x.count | number}}
+    </h1>
+    <small class = "update" *ngFor="let x of tweetcount | async; let i=index">
+      Last Updated on: {{x.date | date: 'mediumTime'}}</small>
 
-<p *ngFor="let x of tweets | async; let i=index">
-  {{x.tweetText}}
-</p>
+      <hr>
+    
+    <p *ngFor="let x of tweets | async; let i=index"><strong>Latest Tweet: {{x.tweetText}}</strong> 
+
+    <hr>
+  </div>
+</div>

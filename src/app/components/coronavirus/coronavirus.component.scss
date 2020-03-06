@@ -1,0 +1,14 @@
+.tweetstorm {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr;
+    align-items: center;
+    text-align: center;
+    justify-items: center;
+    height: 100vh;
+}
+
+.tweetcounter {
+    font-size: 4.5em;
+    font-weight: 700;
+}

@@ -9,7 +9,6 @@ class UsersSerializer(serializers.HyperlinkedModelSerializer):
         model = Users
         fields = ('first_name', 'last_name', 'email')
 
-
 class TweetsSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Tweets   

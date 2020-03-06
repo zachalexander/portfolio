@@ -7,7 +7,7 @@ from portfolio.models import Tweets
 from portfolio.serializers import TweetsSerializer
 from portfolio.models import TweetsCount
 from portfolio.serializers import TweetsCountSerializer
-from rest_framework import viewsets, status
+from rest_framework import viewsets, status, serializers
 from rest_framework.parsers import JSONParser
 from django.http.response import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
@@ -35,15 +35,13 @@ class TweetCount():
         self.count = count
         self.date = str(date)
 
-            # Inserting that data into the DB
+        # Inserting that data into the DB
     def insertTweetCount(self):
         # DB stuff
         conn = sqlite3.connect('users.sqlite3')
         c = conn.cursor()
 
-
-        ### ERROR HERE
-        c.execute("UPDATE portfolio_tweet_count SET count=%s, date=%r WHERE (SELECT count FROM portfolio_tweet_count ORDER BY count LIMIT 1)" %
+        c.execute("UPDATE portfolio_tweetscount SET count=%s, date=%r WHERE (SELECT count FROM portfolio_tweetscount ORDER BY count LIMIT 1)" %
             (self.count, self.date))
         conn.commit()
 
@@ -94,8 +92,8 @@ class MyStreamListener(tweepy.StreamListener):
                     tweet['user']['screen_name'],
                     user_profile.followers_count,
                     dt.strptime(tweet['created_at'], '%a %b %d %H:%M:%S %z %Y'),
-                    tweet['user']['location'])
-
+                    tweet['user']['location']
+                )
 
                 # Insert that data into the DB
                 tweet_data.insertTweet()
@@ -109,6 +107,7 @@ class MyStreamListener(tweepy.StreamListener):
                     tweet_count,
                     time
                 )
+
                 current_count.insertTweetCount()
 
 
@@ -122,7 +121,7 @@ class MyStreamListener(tweepy.StreamListener):
 myStreamListener = MyStreamListener()
 myStream = tweepy.Stream(auth = api.auth, listener=myStreamListener)
 
-myStream.filter(track=['Climate Change'], languages= ['en'], is_async=True)
+myStream.filter(track=['coronavirus'], languages= ['en'], is_async=True)
 
 def index(request):
     return HttpResponse("<h1>Hello, Zach</h1>")
@@ -139,14 +138,13 @@ class TweetsCountViewSet(viewsets.ModelViewSet):
     queryset = TweetsCount.objects.all()
     serializer_class = TweetsCountSerializer
 
-
 # APIs
 
 @csrf_exempt
 def tweet_list(request):
     # Get all
     if request.method == 'GET':
-        tweets = Tweets.objects.all()
+        tweets = Tweets.objects.order_by('-date')[:1]
         tweets_serializer = TweetsSerializer(tweets, many=True)
         return JsonResponse(tweets_serializer.data, safe=False)
 
@@ -155,8 +153,7 @@ def tweetcount_list(request):
     # Get all
     if request.method == 'GET':
         tweetcount = TweetsCount.objects.all()
-        tweetcount_serializer = TweetsCountSerializer(tweetcount)
-        print(tweetcount_serializer.data)
+        tweetcount_serializer = TweetsCountSerializer(tweetcount, many=True)
         return JsonResponse(tweetcount_serializer.data, safe=False)
 
 

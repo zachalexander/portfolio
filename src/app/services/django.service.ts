@@ -12,7 +12,7 @@ export class DjangoService {
 
   private endpoint = 'http://localhost:8000/users/';
   private tweetendpoint = 'http://localhost:8000/tweets/';
-  private tweetcount = 'http://localhost:8000/tweet_count/';
+  private tweetcount = 'http://localhost:8000/tweet-count/';
 
   constructor(private http: HttpClient) { }
 
