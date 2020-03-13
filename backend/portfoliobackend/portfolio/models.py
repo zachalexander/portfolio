@@ -14,6 +14,8 @@ class Tweets(models.Model):
     followers      = models.IntegerField(default='NA', null=True)
     date           = models.DateTimeField(max_length=200, default='NA', null=True)
     location       = models.CharField(max_length=200, default='NA', null=True)
+    coordinates_lat= models.CharField(max_length=200, default='NA', null=True)
+    coordinates_lon= models.CharField(max_length=200, default='NA', null=True)
 
 class TweetsCount(models.Model):
     count          = models.IntegerField(default='NA', null=True)

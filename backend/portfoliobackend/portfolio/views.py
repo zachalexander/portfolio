@@ -49,13 +49,15 @@ class TweetCount():
 class Tweet():
 
     # Data on the tweet
-    def __init__(self, id, text, user, followers, date, location):
+    def __init__(self, id, text, user, followers, date, location, coordinates_lat, coordinates_lon):
         self.id = id
         self.text = text
         self.user = user
         self.followers = followers
         self.date = date
         self.location = location
+        self.coordinates_lat = str(coordinates_lat)
+        self.coordinates_lon = str(coordinates_lon)
 
     # Inserting that data into the DB
     def insertTweet(self):
@@ -63,8 +65,8 @@ class Tweet():
         conn = sqlite3.connect('users.sqlite3')
         c = conn.cursor()
 
-        c.execute("INSERT INTO portfolio_tweets (id, tweetText, user, followers, date, location) VALUES (?, ?, ?, ?, ?, ?)",
-            (self.id, self.text, self.user, self.followers, self.date, self.location))
+        c.execute("INSERT INTO portfolio_tweets (id, tweetText, user, followers, date, location, coordinates_lat, coordinates_lon) VALUES (?, ?, ?, ?, ?, ?, ?, ?)",
+            (self.id, self.text, self.user, self.followers, self.date, self.location, self.coordinates_lat, self.coordinates_lon))
         conn.commit()
 
 #override tweepy.StreamListener to add logic to on_status
@@ -73,61 +75,79 @@ class MyStreamListener(tweepy.StreamListener):
     # When data is received
     def on_data(self, data):
 
-        # Error handling because teachers say to do this
-        try:
+        # Error handling
+          try:
 
             # Make it JSON
             tweet = json.loads(data)
 
             # filter out retweets
             if not tweet['retweeted'] and 'RT @' not in tweet['text']:
-
+                  if tweet['coordinates'] == None:
+                        pass
+                  else:
                 # Get user via Tweepy so we can get their number of followers
-                user_profile = api.get_user(tweet['user']['screen_name'])
+                    user_profile = api.get_user(tweet['user']['screen_name'])
 
-                # assign all data to Tweet object
-                tweet_data = Tweet(
-                    float(tweet['id']),
-                    str(tweet['text'].encode('utf-8')),
-                    tweet['user']['screen_name'],
-                    user_profile.followers_count,
-                    dt.strptime(tweet['created_at'], '%a %b %d %H:%M:%S %z %Y'),
-                    tweet['user']['location']
-                )
+                    tweets_cord1 = tweet['coordinates']
+                    tweets_cord1_fin = tweets_cord1['coordinates'][0]
 
-                # Insert that data into the DB
-                tweet_data.insertTweet()
+                    tweets_cord2 = tweet['coordinates']
+                    tweets_cord2_fin = tweets_cord1['coordinates'][1]
 
-                tweet_count = Tweets.objects.count()
-                time = str(dt.now())
-                print(time)
-                print(tweet_count)
+                    # assign all data to Tweet object
+                    tweet_data = Tweet(
+                        float(tweet['id']),
+                        str(tweet['text'].encode('utf-8')),
+                        tweet['user']['screen_name'],
+                        user_profile.followers_count,
+                        dt.strptime(tweet['created_at'], '%a %b %d %H:%M:%S %z %Y'),
+                        tweet['user']['location'],
+                        tweets_cord1_fin,
+                        tweets_cord2_fin
+                    )
 
-                current_count = TweetCount(
-                    tweet_count,
-                    time
-                )
+                    # Insert that data into the DB
+                    tweet_data.insertTweet()
 
-                current_count.insertTweetCount()
+                    tweet_count = Tweets.objects.count()
+                    time = str(dt.now())
+                    print(time)
+                    print(tweet_count)
+
+                    current_count = TweetCount(
+                        tweet_count,
+                        time
+                    )
+
+                    current_count.insertTweetCount()
 
 
-        # Let me know if something bad happens
-        except Exception as e:
+          # Let me know if something bad happens
+          except Exception as e:
             print(e)
             pass
 
-        return True
+          return True
+
 
 myStreamListener = MyStreamListener()
 myStream = tweepy.Stream(auth = api.auth, listener=myStreamListener)
 
-myStream.filter(track=['coronavirus'], languages= ['en'], is_async=True)
+region = [-124.7771694, 24.520833, -66.947028, 49.384472, -164.639405, 58.806859, -144.152365, 71.76871, -160.161542, 18.776344, -154.641396, 22.878623]
+
+myStream.filter(
+  track=['coronavirus'],
+  locations= region,
+  languages= ['en'],
+  is_async=True
+)
 
 def index(request):
-    return HttpResponse("<h1>Hello, Zach</h1>")
+    return HttpResponse("<h5>Welcome to Zach's portfolio backend application</h5>")
 
 class UserViewSet(viewsets.ModelViewSet):
-    queryset = User.objects.all() 
+    queryset = User.objects.all()
     serializer_class = UsersSerializer
 
 class TweetsViewSet(viewsets.ModelViewSet):
@@ -141,10 +161,18 @@ class TweetsCountViewSet(viewsets.ModelViewSet):
 # APIs
 
 @csrf_exempt
-def tweet_list(request):
+def tweet_list_first(request):
     # Get all
     if request.method == 'GET':
         tweets = Tweets.objects.order_by('-date')[:1]
+        tweets_serializer = TweetsSerializer(tweets, many=True)
+        return JsonResponse(tweets_serializer.data, safe=False)
+
+@csrf_exempt
+def tweet_list_all(request):
+    # Get all
+    if request.method == 'GET':
+        tweets = Tweets.objects.order_by('-date')[2:]
         tweets_serializer = TweetsSerializer(tweets, many=True)
         return JsonResponse(tweets_serializer.data, safe=False)
 
@@ -164,7 +192,7 @@ def user_list(request):
         users = Users.objects.all()
         users_serializer = UsersSerializer(users, many=True)
         return JsonResponse(users_serializer.data, safe=False)
-    
+
     # Add one
     if request.method == 'POST':
         user_data = JSONParser().parse(request)
@@ -179,7 +207,7 @@ def user_list(request):
         Users.objects.all().delete()
         return HttpResponse(status=status.HTTP_204_NO_CONTENT)
 
-@csrf_exempt 
+@csrf_exempt
 def user_detail(request, pk):
     try:
         user = Users.objects.get(pk=pk)
@@ -190,7 +218,7 @@ def user_detail(request, pk):
     if request.method == 'GET':
         user_serializer = UsersSerializer(user)
         return JsonResponse(user_serializer.data)
-    
+
     # Update one record
     if request.method == 'PUT':
         user_data = JSONParser().parse(request)
@@ -199,7 +227,7 @@ def user_detail(request, pk):
             user_serializer.save()
             return JsonResponse(user_serializer.data)
         return JsonResponse(user_serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-    
+
     # Delete on record
     if request.method == 'DELETE':
         user.delete()

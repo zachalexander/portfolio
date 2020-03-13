@@ -1,17 +1,22 @@
 
 <div class = "tweetstorm">
   <div>
-    <h3>The number of <strong>coronavirus</strong> tweets today: </h3>
-    <h1 class = "tweetcounter" *ngFor="let x of tweetcount | async; let i=index">
-      {{x.count | number}}
+    <h3>A sample of <strong>coronavirus</strong> tweets <br> across the country: </h3>
+    <h1 class = "tweetcounter">
+      {{(tweets | async).length}}
     </h1>
-    <small class = "update" *ngFor="let x of tweetcount | async; let i=index">
-      Last Updated on: {{x.date | date: 'mediumTime'}}</small>
+    <small class = "update" *ngFor="let x of tweetrecent | async; let i=index">
+      Last updated on: {{x.date | date: 'mediumTime'}}</small>
 
-      <hr>
-    
-    <p *ngFor="let x of tweets | async; let i=index"><strong>Latest Tweet: {{x.tweetText}}</strong> 
-
-    <hr>
   </div>
+  <hr>
+  <div class="latest_tweet">
+    <img src='../../../assets/tweets_img1.png'>
+    <small class="latest_tweet_text" *ngFor="let x of tweetrecent | async; let i=index"> {{x.tweetText}}</small>
+  </div>
+  <hr>
+    <div class="container">
+      <div class = "graphic">
+      </div>
+    </div>
 </div>

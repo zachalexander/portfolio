@@ -1,9 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { User } from '../models/users';
-import { Tweets } from '../models/tweets';
-import { TweetCount } from '../models/tweetcount';
 
 @Injectable({
   providedIn: 'root'
@@ -11,8 +8,11 @@ import { TweetCount } from '../models/tweetcount';
 export class DjangoService {
 
   private endpoint = 'http://localhost:8000/users/';
-  private tweetendpoint = 'http://localhost:8000/tweets/';
+  private tweetendpoint = 'https://guarded-anchorage-28885.herokuapp.com/tweets-latest/';
+  private tweetsall = 'https://guarded-anchorage-28885.herokuapp.com/tweets-all/';
   private tweetcount = 'http://localhost:8000/tweet-count/';
+
+  private coronavirusapi = 'http://coronavirus-tracker-api.herokuapp.com/all';
 
   constructor(private http: HttpClient) { }
 
@@ -25,6 +25,10 @@ export class DjangoService {
     // Get all Users
 
   getAllTweets(): Observable<any> {
+    return this.http.get(this.tweetsall);
+  }
+
+  getFirstTweet(): Observable<any> {
     return this.http.get(this.tweetendpoint);
   }
 
@@ -32,5 +36,9 @@ export class DjangoService {
 
   getTweetCount(): Observable<any> {
     return this.http.get(this.tweetcount);
+  }
+
+  getVirusCounts(): Observable<any> {
+    return this.http.get(this.coronavirusapi);
   }
 }

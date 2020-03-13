@@ -11,8 +11,8 @@ class UsersSerializer(serializers.HyperlinkedModelSerializer):
 
 class TweetsSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
-        model = Tweets   
-        fields = ('id', 'tweetText', 'user', 'followers', 'date', 'location')
+        model = Tweets
+        fields = ('id', 'tweetText', 'user', 'followers', 'date', 'location', 'coordinates_lat', 'coordinates_lon')
 
 class TweetsCountSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:

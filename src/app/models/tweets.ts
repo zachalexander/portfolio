@@ -5,4 +5,6 @@ export class Tweets {
     followers: number;
     date: string;
     location: string;
+    coordinates_lon: string;
+    coordinates_lat: string;
 }
