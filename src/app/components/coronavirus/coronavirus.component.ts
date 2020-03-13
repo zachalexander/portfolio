@@ -6,6 +6,7 @@ import { VirusCounts } from '../../models/viruscounts';
 import { NgxSpinnerService } from 'ngx-spinner';
 import * as d3 from 'd3';
 import * as stateData from '../../../assets/us-states.json';
+import * as nystateData from '../../../assets/newyorkstate.json';
 import { Observable, interval } from 'rxjs';
 
 
@@ -25,6 +26,11 @@ export class CoronavirusComponent implements OnInit {
   cords = [];
   cordsRecent = [];
   virusCounts: Observable<VirusCounts[]>;
+  nyLatest;
+  virusLastUpdate;
+  nyStateMap;
+  nyData;
+  dates;
 
   constructor(
     private djangoService: DjangoService,
@@ -36,6 +42,11 @@ export class CoronavirusComponent implements OnInit {
     return stateDataset.features;
   }
 
+  addNYStateModel() {
+    const nyStateDataset = nystateData;
+    return nyStateDataset['features'];
+  }
+
   ngOnInit() {
     this.loadTwitterData();
     this.spinner.show();
@@ -43,7 +54,9 @@ export class CoronavirusComponent implements OnInit {
     this.loadVirusData();
 
     setTimeout(() => {
+      this.loadTwitterData();
       this.drawMap(1000, 600, this.addValuesModel());
+      this.drawNYState(400, 400, this.loadVirusData());
     }, 2000);
 
     this.subscription$ = interval(20000).subscribe(data => {
@@ -64,11 +77,77 @@ export class CoronavirusComponent implements OnInit {
 
   loadVirusData() {
     this.virusCounts = this.djangoService.getVirusCounts();
-    console.log(this.virusCounts);
+
     this.virusCounts.subscribe(data => {
-      const test = data;
-      console.log(test);
-    })
+      this.virusLastUpdate = data['confirmed'].last_updated;
+      const virusdata = data['confirmed'];
+      virusdata['locations'].map(cases => {
+        if (cases.country === 'US' && cases.province === 'New York') {
+          this.nyLatest = cases.latest;
+          this.nyData = cases;
+        }
+      });
+    });
+    return this.nyData;
+  }
+
+  drawNYState(width, height, datapull) {
+
+
+    const dateiso = datapull.history;
+    console.log(dateiso);
+
+    this.dates = [
+      {
+        date: new Date('03/10/2020'),
+        cases: 173
+      },
+      {
+        date: new Date('03/11/2020'),
+        cases: 220
+      },
+      {
+        date: new Date('03/10/2020'),
+        cases: 328
+      }
+    ];
+
+    console.log(this.dates);
+
+    const margin = {top: 50, right: 20, bottom: 60, left: 90},
+    width_new = width - margin.left - margin.right,
+    height_new = width - margin.top - margin.bottom;
+
+    const svg = d3.select('.nygraphic').append('svg')
+                .attr('width',  width_new + margin.left + margin.right)
+                .attr('height', height_new + margin.top + margin.bottom)
+                .append('g')
+                .attr('transform', 'translate(' + margin.left + ',' + margin.top + ')');
+
+    const x = d3.scaleTime().range([0, width]);
+    x.domain(d3.extent(this.dates, function(d) { return d.date; }));
+
+    const y = d3.scaleLinear().range([height, 0]);
+    y.domain([d3.min(this.dates, function(d) { return d.cases; }) - 5, 100]);
+
+    const valueline = d3.line()
+        .x(function(d) { return x(d.date); })
+        .y(function(d) { return y(d.cases);  })
+        .curve(d3.curveMonotoneX);
+
+    svg.append('path')
+        .data(this.dates)
+        .attr('class', 'line')
+        .attr('d', valueline);
+
+
+    const xAxis_woy = d3.axisBottom(x).tickFormat(d3.timeFormat('Week %V')).tickValues(this.dates.map(d => d.date));
+
+    svg.append('g')
+            .attr('class', 'x axis')
+            .attr('transform', 'translate(0,' + height + ')')
+            .call(xAxis_woy);
+
   }
 
 drawMap(width, height, datapull) {
@@ -129,6 +208,8 @@ drawMap(width, height, datapull) {
       );
       return justCoordsRecent;
     });
+
+    console.log(this.cordsRecent);
 
     // add circles to svg
     svg.selectAll('.old.points')
