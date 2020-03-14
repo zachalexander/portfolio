@@ -5765,6 +5765,8 @@ __webpack_require__.r(__webpack_exports__);
 /***************************************************************************************************
  * APPLICATION IMPORTS
  */
+// Add global to window, assigning the value of window itself.
+window.global = window;
 
 
 /***/ }),
