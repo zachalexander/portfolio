@@ -229,8 +229,9 @@ drawMap(width, height, datapull) {
           return projection([d.latitude, d.longitude])[1];
         }
       })
-      .attr('r', '2px')
-      .attr('fill', '#EEA29A')
+      .attr('r', '4px')
+      .attr('fill', 'rgba(238, 162, 154, 0.5)')
+      .attr('stroke', 'rgba(238, 162, 154, 1')
       .attr('class', 'old points');
 
         // add circles to svg
@@ -239,15 +240,15 @@ drawMap(width, height, datapull) {
       .append('circle')
       .attr('cx', function (d) { return projection([d.latitude, d.longitude])[0]; })
       .attr('cy', function (d) { return projection([d.latitude, d.longitude])[1]; })
-      .attr('r', '4px')
+      .attr('r', '6px')
       .attr('fill', '#C70039')
       .attr('stroke', '#333')
       .transition()
       .duration(500)
-      .attr('r', '6px')
+      .attr('r', '8px')
       .transition()
       .duration(500)
-      .attr('r', '4px')
+      .attr('r', '6px')
       .attr('class', 'most recentpoint');
     });
   }
