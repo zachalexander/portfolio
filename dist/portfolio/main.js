@@ -536,7 +536,7 @@ var ChessEloComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class = \"nystorm\">\n  <h4><strong>New York State:</strong>  <strong class=\"callout\"> Confirmed Cases</strong></h4>\n      <h1 class = \"tweetcounter\">\n        {{nyLatest}}\n      </h1>\n      <div class=\"container\">\n        <div class = \"nygraphic\">\n        </div>\n      </div>\n      <small class = \"update\">\n    Last updated on: {{virusLastUpdate | date: 'MMMM d'}} at {{virusLastUpdate | date: 'mediumTime'}}</small>\n</div>\n\n<hr>\n\n<div class = \"tweetstorm\">\n  <div>\n    <h5>A sample of <strong>coronavirus</strong> tweets <br> across the country since <br> noon on Friday, March 13th</h5>\n    <h1 class = \"tweetcounter\">\n      {{(tweets | async).length}}\n    </h1>\n    <small class = \"update\" *ngFor=\"let x of tweetrecent | async; let i=index\">\n      Last updated on: {{x.date | date: 'MMMM d'}} at {{x.date | date: 'mediumTime'}}</small>\n\n  </div>\n  <hr>\n  <div class=\"latest_tweet\">\n    <img src='../../../assets/tweets_img1.png'>\n    <small class=\"latest_tweet_text\" *ngFor=\"let x of tweetrecent | async; let i=index\"> {{x.tweetText}}</small>\n  </div>\n  <hr>\n    <div class=\"container\">\n      <div class = \"graphic\">\n      </div>\n    </div>\n</div>\n"
+module.exports = "<div class = \"nystorm\">\n  <h4><strong>New York State:</strong>  <strong class=\"callout\"> Confirmed Cases</strong></h4>\n      <h1 class = \"tweetcounter\">\n        421\n      </h1>\n      <div class=\"container\">\n        <div class = \"nygraphic\">\n        </div>\n      </div>\n      <small class = \"update\">\n    Last updated on: {{virusLastUpdate | date: 'MMMM d'}} at {{virusLastUpdate | date: 'mediumTime'}}</small>\n</div>\n\n<hr>\n\n<div class = \"tweetstorm\">\n  <div>\n    <h5>A sample of <strong>coronavirus</strong> tweets <br> across the country since <br> noon on Friday, March 13th</h5>\n    <h1 class = \"tweetcounter\">\n      {{(tweets | async).length}}\n    </h1>\n    <small class = \"update\" *ngFor=\"let x of tweetrecent | async; let i=index\">\n      Last updated on: {{x.date | date: 'MMMM d'}} at {{x.date | date: 'mediumTime'}}</small>\n\n  </div>\n  <hr>\n  <div class=\"latest_tweet\">\n    <img src='../../../assets/tweets_img1.png'>\n    <small class=\"latest_tweet_text\" *ngFor=\"let x of tweetrecent | async; let i=index\"> {{x.tweetText}}</small>\n  </div>\n  <hr>\n    <div class=\"container\">\n      <div class = \"graphic\">\n      </div>\n    </div>\n</div>\n"
 
 /***/ }),
 
@@ -747,8 +747,9 @@ var CoronavirusComponent = /** @class */ (function () {
                     return projection([d.latitude, d.longitude])[1];
                 }
             })
-                .attr('r', '2px')
-                .attr('fill', '#EEA29A')
+                .attr('r', '4px')
+                .attr('fill', 'rgba(238, 162, 154, 0.5)')
+                .attr('stroke', 'rgba(238, 162, 154, 1')
                 .attr('class', 'old points');
             // add circles to svg
             svg.selectAll('.most.recentpoint')
@@ -756,15 +757,15 @@ var CoronavirusComponent = /** @class */ (function () {
                 .append('circle')
                 .attr('cx', function (d) { return projection([d.latitude, d.longitude])[0]; })
                 .attr('cy', function (d) { return projection([d.latitude, d.longitude])[1]; })
-                .attr('r', '4px')
+                .attr('r', '6px')
                 .attr('fill', '#C70039')
                 .attr('stroke', '#333')
                 .transition()
                 .duration(500)
-                .attr('r', '6px')
+                .attr('r', '8px')
                 .transition()
                 .duration(500)
-                .attr('r', '4px')
+                .attr('r', '6px')
                 .attr('class', 'most recentpoint');
         });
     };

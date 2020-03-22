@@ -1,8 +1,8 @@
 <div class = "nystorm">
   <h4><strong>New York State:</strong>  <strong class="callout"> Confirmed Cases</strong></h4>
-      <h1 class = "tweetcounter">
-        {{nyLatest}}
-      </h1>
+      <h3 class = "tweetcounter">
+        {{nyLatest | number}}
+      </h3>
       <small class = "update">
     Last updated on: {{virusLastUpdate | date: 'MMMM d'}} at {{virusLastUpdate | date: 'mediumTime'}}</small>
       <div class="container">

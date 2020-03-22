@@ -57,9 +57,9 @@ export class CoronavirusComponent implements OnInit {
 
     this.test = this.socketService.getTweets()
 
-    this.test.subscribe(data => {
-      console.log(data);
-    })
+    // this.test.subscribe(data => {
+    //   console.log(data);
+    // })
 
 
     setTimeout(() => {
@@ -193,6 +193,22 @@ export class CoronavirusComponent implements OnInit {
       {
         date: new Date('03/16/2020'),
         cases: 967
+      },
+      {
+        date: new Date('03/17/2020'),
+        cases: 1706
+      },
+      {
+        date: new Date('03/18/2020'),
+        cases: 2495
+      },
+      {
+        date: new Date('03/19/2020'),
+        cases: 5365
+      },
+      {
+        date: new Date('03/20/2020'),
+        cases: 8310
       }
     ];
 
@@ -216,34 +232,40 @@ export class CoronavirusComponent implements OnInit {
     width_new = width - margin.left - margin.right,
     height_new = width - margin.top - margin.bottom;
 
-    const svg = d3.select('.nygraphic').append('svg')
-                .attr('width',  width_new + 300)
-                .attr('height', height_new)
-                .append('g')
-                .attr('transform', 'translate(' + margin.left + ',' + margin.top + ')');
-
     const x = d3.scaleTime().range([0, width]);
-    x.domain(d3.extent(this.dates, function(d) { return d.date; }));
+    x.domain(d3.extent(this.dates, function(d) { return d.date; }))
+    x.nice();
 
     const y = d3.scaleLinear().range([0, height]);
     y.domain([d3.max(this.dates, function(d) { return d.cases + 50; }), 0]);
 
+    const area = d3.area()
+    .x(function(d) { return x(d.date); })
+    .y0(height)
+    .y1(function(d) { return y(d.cases); });
 
     const valueline = d3.line()
     .x(function(d) { return x(d.date); })
     .y(function(d) { return y(d.cases); })
     .curve(d3.curveMonotoneX);
 
-    const xAxis_woy = d3.axisBottom(x)
-                        .ticks(0)
-                        .tickFormat(d3.timeFormat('%m/%d'))
-                        .tickValues(this.dates.map(d => d.date));
+    const svg = d3.select('.nygraphic').append('svg')
+                .attr('width',  width_new + 300)
+                .attr('height', height_new)
+                .append('g')
+                .attr('transform', 'translate(' + margin.left + ',' + margin.top + ')');
+
+    svg.append('path')
+        .datum(this.dates)
+        .attr('class', 'area')
+        .attr('fill', 'rgba(238, 162, 154, 0.5)')
+        .attr('d', area);
 
     svg.append('path')
         .datum(this.dates) // 10. Binds data to the line
         .attr('class', 'line') // Assign a class for styling
         .attr('fill', 'none')
-        .attr('stroke-width', '1.5px')
+        .attr('stroke-width', '3px')
         .attr('stroke', 'darkred')
         .attr('d', valueline); // 11. Calls the line generator
 
@@ -255,7 +277,7 @@ export class CoronavirusComponent implements OnInit {
     svg.append('g')
             .attr('class', 'x axis')
             .attr('transform', 'translate(0,' + height + ')')
-            .call(d3.axisBottom(x).ticks(4).tickFormat(d3.timeFormat('%B %d')));
+            .call(d3.axisBottom(x).tickFormat(d3.timeFormat('%m/%d')).ticks(6));
 
     // svg.append('g')
     //         .attr('class', 'y axis')
@@ -263,15 +285,15 @@ export class CoronavirusComponent implements OnInit {
 
 
 
-  node.append('circle') // Uses the enter().append() method
-      .attr('class', 'dot') // Assign a class for styling
-      .attr('stroke', 'darkred')
-      .attr('fill', '#ddd')
-      .attr('cx', function(d, i) { return x(d.date); })
-      .attr('cy', function(d) { return y(d.cases); })
-      .attr('r', 3);
+  // node.append('circle') // Uses the enter().append() method
+  //     .attr('class', 'dot') // Assign a class for styling
+  //     .attr('stroke', 'darkred')
+  //     .attr('fill', '#ddd')
+  //     .attr('cx', function(d, i) { return x(d.date); })
+  //     .attr('cy', function(d) { return y(d.cases); })
+  //     .attr('r', 3);
 
-  node.append('text')
+    node.append('text')
       .attr('class', 'labels')
       .attr('x', function(d) { return x(d.date); })
       .attr('y', function(d) { return y(d.cases) + 5; })
