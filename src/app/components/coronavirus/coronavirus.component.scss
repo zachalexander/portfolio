@@ -1,3 +1,6 @@
+@import url('https://fonts.googleapis.com/css?family=Bree+Serif&display=swap');
+@import './../../../styles.scss';
+
 .nystorm {
   display:grid;
   grid-template-columns: 1fr;
@@ -39,4 +42,14 @@
 
 .callout {
   color: darkred;
+}
+
+path.line {
+  fill: none;
+  stroke: steelblue;
+  stroke-width: 1.5px;
+}
+
+text {
+  font-family: 'Lato', 'Arial', sans-serif;
 }

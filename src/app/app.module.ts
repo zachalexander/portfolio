@@ -3,7 +3,6 @@ import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { NgxSpinnerModule } from 'ngx-spinner';
-import { SocketioService } from 'socket.io-client';
 
 
 import { AppRoutingModule } from './app-routing.module';
@@ -16,7 +15,7 @@ import { CoronavirusComponent } from './components/coronavirus/coronavirus.compo
 
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { MediumWidgetModule } from 'ngx-medium-widget';
-
+import { SocketService } from './services/socket.service';
 
 @NgModule({
   declarations: [
@@ -35,7 +34,7 @@ import { MediumWidgetModule } from 'ngx-medium-widget';
     FormsModule,
     NgxSpinnerModule
   ],
-  providers: [],
+  providers: [SocketService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

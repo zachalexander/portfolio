@@ -1,14 +1,14 @@
 <div class = "nystorm">
   <h4><strong>New York State:</strong>  <strong class="callout"> Confirmed Cases</strong></h4>
       <h1 class = "tweetcounter">
-        421
+        {{nyLatest}}
       </h1>
+      <small class = "update">
+    Last updated on: {{virusLastUpdate | date: 'MMMM d'}} at {{virusLastUpdate | date: 'mediumTime'}}</small>
       <div class="container">
         <div class = "nygraphic">
         </div>
       </div>
-      <small class = "update">
-    Last updated on: {{virusLastUpdate | date: 'MMMM d'}} at {{virusLastUpdate | date: 'mediumTime'}}</small>
 </div>
 
 <hr>
@@ -16,9 +16,9 @@
 <div class = "tweetstorm">
   <div>
     <h5>A sample of <strong>coronavirus</strong> tweets <br> across the country since <br> noon on Friday, March 13th</h5>
-    <h1 class = "tweetcounter">
+    <!--<h1 class = "tweetcounter">
       {{(tweets | async).length}}
-    </h1>
+    </h1>-->
     <small class = "update" *ngFor="let x of tweetrecent | async; let i=index">
       Last updated on: {{x.date | date: 'MMMM d'}} at {{x.date | date: 'mediumTime'}}</small>
 
