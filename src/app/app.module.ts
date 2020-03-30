@@ -15,7 +15,8 @@ import { CoronavirusComponent } from './components/coronavirus/coronavirus.compo
 
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { MediumWidgetModule } from 'ngx-medium-widget';
-import { SocketService } from './services/socket.service';
+import { LineAreaChartComponent } from './components/line-area-chart/line-area-chart.component';
+import { NyStateMapComponent } from './components/ny-state-map/ny-state-map.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,9 @@ import { SocketService } from './services/socket.service';
     HomeComponent,
     PresRegressionComponent,
     ChessEloComponent,
-    CoronavirusComponent
+    CoronavirusComponent,
+    LineAreaChartComponent,
+    NyStateMapComponent
   ],
   imports: [
     BrowserModule,
@@ -34,7 +37,7 @@ import { SocketService } from './services/socket.service';
     FormsModule,
     NgxSpinnerModule
   ],
-  providers: [SocketService],
+  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

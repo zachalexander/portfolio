@@ -12,7 +12,7 @@ export class DjangoService {
   private tweetsall = 'https://guarded-anchorage-28885.herokuapp.com/tweets-all/';
   private tweetcount = 'http://localhost:8000/tweet-count/';
 
-  private coronavirusapi = 'https://coronavirus-tracker-api.herokuapp.com/all';
+  private coronavirusapi = 'https://coronavirus-tracker-api.herokuapp.com/v2/locations?source=csbs';
 
   constructor(private http: HttpClient) { }
 

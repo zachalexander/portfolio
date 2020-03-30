@@ -5,11 +5,18 @@
       </h3>
       <small class = "update">
     Last updated on: {{virusLastUpdate | date: 'MMMM d'}} at {{virusLastUpdate | date: 'mediumTime'}}</small>
-      <div class="container">
-        <div class = "nygraphic">
-        </div>
-      </div>
+    <div class="line_chart">
+      <app-line-area-chart *ngIf="dates" [data]="dates"></app-line-area-chart>
+    </div>
+
+    <div class="ny_map">
+      <app-ny-state-map *ngIf="nyStateMap" [data]="nyStateMap"></app-ny-state-map>
+    </div>
 </div>
+
+
+
+<!--
 
 <hr>
 
@@ -18,7 +25,7 @@
     <h5>A sample of <strong>coronavirus</strong> tweets <br> across the country since <br> noon on Friday, March 13th</h5>
     <!--<h1 class = "tweetcounter">
       {{(tweets | async).length}}
-    </h1>-->
+    </h1>
     <small class = "update" *ngFor="let x of tweetrecent | async; let i=index">
       Last updated on: {{x.date | date: 'MMMM d'}} at {{x.date | date: 'mediumTime'}}</small>
 
@@ -34,3 +41,4 @@
       </div>
     </div>
 </div>
+-->

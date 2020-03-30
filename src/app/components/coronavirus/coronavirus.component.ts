@@ -1,4 +1,3 @@
-import { SocketService } from './../../services/socket.service';
 import { DjangoService } from './../../services/django.service';
 import { Component, OnInit} from '@angular/core';
 import { Tweets } from '../../models/tweets';
@@ -20,23 +19,21 @@ export class CoronavirusComponent implements OnInit {
   tweets: Observable<Tweets[]>;
   tweetcount: Observable<TweetCount[]>;
   tweetrecent: Observable<Tweets[]>;
+  virusCounts: Observable<VirusCounts[]>;
+  dates: Array<any>;
+  nyStateMap: Array<any>;
   arrTweets;
   recentTweet;
   subscription$;
   cords = [];
   cordsRecent = [];
-  virusCounts: Observable<VirusCounts[]>;
   nyLatest;
   virusLastUpdate;
-  nyStateMap;
   nyData;
-  dates;
-  test;
 
   constructor(
     private djangoService: DjangoService,
-    private spinner: NgxSpinnerService,
-    private socketService: SocketService
+    private spinner: NgxSpinnerService
   ) { }
 
   addValuesModel() {
@@ -50,27 +47,22 @@ export class CoronavirusComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.loadTwitterData();
+    // this.loadTwitterData();
     this.spinner.show();
-    this.addValuesModel();
-    this.loadVirusData();
-
-    this.test = this.socketService.getTweets()
-
-    // this.test.subscribe(data => {
-    //   console.log(data);
-    // })
-
+    // this.loadVirusData();
+    this.nyStateMap = this.addNYStateModel();
 
     setTimeout(() => {
-      this.loadTwitterData();
-      this.drawMap(1000, 600, this.addValuesModel());
-      this.drawNYState(400, 200, this.loadVirusData());
+      // this.loadTwitterData();
+      // this.loadVirusData();
+      // this.drawMap(1000, 600, this.addValuesModel());
+      this.drawNYCases();
     }, 2000);
 
     // this.subscription$ = interval(20000).subscribe(data => {
-    //   this.loadTwitterData();
-    //   this.drawMap(1000, 600, this.addValuesModel());
+    //   // this.loadTwitterData();
+    //   this.loadVirusData();
+    //   // this.drawMap(1000, 600, this.addValuesModel());
     // });
 
     setTimeout(() => {
@@ -84,22 +76,22 @@ export class CoronavirusComponent implements OnInit {
     this.tweetcount = this.djangoService.getTweetCount();
   }
 
-  loadVirusData() {
-    this.virusCounts = this.djangoService.getVirusCounts();
-
-    this.virusCounts.subscribe(data => {
-      this.virusLastUpdate = data['confirmed'].last_updated;
-      const virusdata = data['confirmed'];
-      virusdata['locations'].map(cases => {
-        if (cases.country === 'US' && cases.province === 'New York') {
-          this.nyLatest = cases.latest;
-          this.nyData = cases;
-          console.log(this.nyData);
-        }
-      });
-    });
-    return this.nyData;
-  }
+  // loadVirusData() {
+  //   this.virusCounts = this.djangoService.getVirusCounts();
+  //   this.virusCounts.subscribe(data => {
+  //     this.virusLastUpdate = data['locations'][0].last_updated;
+  //     const sumCases = [];
+  //      data['locations'].map(cases => {
+  //       if (cases.state === 'New York') {
+  //         sumCases.push(cases.latest.confirmed);
+  //         this.nyData = cases;
+  //       }
+  //     });
+  //     this.nyLatest = sumCases.reduce((a, b) => a + b, 0);
+  //   });
+  //   console.log(this.nyData);
+  //   return this.nyData;
+  // }
 
   findYesterday() {
     const today = new Date().toLocaleDateString();
@@ -114,15 +106,9 @@ export class CoronavirusComponent implements OnInit {
     return yesterday_fnl;
   }
 
-  drawNYState(width, height, datapull) {
-
-
-    const dateiso = datapull.history;
-    console.log(dateiso);
+  drawNYCases() {
 
     const yesterday = this.findYesterday();
-    const yesterdayCases = dateiso[yesterday];
-
     const yesterday_format = new Date(yesterday);
 
     this.dates = [
@@ -209,198 +195,140 @@ export class CoronavirusComponent implements OnInit {
       {
         date: new Date('03/20/2020'),
         cases: 8310
+      },
+      {
+        date: new Date('03/21/2020'),
+        cases: 12000
+      },
+      {
+        date: new Date('03/22/2020'),
+        cases: 15900
+      },
+      {
+        date: new Date('03/23/2020'),
+        cases: 19000
+      },
+      {
+        date: new Date('03/24/2020'),
+        cases: 25944
       }
     ];
 
-
     const latestData = this.dates[Object.keys(this.dates)[Object.keys(this.dates).length - 1]].date;
+    const secondLatestDataCases = this.dates[Object.keys(this.dates)[Object.keys(this.dates).length - 2]].cases;
 
     if (latestData.toString() !== yesterday_format.toString()) {
       this.dates.push(
         {
           date: yesterday_format,
-          cases: yesterdayCases
+          cases: secondLatestDataCases + (this.nyLatest - secondLatestDataCases)
         }
       );
     } else {
       console.log('date updated!');
     }
-
-    // console.log(this.dates);
-
-    const margin = {top: 50, right: 20, bottom: 60, left: 90},
-    width_new = width - margin.left - margin.right,
-    height_new = width - margin.top - margin.bottom;
-
-    const x = d3.scaleTime().range([0, width]);
-    x.domain(d3.extent(this.dates, function(d) { return d.date; }))
-    x.nice();
-
-    const y = d3.scaleLinear().range([0, height]);
-    y.domain([d3.max(this.dates, function(d) { return d.cases + 50; }), 0]);
-
-    const area = d3.area()
-    .x(function(d) { return x(d.date); })
-    .y0(height)
-    .y1(function(d) { return y(d.cases); });
-
-    const valueline = d3.line()
-    .x(function(d) { return x(d.date); })
-    .y(function(d) { return y(d.cases); })
-    .curve(d3.curveMonotoneX);
-
-    const svg = d3.select('.nygraphic').append('svg')
-                .attr('width',  width_new + 300)
-                .attr('height', height_new)
-                .append('g')
-                .attr('transform', 'translate(' + margin.left + ',' + margin.top + ')');
-
-    svg.append('path')
-        .datum(this.dates)
-        .attr('class', 'area')
-        .attr('fill', 'rgba(238, 162, 154, 0.5)')
-        .attr('d', area);
-
-    svg.append('path')
-        .datum(this.dates) // 10. Binds data to the line
-        .attr('class', 'line') // Assign a class for styling
-        .attr('fill', 'none')
-        .attr('stroke-width', '3px')
-        .attr('stroke', 'darkred')
-        .attr('d', valueline); // 11. Calls the line generator
-
-    const node = svg.selectAll('g')
-                    .data(this.dates)
-                    .enter()
-                    .append('g');
-
-    svg.append('g')
-            .attr('class', 'x axis')
-            .attr('transform', 'translate(0,' + height + ')')
-            .call(d3.axisBottom(x).tickFormat(d3.timeFormat('%m/%d')).ticks(6));
-
-    // svg.append('g')
-    //         .attr('class', 'y axis')
-    //         .call(d3.axisLeft(y)); // Create an axis component with d3.axisLeft
-
-
-
-  // node.append('circle') // Uses the enter().append() method
-  //     .attr('class', 'dot') // Assign a class for styling
-  //     .attr('stroke', 'darkred')
-  //     .attr('fill', '#ddd')
-  //     .attr('cx', function(d, i) { return x(d.date); })
-  //     .attr('cy', function(d) { return y(d.cases); })
-  //     .attr('r', 3);
-
-    node.append('text')
-      .attr('class', 'labels')
-      .attr('x', function(d) { return x(d.date); })
-      .attr('y', function(d) { return y(d.cases) + 5; })
-      .attr('text', function(d) { return d.cases; });
-
   }
 
-drawMap(width, height, datapull) {
+// drawMap(width, height, datapull) {
 
-  // this.tweets.subscribe(data => {
-  //   this.arrTweets = data;
+//   this.tweets.subscribe(data => {
+//     this.arrTweets = data;
 
-  //   this.tweetrecent.subscribe(datarecent => {
-  //     this.recentTweet = datarecent;
-  //   });
+//     this.tweetrecent.subscribe(datarecent => {
+//       this.recentTweet = datarecent;
+//     });
 
-  d3.select('svg').remove();
+//   d3.select('svg').remove();
 
-    const margin = {top: 10, right: 20, bottom: 10, left: 20};
+//     const margin = {top: 10, right: 20, bottom: 10, left: 20};
 
-    width = 1000 - margin.left - margin.right;
-    height = 600 - margin.top - margin.bottom;
+//     width = 1000 - margin.left - margin.right;
+//     height = 600 - margin.top - margin.bottom;
 
-    const projection = d3.geoAlbersUsa();
+//     const projection = d3.geoAlbersUsa();
 
-    const path = d3.geoPath()
-              .projection(projection);
+//     const path = d3.geoPath()
+//               .projection(projection);
 
-    const svg = d3.select('.graphic')
-                .append('svg')
-                .attr('class', 'map')
-                .attr('x', 0)
-                .attr('y', 0)
-                .attr('viewBox', '0 0 1000 600')
-                .attr('preserveAspectRatio', 'xMidYMid');
+//     const svg = d3.select('.graphic')
+//                 .append('svg')
+//                 .attr('class', 'map')
+//                 .attr('x', 0)
+//                 .attr('y', 0)
+//                 .attr('viewBox', '0 0 1000 600')
+//                 .attr('preserveAspectRatio', 'xMidYMid');
 
-    svg.selectAll('path')
-      .data(datapull)
-      .enter()
-      .append('path')
-      .attr('d', path)
-      .style('fill', '#ddd')
-      .style('stroke', '#eee')
-      .style('stroke-width', '1')
-      .classed('svg-content-responsive', true);
+//     svg.selectAll('path')
+//       .data(datapull)
+//       .enter()
+//       .append('path')
+//       .attr('d', path)
+//       .style('fill', '#ddd')
+//       .style('stroke', '#eee')
+//       .style('stroke-width', '1')
+//       .classed('svg-content-responsive', true);
 
-    // this.cords = this.arrTweets.map((coords) => {
-    //   const justCoords = (
-    //     {
-    //       latitude: parseFloat(coords.coordinates_lat),
-    //       longitude: parseFloat(coords.coordinates_lon)
-    //     }
-    //   );
-    //   return justCoords;
-    // });
+//     this.cords = this.arrTweets.map((coords) => {
+//       const justCoords = (
+//         {
+//           latitude: parseFloat(coords.coordinates_lat),
+//           longitude: parseFloat(coords.coordinates_lon)
+//         }
+//       );
+//       return justCoords;
+//     });
 
-    // this.cordsRecent = this.recentTweet.map((coords) => {
-    //   const justCoordsRecent = (
-    //     {
-    //       latitude: parseFloat(coords.coordinates_lat),
-    //       longitude: parseFloat(coords.coordinates_lon)
-    //     }
-    //   );
-    //   return justCoordsRecent;
-    // });
+//     this.cordsRecent = this.recentTweet.map((coords) => {
+//       const justCoordsRecent = (
+//         {
+//           latitude: parseFloat(coords.coordinates_lat),
+//           longitude: parseFloat(coords.coordinates_lon)
+//         }
+//       );
+//       return justCoordsRecent;
+//     });
 
-    // console.log(this.cordsRecent);
+//     console.log(this.cordsRecent);
 
-    // // add circles to svg
-    // svg.selectAll('.old.points')
-    //   .data(this.cords).enter()
-    //   .append('circle')
-    //   .attr('cx', function (d) {
-    //     if (projection([d.latitude, d.longitude]) == null) {
-    //       return projection([0, 0]);
-    //     } else {
-    //       return projection([d.latitude, d.longitude])[0];
-    //     }
-    //   })
-    //   .attr('cy', function (d) {
-    //     if (projection([d.latitude, d.longitude]) == null) {
-    //       return projection([0, 0]);
-    //     } else {
-    //       return projection([d.latitude, d.longitude])[1];
-    //     }
-    //   })
-    //   .attr('r', '4px')
-    //   .attr('fill', 'rgba(238, 162, 154, 0.5)')
-    //   .attr('stroke', 'rgba(238, 162, 154, 1')
-    //   .attr('class', 'old points');
+//     // add circles to svg
+//     svg.selectAll('.old.points')
+//       .data(this.cords).enter()
+//       .append('circle')
+//       .attr('cx', function (d) {
+//         if (projection([d.latitude, d.longitude]) == null) {
+//           return projection([0, 0]);
+//         } else {
+//           return projection([d.latitude, d.longitude])[0];
+//         }
+//       })
+//       .attr('cy', function (d) {
+//         if (projection([d.latitude, d.longitude]) == null) {
+//           return projection([0, 0]);
+//         } else {
+//           return projection([d.latitude, d.longitude])[1];
+//         }
+//       })
+//       .attr('r', '4px')
+//       .attr('fill', 'rgba(238, 162, 154, 0.5)')
+//       .attr('stroke', 'rgba(238, 162, 154, 1')
+//       .attr('class', 'old points');
 
-    //     // add circles to svg
-    // svg.selectAll('.most.recentpoint')
-    //   .data(this.cordsRecent).enter()
-    //   .append('circle')
-    //   .attr('cx', function (d) { return projection([d.latitude, d.longitude])[0]; })
-    //   .attr('cy', function (d) { return projection([d.latitude, d.longitude])[1]; })
-    //   .attr('r', '6px')
-    //   .attr('fill', '#C70039')
-    //   .attr('stroke', '#333')
-    //   .transition()
-    //   .duration(500)
-    //   .attr('r', '8px')
-    //   .transition()
-    //   .duration(500)
-    //   .attr('r', '6px')
-    //   .attr('class', 'most recentpoint');
-    // });
-  }
+//         // add circles to svg
+//     svg.selectAll('.most.recentpoint')
+//       .data(this.cordsRecent).enter()
+//       .append('circle')
+//       .attr('cx', function (d) { return projection([d.latitude, d.longitude])[0]; })
+//       .attr('cy', function (d) { return projection([d.latitude, d.longitude])[1]; })
+//       .attr('r', '6px')
+//       .attr('fill', '#C70039')
+//       .attr('stroke', '#333')
+//       .transition()
+//       .duration(500)
+//       .attr('r', '8px')
+//       .transition()
+//       .duration(500)
+//       .attr('r', '6px')
+//       .attr('class', 'most recentpoint');
+//     });
+//   }
 }
