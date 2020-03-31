@@ -4,10 +4,10 @@ import { Tweets } from '../../models/tweets';
 import { TweetCount } from '../../models/tweetcount';
 import { VirusCounts } from '../../models/viruscounts';
 import { NgxSpinnerService } from 'ngx-spinner';
-import * as d3 from 'd3';
 import * as stateData from '../../../assets/us-states.json';
 import * as nystateData from '../../../assets/newyorkstate.json';
 import { Observable, interval } from 'rxjs';
+import * as nycCasesData from '../../../assets/nyccases.json';
 
 @Component({
   selector: 'app-coronavirus',
@@ -20,7 +20,7 @@ export class CoronavirusComponent implements OnInit {
   tweetcount: Observable<TweetCount[]>;
   tweetrecent: Observable<Tweets[]>;
   virusCounts: Observable<VirusCounts[]>;
-  dates: Array<any>;
+  dates;
   nyStateMap: Array<any>;
   arrTweets;
   recentTweet;
@@ -29,7 +29,7 @@ export class CoronavirusComponent implements OnInit {
   cordsRecent = [];
   nyLatest;
   virusLastUpdate;
-  nyData;
+  nyData: Array<any>;
 
   constructor(
     private djangoService: DjangoService,
@@ -42,22 +42,23 @@ export class CoronavirusComponent implements OnInit {
   }
 
   addNYStateModel() {
-    const nyStateDataset = nystateData;
-    return nyStateDataset['features'];
+    const nyStateDataset = nystateData['features'];
+    return nyStateDataset;
   }
 
   ngOnInit() {
     // this.loadTwitterData();
     this.spinner.show();
-    // this.loadVirusData();
-    this.nyStateMap = this.addNYStateModel();
+    this.loadVirusData();
+    this.drawNYCases();
 
-    setTimeout(() => {
-      // this.loadTwitterData();
-      // this.loadVirusData();
-      // this.drawMap(1000, 600, this.addValuesModel());
-      this.drawNYCases();
-    }, 2000);
+    // setTimeout(() => {
+    //   // this.loadTwitterData();
+    //   // this.nyStateMap = this.addNYStateModel();
+    //   // this.drawMap(1000, 600, this.addValuesModel());
+    // }, 1000);
+
+
 
     // this.subscription$ = interval(20000).subscribe(data => {
     //   // this.loadTwitterData();
@@ -67,7 +68,7 @@ export class CoronavirusComponent implements OnInit {
 
     setTimeout(() => {
       this.spinner.hide();
-    }, 2000);
+    }, 3000);
   }
 
   loadTwitterData() {
@@ -76,22 +77,34 @@ export class CoronavirusComponent implements OnInit {
     this.tweetcount = this.djangoService.getTweetCount();
   }
 
-  // loadVirusData() {
-  //   this.virusCounts = this.djangoService.getVirusCounts();
-  //   this.virusCounts.subscribe(data => {
-  //     this.virusLastUpdate = data['locations'][0].last_updated;
-  //     const sumCases = [];
-  //      data['locations'].map(cases => {
-  //       if (cases.state === 'New York') {
-  //         sumCases.push(cases.latest.confirmed);
-  //         this.nyData = cases;
-  //       }
-  //     });
-  //     this.nyLatest = sumCases.reduce((a, b) => a + b, 0);
-  //   });
-  //   console.log(this.nyData);
-  //   return this.nyData;
-  // }
+  loadVirusData() {
+    this.virusCounts = this.djangoService.getVirusCounts();
+    this.virusCounts.subscribe(data => {
+      this.virusLastUpdate = data['locations'][0].last_updated;
+      const sumCases = [];
+      const nyCases = []
+       data['locations'].map(cases => {
+        if (cases.province === 'New York') {
+          sumCases.push(cases.latest.confirmed);
+          nyCases.push(cases);
+          this.nyData = nyCases;
+          this.nyStateMap = this.addNYStateModel();
+        }
+      });
+
+      this.nyStateMap.map(polygons => {
+        this.nyData.map(cases => {
+          if(polygons.properties.NAME === cases.county){
+            polygons.properties['latitude'] = parseFloat(cases['coordinates'].latitude);
+            polygons.properties['longitude'] = parseFloat(cases['coordinates'].longitude);
+            polygons.properties['confirmed'] = parseInt(cases['latest'].confirmed);
+          }
+        })
+      })
+      this.nyLatest = sumCases.reduce((a, b) => a + b, 0);
+    });
+    return this.nyData;
+  }
 
   findYesterday() {
     const today = new Date().toLocaleDateString();
@@ -107,126 +120,7 @@ export class CoronavirusComponent implements OnInit {
   }
 
   drawNYCases() {
-
-    const yesterday = this.findYesterday();
-    const yesterday_format = new Date(yesterday);
-
-    this.dates = [
-      {
-        date: new Date('03/1/2020'),
-        cases: 1
-      },
-      {
-        date: new Date('03/2/2020'),
-        cases: 1
-      },
-      {
-        date: new Date('03/3/2020'),
-        cases: 2
-      },
-      {
-        date: new Date('03/4/2020'),
-        cases: 11
-      },
-      {
-        date: new Date('03/5/2020'),
-        cases: 22
-      },
-      {
-        date: new Date('03/6/2020'),
-        cases: 44
-      },
-      {
-        date: new Date('03/7/2020'),
-        cases: 89
-      },
-      {
-        date: new Date('03/8/2020'),
-        cases: 105
-      },
-      {
-        date: new Date('03/9/2020'),
-        cases: 142
-      },
-      {
-        date: new Date('03/10/2020'),
-        cases: 173
-      },
-      {
-        date: new Date('03/10/2020'),
-        cases: 173
-      },
-      {
-        date: new Date('03/11/2020'),
-        cases: 220
-      },
-      {
-        date: new Date('03/12/2020'),
-        cases: 328
-      },
-      {
-        date: new Date('03/13/2020'),
-        cases: 421
-      },
-      {
-        date: new Date('03/14/2020'),
-        cases: 525
-      },
-      {
-        date: new Date('03/15/2020'),
-        cases: 732
-      },
-      {
-        date: new Date('03/16/2020'),
-        cases: 967
-      },
-      {
-        date: new Date('03/17/2020'),
-        cases: 1706
-      },
-      {
-        date: new Date('03/18/2020'),
-        cases: 2495
-      },
-      {
-        date: new Date('03/19/2020'),
-        cases: 5365
-      },
-      {
-        date: new Date('03/20/2020'),
-        cases: 8310
-      },
-      {
-        date: new Date('03/21/2020'),
-        cases: 12000
-      },
-      {
-        date: new Date('03/22/2020'),
-        cases: 15900
-      },
-      {
-        date: new Date('03/23/2020'),
-        cases: 19000
-      },
-      {
-        date: new Date('03/24/2020'),
-        cases: 25944
-      }
-    ];
-
-    const latestData = this.dates[Object.keys(this.dates)[Object.keys(this.dates).length - 1]].date;
-    const secondLatestDataCases = this.dates[Object.keys(this.dates)[Object.keys(this.dates).length - 2]].cases;
-
-    if (latestData.toString() !== yesterday_format.toString()) {
-      this.dates.push(
-        {
-          date: yesterday_format,
-          cases: secondLatestDataCases + (this.nyLatest - secondLatestDataCases)
-        }
-      );
-    } else {
-      console.log('date updated!');
-    }
+    this.dates = nycCasesData;
   }
 
 // drawMap(width, height, datapull) {

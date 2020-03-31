@@ -15,8 +15,8 @@ export class NyStateMapComponent implements OnInit {
 
   ngOnInit() {
     setTimeout(() => {
-      this.drawMap(600, 600, this.data);
-    }, 2000);
+      this.drawMap(600, 500, this.data);
+    }, 1000);
   }
 
   drawMap(width, height, datapull) {
@@ -51,16 +51,42 @@ export class NyStateMapComponent implements OnInit {
             .classed('svg-content-responsive', true);
 
           svg.selectAll('.maptext')
-              .data([[-73.94, 40.7979]])
+              .data(datapull)
               .enter()
               .append('text')
-              .attr('x', function (d) { console.log(projection(d)[0]); return projection(d)[0];})
-              .attr('y', function (d) { console.log(projection(d)[1]); return projection(d)[1];})
-              .attr('r', '4px')
-              .attr('fill', 'rgba(238, 162, 154, 0.5)')
-              .attr('stroke', 'rgba(238, 162, 154, 1')
+              .attr('x', function (d) {
+                if (d.properties.NAME === 'New York' || d.properties.NAME === 'Rockland') {
+                  return path.centroid(d)[0] - 20;
+                } else if (d.properties.NAME === 'Orange') {
+                  return path.centroid(d)[0] - 10;
+                } else {
+                return path.centroid(d)[0] - 5;
+                }
+              })
+              .attr('y', function (d) {
+                  return path.centroid(d)[1] + 5;
+              })
               .attr('class', 'maptext')
-              .text('test');
+              .attr('font-size', '.55em')
+              .attr('font-weight', '700')
+              .attr('fill', function(d) {
+                if (d.properties.confirmed >= 1000) {
+                  return 'darkred';
+                } else {
+                  return '#333';
+                }
+              })
+              .text(function(d) {
+                if (d.properties.confirmed == null && (d.properties.NAME === 'Kings' ||
+                d.properties.NAME === 'Queens' || d.properties.NAME === 'Bronx' ||
+                d.properties.NAME === 'Richmond')) {
+                  return '';
+                } else if (d.properties.confirmed == null) {
+                  return 0;
+                } else {
+                  return d.properties.confirmed.toLocaleString('en-US');
+                }
+              });
   }
 
 }
