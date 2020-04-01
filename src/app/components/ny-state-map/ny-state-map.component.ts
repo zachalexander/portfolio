@@ -5,7 +5,7 @@ import * as d3 from 'd3';
   selector: 'app-ny-state-map',
   encapsulation: ViewEncapsulation.None,
   templateUrl: './ny-state-map.component.html',
-  styleUrls: ['./ny-state-map.component.sass']
+  styleUrls: ['./ny-state-map.component.scss']
 })
 export class NyStateMapComponent implements OnInit {
 
@@ -16,16 +16,31 @@ export class NyStateMapComponent implements OnInit {
   ngOnInit() {
     setTimeout(() => {
       const len = window.innerWidth;
-
       if (len <= 600) {
-        this.drawMap(len, 500, this.data);
+        this.drawMap(len, 500, this.data, 2500);
       } else {
-        this.drawMap(600, 500, this.data);
+        this.drawMap(600, 500, this.data, 4000);
       }
     }, 1000);
   }
 
-  drawMap(width, height, datapull) {
+  drawMap(width, height, datapull, scale) {
+
+        // https://github.com/wbkd/d3-extended
+        d3.selection.prototype.moveToFront = function() {
+          return this.each(function(){
+            this.parentNode.appendChild(this);
+          });
+        };
+
+        d3.selection.prototype.moveToBack = function() {
+          return this.each(function() { 
+              var firstChild = this.parentNode.firstChild; 
+              if (firstChild) { 
+                  this.parentNode.insertBefore(this, firstChild); 
+              } 
+          });
+      };
 
     const margin = {top: 10, right: 10, bottom: 10, left: 10};
 
@@ -35,7 +50,7 @@ export class NyStateMapComponent implements OnInit {
 
     const projection = d3.geoMercator()
                         .center([-74.875366, 42.88])
-                        .scale(2500)
+                        .scale(scale)
                         .translate([((width / 2) + 60), (height / 2)]);
 
     const path = d3.geoPath()
@@ -52,10 +67,44 @@ export class NyStateMapComponent implements OnInit {
             .enter()
             .append('path')
             .attr('d', path)
+            .attr('id', 'unselected')
             .style('fill', '#ddd')
             .style('stroke', '#eee')
             .style('stroke-width', '1')
-            .classed('svg-content-responsive', true);
+            .classed('svg-content-responsive', true)
+            .call(function() {
+              d3.select('#tooltip')
+              .select('#value')
+              .html(
+                '<h5 class=' + 'tooltip_header' + '>' + '--- County' + '</h5>'
+                + '<h5 class=' + 'tooltip_cases' + '>' + 'Confirmed Cases: --- ' + '</h5>');
+              })
+            .on('mouseover', function(d) {
+              svg.selectAll('path')
+              .attr('d', path);
+              d3.select(this).moveToFront()
+              .style('cursor', 'crosshair')
+              .style('stroke', '#333')
+              .style('fill', 'darkred')
+              .attr('id', 'pathSelection')
+              .style('stroke-width', '2');
+              d3.select('#tooltip')
+              .style('left', 20 + 'px')
+              .style('top', 0 + 'px')
+              .html('<h5 class=' + 'tooltip_header' + '>' + d.properties.NAME + ' County' + '</h5>'
+              + '<h5 class=' + 'tooltip_cases' + '>' + 'Confirmed Cases: ' + d.properties.confirmed.toLocaleString('en-US') + '</h5>');
+                // Show the tooltip
+                d3.select('#tooltip').classed('hidden', false);
+              })
+              .on('mouseout', function() {
+                  d3.select('#tooltip').classed('hidden', true);
+                  svg.selectAll('path')
+                  .attr('d', path)
+                  d3.select(this).moveToBack()
+                  .style('stroke-width', '1')
+                  .style('stroke', '#eee')
+                  .style('fill', '#ddd');
+              });
 
           svg.selectAll('.maptext')
               .data(datapull)

@@ -1,0 +1,25 @@
+    
+#tooltip {
+    width: 200px;
+    margin: 2em auto 0 auto;
+    padding: 1em;
+    border: 1px dashed #333;
+}
+
+.tooltip_header {
+    font-size: 0.95em;
+    font-weight: 700;
+}
+
+.tooltip_cases {
+    font-size: 0.85em;
+    font-weight: 700;
+}
+
+#unselected {
+    z-index: 1;
+}
+
+#pathSelection {
+    z-index: 1000;
+}

@@ -1,17 +1,22 @@
 <div class = "nystorm">
-  <h5><strong>New York State:</strong>  <strong class="callout"> Confirmed Cases</strong></h5>
-      <h3 class = "tweetcounter">
-        {{nyLatest | number}}
-      </h3>
-      <small class = "update">
-    Last updated on: {{virusLastUpdate | date: 'MMMM d'}} at {{virusLastUpdate | date: 'mediumTime'}}</small>
     <div class="line_chart">
       <app-line-area-chart *ngIf="dates" [data]="dates"></app-line-area-chart>
     </div>
+</div>
 
-    <div class="ny_map">
-      <app-ny-state-map *ngIf="nyStateMap" [data]="nyStateMap"></app-ny-state-map>
+<div class="nystorm">  
+  <h5><strong>New York State:</strong>  <strong class="callout"> Confirmed Cases</strong></h5>
+  <h3 class = "tweetcounter">
+    {{nyLatest | number}}
+  </h3>
+  <small class = "update">
+Last updated on: {{virusLastUpdate | date: 'MMMM d':'+0000'}} at {{virusLastUpdate | date: 'mediumTime':'+0000'}}</small>
+  <div class="ny_map">
+    <div id="tooltip">
+      <div id="value"></div>
     </div>
+    <app-ny-state-map *ngIf="nyStateMap" [data]="nyStateMap"></app-ny-state-map>
+  </div>
 </div>
 
 

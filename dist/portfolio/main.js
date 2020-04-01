@@ -1019,17 +1019,23 @@ var NyStateMapComponent = /** @class */ (function () {
     NyStateMapComponent.prototype.ngOnInit = function () {
         var _this = this;
         setTimeout(function () {
-            _this.drawMap(600, 500, _this.data);
+            var len = window.innerWidth;
+            if (len <= 600) {
+                _this.drawMap(len, 500, _this.data, 2500);
+            }
+            else {
+                _this.drawMap(600, 500, _this.data, 4000);
+            }
         }, 1000);
     };
-    NyStateMapComponent.prototype.drawMap = function (width, height, datapull) {
+    NyStateMapComponent.prototype.drawMap = function (width, height, datapull, scale) {
         var margin = { top: 10, right: 10, bottom: 10, left: 10 };
         width = width - margin.left - margin.right;
         height = height - margin.top - margin.bottom;
         var projection = d3__WEBPACK_IMPORTED_MODULE_1__["geoMercator"]()
             .center([-74.875366, 42.88])
-            .scale(3000)
-            .translate([(width / 2), (height / 2)]);
+            .scale(scale)
+            .translate([((width / 2) + 60), (height / 2)]);
         var path = d3__WEBPACK_IMPORTED_MODULE_1__["geoPath"]()
             .projection(projection);
         var svg = d3__WEBPACK_IMPORTED_MODULE_1__["select"]('.ny_map')
@@ -1062,10 +1068,10 @@ var NyStateMapComponent = /** @class */ (function () {
             }
         })
             .attr('y', function (d) {
-            return path.centroid(d)[1] + 5;
+            return path.centroid(d)[1] + 2;
         })
             .attr('class', 'maptext')
-            .attr('font-size', '.55em')
+            .attr('font-size', '.50em')
             .attr('font-weight', '700')
             .attr('fill', function (d) {
             if (d.properties.confirmed >= 1000) {
