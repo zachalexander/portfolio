@@ -7,6 +7,9 @@
 }
 
 .tooltip_header {
+    background-color: #3333339c;
+    color: #fff;
+    padding: 0.5em;
     font-size: 0.95em;
     font-weight: 700;
 }
@@ -14,6 +17,21 @@
 .tooltip_cases {
     font-size: 0.85em;
     font-weight: 700;
+}
+
+.case_highlight {
+    font-weight: 700;
+    color: darkred;
+    align-self: center;
+    margin: 0 5px 0 0;
+}
+
+.tool_wrapper {
+    display: flex;
+    width: 100%;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
 }
 
 #unselected {

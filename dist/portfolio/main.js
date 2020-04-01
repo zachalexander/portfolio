@@ -542,7 +542,7 @@ var ChessEloComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class = \"nystorm\">\r\n  <h5><strong>New York State:</strong>  <strong class=\"callout\"> Confirmed Cases</strong></h5>\r\n      <h3 class = \"tweetcounter\">\r\n        {{nyLatest | number}}\r\n      </h3>\r\n      <small class = \"update\">\r\n    Last updated on: {{virusLastUpdate | date: 'MMMM d'}} at {{virusLastUpdate | date: 'mediumTime'}}</small>\r\n    <div class=\"line_chart\">\r\n      <app-line-area-chart *ngIf=\"dates\" [data]=\"dates\"></app-line-area-chart>\r\n    </div>\r\n\r\n    <div class=\"ny_map\">\r\n      <app-ny-state-map *ngIf=\"nyStateMap\" [data]=\"nyStateMap\"></app-ny-state-map>\r\n    </div>\r\n</div>\r\n\r\n\r\n\r\n<!--\r\n\r\n<hr>\r\n\r\n<div class = \"tweetstorm\">\r\n  <div>\r\n    <h5>A sample of <strong>coronavirus</strong> tweets <br> across the country since <br> noon on Friday, March 13th</h5>\r\n    <!--<h1 class = \"tweetcounter\">\r\n      {{(tweets | async).length}}\r\n    </h1>\r\n    <small class = \"update\" *ngFor=\"let x of tweetrecent | async; let i=index\">\r\n      Last updated on: {{x.date | date: 'MMMM d'}} at {{x.date | date: 'mediumTime'}}</small>\r\n\r\n  </div>\r\n  <hr>\r\n  <div class=\"latest_tweet\">\r\n    <img src='../../../assets/tweets_img1.png'>\r\n    <small class=\"latest_tweet_text\" *ngFor=\"let x of tweetrecent | async; let i=index\"> {{x.tweetText}}</small>\r\n  </div>\r\n  <hr>\r\n    <div class=\"container\">\r\n      <div class = \"graphic\">\r\n      </div>\r\n    </div>\r\n</div>\r\n-->\r\n"
+module.exports = "<div class = \"nystorm\">\r\n    <div class=\"line_chart\">\r\n      <app-line-area-chart *ngIf=\"dates\" [data]=\"dates\"></app-line-area-chart>\r\n    </div>\r\n</div>\r\n\r\n<div class=\"nystorm\">  \r\n  <h5><strong>New York State:</strong>  <strong class=\"callout\"> Confirmed Cases</strong></h5>\r\n  <h3 class = \"tweetcounter\">\r\n    {{nyLatest | number}}\r\n  </h3>\r\n  <small class = \"update\">\r\nLast updated on: {{virusLastUpdate | date: 'MMMM d':'+0000'}} at {{virusLastUpdate | date: 'mediumTime':'+0000'}}</small>\r\n  <div class=\"ny_map\">\r\n    <div id=\"tooltip\">\r\n      <div id=\"value\"></div>\r\n    </div>\r\n    <app-ny-state-map *ngIf=\"nyStateMap\" [data]=\"nyStateMap\"></app-ny-state-map>\r\n  </div>\r\n</div>\r\n\r\n\r\n\r\n<!--\r\n\r\n<hr>\r\n\r\n<div class = \"tweetstorm\">\r\n  <div>\r\n    <h5>A sample of <strong>coronavirus</strong> tweets <br> across the country since <br> noon on Friday, March 13th</h5>\r\n    <!--<h1 class = \"tweetcounter\">\r\n      {{(tweets | async).length}}\r\n    </h1>\r\n    <small class = \"update\" *ngFor=\"let x of tweetrecent | async; let i=index\">\r\n      Last updated on: {{x.date | date: 'MMMM d'}} at {{x.date | date: 'mediumTime'}}</small>\r\n\r\n  </div>\r\n  <hr>\r\n  <div class=\"latest_tweet\">\r\n    <img src='../../../assets/tweets_img1.png'>\r\n    <small class=\"latest_tweet_text\" *ngFor=\"let x of tweetrecent | async; let i=index\"> {{x.tweetText}}</small>\r\n  </div>\r\n  <hr>\r\n    <div class=\"container\">\r\n      <div class = \"graphic\">\r\n      </div>\r\n    </div>\r\n</div>\r\n-->\r\n"
 
 /***/ }),
 
@@ -979,14 +979,14 @@ module.exports = "\r\n"
 
 /***/ }),
 
-/***/ "./src/app/components/ny-state-map/ny-state-map.component.sass":
+/***/ "./src/app/components/ny-state-map/ny-state-map.component.scss":
 /*!*********************************************************************!*\
-  !*** ./src/app/components/ny-state-map/ny-state-map.component.sass ***!
+  !*** ./src/app/components/ny-state-map/ny-state-map.component.scss ***!
   \*********************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = ""
+module.exports = "#tooltip {\n  width: 200px;\n  margin: 2em auto 0 auto;\n  padding: 1em;\n  border: 1px dashed #333; }\n\n.tooltip_header {\n  font-size: 0.95em;\n  font-weight: 700; }\n\n.tooltip_cases {\n  font-size: 0.85em;\n  font-weight: 700; }\n\n#unselected {\n  z-index: 1; }\n\n#pathSelection {\n  z-index: 1000; }\n"
 
 /***/ }),
 
@@ -1029,6 +1029,20 @@ var NyStateMapComponent = /** @class */ (function () {
         }, 1000);
     };
     NyStateMapComponent.prototype.drawMap = function (width, height, datapull, scale) {
+        // https://github.com/wbkd/d3-extended
+        d3__WEBPACK_IMPORTED_MODULE_1__["selection"].prototype.moveToFront = function () {
+            return this.each(function () {
+                this.parentNode.appendChild(this);
+            });
+        };
+        d3__WEBPACK_IMPORTED_MODULE_1__["selection"].prototype.moveToBack = function () {
+            return this.each(function () {
+                var firstChild = this.parentNode.firstChild;
+                if (firstChild) {
+                    this.parentNode.insertBefore(this, firstChild);
+                }
+            });
+        };
         var margin = { top: 10, right: 10, bottom: 10, left: 10 };
         width = width - margin.left - margin.right;
         height = height - margin.top - margin.bottom;
@@ -1048,10 +1062,43 @@ var NyStateMapComponent = /** @class */ (function () {
             .enter()
             .append('path')
             .attr('d', path)
+            .attr('id', 'unselected')
             .style('fill', '#ddd')
             .style('stroke', '#eee')
             .style('stroke-width', '1')
-            .classed('svg-content-responsive', true);
+            .classed('svg-content-responsive', true)
+            .call(function () {
+            d3__WEBPACK_IMPORTED_MODULE_1__["select"]('#tooltip')
+                .select('#value')
+                .html('<h5 class=' + 'tooltip_header' + '>' + '--- County' + '</h5>'
+                + '<h5 class=' + 'tooltip_cases' + '>' + 'Confirmed Cases: --- ' + '</h5>');
+        })
+            .on('mouseover', function (d) {
+            svg.selectAll('path')
+                .attr('d', path);
+            d3__WEBPACK_IMPORTED_MODULE_1__["select"](this).moveToFront()
+                .style('cursor', 'crosshair')
+                .style('stroke', '#333')
+                .style('fill', 'darkred')
+                .attr('id', 'pathSelection')
+                .style('stroke-width', '2');
+            d3__WEBPACK_IMPORTED_MODULE_1__["select"]('#tooltip')
+                .style('left', 20 + 'px')
+                .style('top', 0 + 'px')
+                .html('<h5 class=' + 'tooltip_header' + '>' + d.properties.NAME + ' County' + '</h5>'
+                + '<h5 class=' + 'tooltip_cases' + '>' + 'Confirmed Cases: ' + d.properties.confirmed.toLocaleString('en-US') + '</h5>');
+            // Show the tooltip
+            d3__WEBPACK_IMPORTED_MODULE_1__["select"]('#tooltip').classed('hidden', false);
+        })
+            .on('mouseout', function () {
+            d3__WEBPACK_IMPORTED_MODULE_1__["select"]('#tooltip').classed('hidden', true);
+            svg.selectAll('path')
+                .attr('d', path);
+            d3__WEBPACK_IMPORTED_MODULE_1__["select"](this).moveToBack()
+                .style('stroke-width', '1')
+                .style('stroke', '#eee')
+                .style('fill', '#ddd');
+        });
         svg.selectAll('.maptext')
             .data(datapull)
             .enter()
@@ -1104,7 +1151,7 @@ var NyStateMapComponent = /** @class */ (function () {
             selector: 'app-ny-state-map',
             encapsulation: _angular_core__WEBPACK_IMPORTED_MODULE_0__["ViewEncapsulation"].None,
             template: __webpack_require__(/*! ./ny-state-map.component.html */ "./src/app/components/ny-state-map/ny-state-map.component.html"),
-            styles: [__webpack_require__(/*! ./ny-state-map.component.sass */ "./src/app/components/ny-state-map/ny-state-map.component.sass")]
+            styles: [__webpack_require__(/*! ./ny-state-map.component.scss */ "./src/app/components/ny-state-map/ny-state-map.component.scss")]
         }),
         __metadata("design:paramtypes", [])
     ], NyStateMapComponent);

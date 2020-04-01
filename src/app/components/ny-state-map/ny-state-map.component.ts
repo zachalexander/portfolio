@@ -17,7 +17,7 @@ export class NyStateMapComponent implements OnInit {
     setTimeout(() => {
       const len = window.innerWidth;
       if (len <= 600) {
-        this.drawMap(len, 500, this.data, 2500);
+        this.drawMap(len, 380, this.data, 2500);
       } else {
         this.drawMap(600, 500, this.data, 4000);
       }
@@ -77,7 +77,7 @@ export class NyStateMapComponent implements OnInit {
               .select('#value')
               .html(
                 '<h5 class=' + 'tooltip_header' + '>' + '--- County' + '</h5>'
-                + '<h5 class=' + 'tooltip_cases' + '>' + 'Confirmed Cases: --- ' + '</h5>');
+                + '<h5 class=' + 'tooltip_cases' + '>' + '___ confirmed cases ' + '</h5>');
               })
             .on('mouseover', function(d) {
               svg.selectAll('path')
@@ -92,7 +92,11 @@ export class NyStateMapComponent implements OnInit {
               .style('left', 20 + 'px')
               .style('top', 0 + 'px')
               .html('<h5 class=' + 'tooltip_header' + '>' + d.properties.NAME + ' County' + '</h5>'
-              + '<h5 class=' + 'tooltip_cases' + '>' + 'Confirmed Cases: ' + d.properties.confirmed.toLocaleString('en-US') + '</h5>');
+              + '<div class=' + 'tool_wrapper' + '>'
+              + '<h5 class=' + 'tooltip_cases' + '>' + '<h5 class=' + 'case_highlight' + '>' + d.properties.confirmed.toLocaleString('en-US') + '</h5>' 
+              + ' confirmed cases ' + '</h5>'
+              + '</div>'
+              );
                 // Show the tooltip
                 d3.select('#tooltip').classed('hidden', false);
               })
