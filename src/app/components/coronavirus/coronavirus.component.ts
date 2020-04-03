@@ -8,6 +8,9 @@ import * as stateData from '../../../assets/us-states.json';
 import * as nystateData from '../../../assets/newyorkstate.json';
 import { Observable, interval } from 'rxjs';
 import * as nycCasesData from '../../../assets/nyccases.json';
+import * as nycDonation from '../../../assets/donations.json';
+import * as nycityData from '../../../assets/new-york-city-boroughs.json';
+
 
 @Component({
   selector: 'app-coronavirus',
@@ -22,6 +25,7 @@ export class CoronavirusComponent implements OnInit {
   virusCounts: Observable<VirusCounts[]>;
   dates;
   nyStateMap: Array<any>;
+  nyCityMap: Array<any>;
   arrTweets;
   recentTweet;
   subscription$;
@@ -30,6 +34,7 @@ export class CoronavirusComponent implements OnInit {
   nyLatest;
   virusLastUpdate;
   nyData: Array<any>;
+  latestDonationCount;
 
   constructor(
     private djangoService: DjangoService,
@@ -46,11 +51,19 @@ export class CoronavirusComponent implements OnInit {
     return nyStateDataset;
   }
 
+  addNYCityModel() {
+    const nyCityDataset = nycityData['features'];
+    return nycityData;
+  }
+
   ngOnInit() {
     // this.loadTwitterData();
     this.spinner.show();
     this.loadVirusData();
     this.drawNYCases();
+    this.sumDonations();
+
+    this.nyCityMap = this.addNYCityModel()['features'];
 
     // setTimeout(() => {
     //   // this.loadTwitterData();
@@ -71,6 +84,14 @@ export class CoronavirusComponent implements OnInit {
     }, 3000);
   }
 
+  sumDonations () {
+    const sum = [];
+    nycDonation['food_bank'].map(donations => {
+      sum.push(donations.amount);
+    });
+    this.latestDonationCount = sum.reduce((a, b) => a + b, 0);
+  }
+
   loadTwitterData() {
     this.tweets = this.djangoService.getAllTweets();
     this.tweetrecent = this.djangoService.getFirstTweet();
@@ -82,7 +103,7 @@ export class CoronavirusComponent implements OnInit {
     this.virusCounts.subscribe(data => {
       this.virusLastUpdate = data['locations'][0].last_updated;
       const sumCases = [];
-      const nyCases = []
+      const nyCases = [];
        data['locations'].map(cases => {
         if (cases.province === 'New York') {
           sumCases.push(cases.latest.confirmed);

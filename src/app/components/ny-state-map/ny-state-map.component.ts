@@ -77,7 +77,7 @@ export class NyStateMapComponent implements OnInit {
               .select('#value')
               .html(
                 '<h5 class=' + 'tooltip_header' + '>' + '--- County' + '</h5>'
-                + '<h5 class=' + 'tooltip_cases' + '>' + '___ confirmed cases ' + '</h5>');
+                + '<h5 class=' + 'tooltip_cases' + '>' + '--- confirmed cases ' + '</h5>');
               })
             .on('mouseover', function(d) {
               svg.selectAll('path')

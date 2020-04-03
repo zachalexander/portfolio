@@ -846,7 +846,7 @@ module.exports = "\r\n"
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "path.domain {\n  stroke: none; }\n\npath.area {\n  fill: url(#area-gradient);\n  stroke-width: 0px; }\n\ntext {\n  font-weight: 700;\n  font-family: Lato, 'Arial', sans-serif; }\n"
+module.exports = "path.domain {\n  stroke: none; }\n\npath.area {\n  fill: url(#area-gradient);\n  stroke-width: 0px; }\n\ntext {\n  font-weight: 700;\n  font-family: Lato, 'Arial', sans-serif; }\n\ng.tick {\n  padding-top: 2px;\n  color: #888; }\n\n.overlay {\n  fill: none;\n  pointer-events: all; }\n\n.focus circle {\n  fill: #F1F3F3;\n  stroke: darkred;\n  stroke-width: 2px; }\n\ng.focus {\n  fill: #333; }\n"
 
 /***/ }),
 
@@ -880,10 +880,10 @@ var LineAreaChartComponent = /** @class */ (function () {
         this.drawNYCases(300, 200, this.data);
     };
     LineAreaChartComponent.prototype.drawNYCases = function (width, height, datapull) {
-        console.log(datapull);
         datapull = datapull.nyCases;
         var parseTime = d3__WEBPACK_IMPORTED_MODULE_1__["timeParse"]('%m/%d/%Y');
-        var margin = { top: 30, right: 5, bottom: 10, left: 35 }, width_new = width - margin.left - margin.right, height_new = width - margin.top - margin.bottom;
+        var bisectDate = d3__WEBPACK_IMPORTED_MODULE_1__["bisector"](function (d) { return parseTime(d.date); }).right;
+        var margin = { top: 30, right: 5, bottom: 10, left: 0 }, width_new = width - margin.left - margin.right, height_new = width - margin.top - margin.bottom;
         var x = d3__WEBPACK_IMPORTED_MODULE_1__["scaleTime"]().range([0, width]);
         x.domain(d3__WEBPACK_IMPORTED_MODULE_1__["extent"](datapull, function (d) { return parseTime(d.date); }));
         var y = d3__WEBPACK_IMPORTED_MODULE_1__["scaleLinear"]().range([0, height]);
@@ -897,10 +897,10 @@ var LineAreaChartComponent = /** @class */ (function () {
             .y(function (d) { return y(d.cases); })
             .curve(d3__WEBPACK_IMPORTED_MODULE_1__["curveMonotoneX"]);
         var svg = d3__WEBPACK_IMPORTED_MODULE_1__["select"]('.line_chart').append('svg')
-            .attr('width', width_new + 100)
+            .attr('width', width_new + 120)
             .attr('height', height_new)
             .append('g')
-            .attr('transform', 'translate(' + margin.left + ',' + margin.top + ')');
+            .attr('transform', 'translate(' + (margin.left + 45) + ',' + margin.top + ')');
         // set the gradient
         svg.append('linearGradient')
             .attr('id', 'area-gradient')
@@ -930,6 +930,10 @@ var LineAreaChartComponent = /** @class */ (function () {
             .attr('in', 'coloredBlur');
         feMerge.append('feMergeNode')
             .attr('in', 'SourceGraphic');
+        svg.append('g')
+            .attr('class', 'x axis')
+            .attr('transform', 'translate(0,' + height + ')')
+            .call(d3__WEBPACK_IMPORTED_MODULE_1__["axisBottom"](x).tickFormat(d3__WEBPACK_IMPORTED_MODULE_1__["timeFormat"]('%m/%d')).ticks(8).tickPadding(5));
         svg.append('path')
             .datum(datapull)
             .attr('class', 'area')
@@ -943,10 +947,36 @@ var LineAreaChartComponent = /** @class */ (function () {
             .attr('stroke-width', '3px')
             .attr('stroke', 'darkred')
             .attr('d', valueline); // 11. Calls the line generator
-        svg.append('g')
-            .attr('class', 'x axis')
-            .attr('transform', 'translate(0,' + height + ')')
-            .call(d3__WEBPACK_IMPORTED_MODULE_1__["axisBottom"](x).tickFormat(d3__WEBPACK_IMPORTED_MODULE_1__["timeFormat"]('%m/%d')).ticks(8).tickSize(0).tickPadding(15));
+        // 12. Appends a circle for each datapoint 
+        // svg.selectAll(".dot")
+        //     .data(datapull)
+        //     .enter().append("circle") // Uses the enter().append() method
+        //     .attr("class", "dot") // Assign a class for styling
+        //     .attr("cx", function(d, i) { return x(parseTime(d.date)); })
+        //     .attr("cy", function(d) { return y(d.cases); })
+        //     .attr("r", 5);
+        var focus = svg.append("g")
+            .attr("class", "focus")
+            .style("display", "none");
+        focus.append("circle")
+            .attr("r", 4);
+        focus.append("text")
+            .attr("x", 10)
+            .attr("dy", ".31em");
+        svg.append("rect")
+            .attr("class", "overlay")
+            .attr("width", width_new + 100)
+            .attr("height", height_new)
+            .on("mouseover", function () {
+            focus.style("display", null);
+        }).style('cursor', 'crosshair')
+            .on("mousemove", mousemove);
+        function mousemove() {
+            var x0 = x.invert(d3__WEBPACK_IMPORTED_MODULE_1__["mouse"](this)[0]), i = bisectDate(datapull, x0, 1), d0 = datapull[i - 1], d1 = datapull[i];
+            var d = x0 - parseTime(d0.date) > parseTime(d1.date) - x0 ? d1 : d0;
+            focus.attr("transform", "translate(" + x(parseTime(d.date)) + "," + y(d.cases) + ")");
+            focus.select("text").text(function () { return d.cases.toLocaleString('en-US'); });
+        }
     };
     __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Input"])(),
@@ -986,7 +1016,7 @@ module.exports = "\r\n"
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "#tooltip {\n  width: 200px;\n  margin: 2em auto 0 auto;\n  padding: 1em;\n  border: 1px dashed #333; }\n\n.tooltip_header {\n  font-size: 0.95em;\n  font-weight: 700; }\n\n.tooltip_cases {\n  font-size: 0.85em;\n  font-weight: 700; }\n\n#unselected {\n  z-index: 1; }\n\n#pathSelection {\n  z-index: 1000; }\n"
+module.exports = "#tooltip {\n  width: 220px;\n  margin: 2em auto 0 auto;\n  padding: 1em;\n  border: 1px dashed #333; }\n\n.tooltip_header {\n  background-color: #3333339c;\n  color: #fff;\n  padding: 0.5em;\n  font-size: 0.95em;\n  font-weight: 700; }\n\n.tooltip_cases {\n  font-size: 0.85em;\n  font-weight: 700; }\n\n.case_highlight {\n  font-weight: 700;\n  color: darkred;\n  -ms-grid-row-align: center;\n      align-self: center;\n  margin: 0 5px 0 0; }\n\n.tool_wrapper {\n  display: -webkit-box;\n  display: flex;\n  width: 100%;\n  -webkit-box-orient: horizontal;\n  -webkit-box-direction: normal;\n          flex-direction: row;\n  -webkit-box-pack: center;\n          justify-content: center;\n  -webkit-box-align: center;\n          align-items: center; }\n\n#unselected {\n  z-index: 1; }\n\n#pathSelection {\n  z-index: 1000; }\n"
 
 /***/ }),
 
@@ -1021,7 +1051,7 @@ var NyStateMapComponent = /** @class */ (function () {
         setTimeout(function () {
             var len = window.innerWidth;
             if (len <= 600) {
-                _this.drawMap(len, 500, _this.data, 2500);
+                _this.drawMap(len, 380, _this.data, 2500);
             }
             else {
                 _this.drawMap(600, 500, _this.data, 4000);
@@ -1071,7 +1101,7 @@ var NyStateMapComponent = /** @class */ (function () {
             d3__WEBPACK_IMPORTED_MODULE_1__["select"]('#tooltip')
                 .select('#value')
                 .html('<h5 class=' + 'tooltip_header' + '>' + '--- County' + '</h5>'
-                + '<h5 class=' + 'tooltip_cases' + '>' + 'Confirmed Cases: --- ' + '</h5>');
+                + '<h5 class=' + 'tooltip_cases' + '>' + '--- confirmed cases ' + '</h5>');
         })
             .on('mouseover', function (d) {
             svg.selectAll('path')
@@ -1086,7 +1116,10 @@ var NyStateMapComponent = /** @class */ (function () {
                 .style('left', 20 + 'px')
                 .style('top', 0 + 'px')
                 .html('<h5 class=' + 'tooltip_header' + '>' + d.properties.NAME + ' County' + '</h5>'
-                + '<h5 class=' + 'tooltip_cases' + '>' + 'Confirmed Cases: ' + d.properties.confirmed.toLocaleString('en-US') + '</h5>');
+                + '<div class=' + 'tool_wrapper' + '>'
+                + '<h5 class=' + 'tooltip_cases' + '>' + '<h5 class=' + 'case_highlight' + '>' + d.properties.confirmed.toLocaleString('en-US') + '</h5>'
+                + ' confirmed cases ' + '</h5>'
+                + '</div>');
             // Show the tooltip
             d3__WEBPACK_IMPORTED_MODULE_1__["select"]('#tooltip').classed('hidden', false);
         })
@@ -1535,7 +1568,7 @@ module.exports = {"type":"FeatureCollection","features":[{"type":"Feature","geom
 /*! exports provided: nyCases, default */
 /***/ (function(module) {
 
-module.exports = {"nyCases":[{"date":"03/01/2020","cases":1},{"date":"03/02/2020","cases":1},{"date":"03/03/2020","cases":2},{"date":"03/04/2020","cases":2},{"date":"03/05/2020","cases":4},{"date":"03/06/2020","cases":7},{"date":"03/07/2020","cases":12},{"date":"03/08/2020","cases":14},{"date":"03/09/2020","cases":25},{"date":"03/10/2020","cases":32},{"date":"03/11/2020","cases":53},{"date":"03/12/2020","cases":88},{"date":"03/13/2020","cases":137},{"date":"03/14/2020","cases":185},{"date":"03/15/2020","cases":269},{"date":"03/16/2020","cases":464},{"date":"03/17/2020","cases":923},{"date":"03/18/2020","cases":2009},{"date":"03/19/2020","cases":3954},{"date":"03/20/2020","cases":5683},{"date":"03/21/2020","cases":8115},{"date":"03/22/2020","cases":10764},{"date":"03/23/2020","cases":13119},{"date":"03/24/2020","cases":15597},{"date":"03/25/2020","cases":20011},{"date":"03/26/2020","cases":23112},{"date":"03/27/2020","cases":26697},{"date":"03/28/2020","cases":30765},{"date":"03/29/2020","cases":33474},{"date":"03/30/2020","cases":38087},{"date":"03/31/2020","cases":40900}]};
+module.exports = {"nyCases":[{"date":"03/01/2020","cases":1},{"date":"03/02/2020","cases":1},{"date":"03/03/2020","cases":2},{"date":"03/04/2020","cases":2},{"date":"03/05/2020","cases":4},{"date":"03/06/2020","cases":7},{"date":"03/07/2020","cases":12},{"date":"03/08/2020","cases":14},{"date":"03/09/2020","cases":25},{"date":"03/10/2020","cases":32},{"date":"03/11/2020","cases":53},{"date":"03/12/2020","cases":88},{"date":"03/13/2020","cases":137},{"date":"03/14/2020","cases":185},{"date":"03/15/2020","cases":269},{"date":"03/16/2020","cases":464},{"date":"03/17/2020","cases":923},{"date":"03/18/2020","cases":2009},{"date":"03/19/2020","cases":3954},{"date":"03/20/2020","cases":5683},{"date":"03/21/2020","cases":8115},{"date":"03/22/2020","cases":10764},{"date":"03/23/2020","cases":13119},{"date":"03/24/2020","cases":15597},{"date":"03/25/2020","cases":20011},{"date":"03/26/2020","cases":23112},{"date":"03/27/2020","cases":26697},{"date":"03/28/2020","cases":30765},{"date":"03/29/2020","cases":33474},{"date":"03/30/2020","cases":38087},{"date":"03/31/2020","cases":43119},{"date":"04/01/2020","cases":49707}]};
 
 /***/ }),
 

@@ -1,3 +1,9 @@
+<div class="nystorm">  
+  <div class="nyc_map">
+    <app-ny-city-map *ngIf="nyCityMap" [data]="nyCityMap"></app-ny-city-map>
+  </div>
+</div>
+  
 <div class = "nystorm">
     <div class="line_chart">
       <app-line-area-chart *ngIf="dates" [data]="dates"></app-line-area-chart>
@@ -18,6 +24,8 @@ Last updated on: {{virusLastUpdate | date: 'MMMM d':'+0000'}} at {{virusLastUpda
     <app-ny-state-map *ngIf="nyStateMap" [data]="nyStateMap"></app-ny-state-map>
   </div>
 </div>
+
+
 
 
 

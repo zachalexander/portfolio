@@ -1,5 +1,6 @@
 import {  Component, OnInit, ElementRef, ViewChild, ViewEncapsulation, Input, SimpleChanges, OnChanges } from '@angular/core';
 import * as d3 from 'd3';
+import * as d3annotate from 'd3-svg-annotation';
 import * as nycCasesData from '../../../assets/nyccases.json';
 
 @Component({
@@ -11,22 +12,24 @@ import * as nycCasesData from '../../../assets/nyccases.json';
 export class LineAreaChartComponent implements OnInit {
 
   @Input() private data: Array<any>;
+  currentCases;
 
   constructor() { }
 
   ngOnInit() {
-    this.drawNYCases(300, 200, this.data);
+    const allNYC = nycCasesData['nyCases'];
+    this.currentCases = allNYC[Object.keys(allNYC)[Object.keys(allNYC).length - 1]];
+    this.drawNYCases(300, 200, this.data, this.currentCases);
   }
 
-  drawNYCases(width, height, datapull) {
-
-    console.log(datapull);
+  drawNYCases(width, height, datapull, cases) {
 
     datapull = datapull.nyCases;
 
     const parseTime = d3.timeParse('%m/%d/%Y');
+    const bisectDate = d3.bisector(function(d) { return parseTime(d.date); }).right;
 
-    const margin = {top: 30, right: 5, bottom: 10, left: 35},
+    const margin = {top: 30, right: 5, bottom: 10, left: 0},
     width_new = width - margin.left - margin.right,
     height_new = width - margin.top - margin.bottom;
 
@@ -47,10 +50,10 @@ export class LineAreaChartComponent implements OnInit {
     .curve(d3.curveMonotoneX);
 
     const svg = d3.select('.line_chart').append('svg')
-                .attr('width',  width_new + 100)
+                .attr('width',  width_new + 120)
                 .attr('height', height_new)
                 .append('g')
-                .attr('transform', 'translate(' + margin.left + ',' + margin.top + ')');
+                .attr('transform', 'translate(' + (margin.left  + 45) + ',' + margin.top + ')');
 
     // set the gradient
     svg.append('linearGradient')
@@ -83,8 +86,13 @@ export class LineAreaChartComponent implements OnInit {
     feMerge.append('feMergeNode')
         .attr('in', 'coloredBlur');
     feMerge.append('feMergeNode')
-        .attr('in', 'SourceGraphic');
-
+    .attr('in', 'SourceGraphic');
+    
+    svg.append('g')
+            .attr('class', 'x axis')
+            .attr('transform', 'translate(0,' + height + ')')
+            .call(d3.axisBottom(x).tickFormat(d3.timeFormat('%m/%d')).ticks(8).tickPadding(5));
+   
     svg.append('path')
         .datum(datapull)
         .attr('class', 'area')
@@ -101,10 +109,45 @@ export class LineAreaChartComponent implements OnInit {
         // .style('filter', 'url(#glow)')
         .attr('d', valueline); // 11. Calls the line generator
 
-    svg.append('g')
-            .attr('class', 'x axis')
-            .attr('transform', 'translate(0,' + height + ')')
-            .call(d3.axisBottom(x).tickFormat(d3.timeFormat('%m/%d')).ticks(8).tickSize(0).tickPadding(15));
+        const xLatest = x(parseTime(cases.date));
+        const yLatest = y(cases.cases);
+
+    // 12. Appends a circle for each datapoint 
+    svg.append("circle") // Uses the enter().append() method
+        .attr("class", "dot") // Assign a class for styling
+        .attr("cx", xLatest)
+        .attr("cy", yLatest)
+        .attr("r", 4);
+
+    const focus = svg.append("g")
+    .attr("class", "focus")
+    .style("display", "none");
+
+    focus.append("circle")
+        .attr("r", 4);
+
+    focus.append("text")
+        .attr("x", 10)
+      	.attr("dy", ".31em");
+        svg.append("rect")
+        .attr("class", "overlay")
+        .attr("width", width_new + 100)
+        .attr("height", height_new)
+        .on("mouseover", function() { 
+          focus.style("display", null);
+        }).style('cursor', 'crosshair')
+        .on("mouseout", function() { focus.style("display", "none"); })
+        .on("mousemove", mousemove);
+
+    function mousemove() {
+      const x0 = x.invert(d3.mouse(this)[0]),
+          i = bisectDate(datapull, x0, 1),
+          d0 = datapull[i - 1],
+          d1 = datapull[i];
+          let d = x0 - parseTime(d0.date) > parseTime(d1.date) - x0 ? d1 : d0;
+      focus.attr("transform", "translate(" + x(parseTime(d.date)) + "," + y(d.cases) + ")");
+      focus.select("text").text(function() { return d.cases.toLocaleString('en-US'); });
+    }
 
   }
 }

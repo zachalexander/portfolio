@@ -17,6 +17,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { MediumWidgetModule } from 'ngx-medium-widget';
 import { LineAreaChartComponent } from './components/line-area-chart/line-area-chart.component';
 import { NyStateMapComponent } from './components/ny-state-map/ny-state-map.component';
+import { NyCityMapComponent } from './components/ny-city-map/ny-city-map.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { NyStateMapComponent } from './components/ny-state-map/ny-state-map.comp
     ChessEloComponent,
     CoronavirusComponent,
     LineAreaChartComponent,
-    NyStateMapComponent
+    NyStateMapComponent,
+    NyCityMapComponent
   ],
   imports: [
     BrowserModule,

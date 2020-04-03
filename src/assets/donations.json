@@ -1,0 +1,10 @@
+{ "food_bank": [
+    {
+        "donation": 1,
+        "amount": 55
+    },
+    {
+        "donation": 2,
+        "amount": 655
+    }
+]}
