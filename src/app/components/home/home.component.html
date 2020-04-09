@@ -1,25 +1,4 @@
-  <nav (scroll)="onWindowScroll($event)" *ngIf="mobile" class="navigation-mobile">
-    <div class="nav-wrapper">
-      <ul id="nav-mobile" class="left">
-          <a class="btn-floating btn-small waves-effect waves-light white navs"><i class="fa fa-envelope"></i></a>
-      </ul>
-      <ul id="nav-mobile" class="right">
-          <a class="btn-floating btn-small waves-effect waves-light white navs"><i class="fab fa-github"></i></a>
-      </ul>
-    </div>
-  </nav>
-
-  <nav (scroll)="onWindowScroll($event)" *ngIf="!mobile">
-      <div class="nav-wrapper">
-        <ul id="nav-mobile" class="left">
-            <a class="btn-floating btn-large waves-effect waves-light white navs"><i class="fa fa-envelope"></i></a>
-        </ul>
-        <ul id="nav-mobile" class="right">
-            <a class="btn-floating btn-large waves-effect waves-light white navs"><i class="fab fa-github"></i></a>
-        </ul>
-      </div>
-  </nav>
-
+<app-navbar></app-navbar>
 
 <div class="top">
   <div class="top-wrapper">
@@ -32,61 +11,53 @@
     <a class="waves-effect waves-light btn square-btn">Explore</a>
   </div>
 </div>
+<!-- 
+<img src="../../../assets/cunyspslogo.png" />
+
+<img src="../../../assets/ccilogo.png" /> -->
 
 <div class="navigate">
-  <div class="cuny">
-    <div class="cuny_info">
-      <img src="../../../assets/cunyspslogo.png" />
-      <p>My Master's in Data Science Graduate Work</p>
-        <div class="list_container">
-        <div class="item">
-          <i class="fa fa-graduation-cap fa-2x" aria-hidden="true"></i>
-          <p><a href="/coronavirus">Python and Tweepy to Analyze Reaction to the coronavirus</a></p>
-        </div>
-      </div>
-      <a href="#"><div class="custom-button">Explore All</div></a>
+  <h1 class="navigate_title">Projects</h1>
+
+  <div class="navigate_trump">
+    <h5 class="project_title">A Value Based Linear Regression Model to Predict the 2016 Presidential Election</h5>
+    <a class="trump_screenshot" href='/pres2016-regression'><img class="trump_screenshot" src="../../../assets/img/trump-regression.gif"></a>
+    <h5 class="project_summary_header">Summary</h5>
+    <p class="project_description">
+      A classmate and I created a predictive model that calculates the proportion of votes for 
+      Donald Trump in the 2016 election based on responses to a select number of 
+      value-based questions from the American Values Survey, administered by the Public 
+      Religion Research Institute (PRRI) in 2017. We used R to manipulate our data, run our regression
+      models, and calculate our predictions. I used D3.js to create a map of our model's performance against
+      the actual percentage of voters that voted for Donald Trump in each state.
+    </p>
+  </div>
+  <div class="navigate_specs_wrapper">
+    <div class="navigate_specs_column">
+      <h5 class="navigate_specs">Front-end Specifications</h5>
+      <p class="navigate_specs_explainer">Most of my projects utilize a combination of <strong>D3.js</strong> and <strong>Angular 2+</strong> for my front-end work</p>
+    </div>
+    <div class="logos">
+      <img src="../../../assets/d3logo.png" />
+      <p class="plus">+</p>
+      <img src="../../../assets/angularlogo.png" />
     </div>
   </div>
-  <div class="d3_misc">
-    <div class="d3_misc_info">
-      <div class="logos">
-        <img src="../../../assets/angularlogo.png" />
-        <p class="plus">+</p>
-        <img src="../../../assets/d3logo.png" />
+  <div class="projects">
+    <div class="list-container">
+      <h5 class="projects_title">Projects List:</h5>
+      <div class="item">
+        <i class="far fa-chart-bar" style="font-size: 3em;"></i>
+        <p><a href="/coronavirus">Python and Tweepy to Analyze Reaction to the coronavirus</a></p>
       </div>
-      <p>Web Development Projects Utilizing Angular 2+ and D3.js</p>
-      <div class="list_container">
-        <div class="item">
-          <i class="far fa-chart-bar" style="font-size: 3em;"></i>
-          <p><a href='https://www.codingchallenge.site' target="_blank">Complete CRUD Application built in Angular 2+, Node.js, and MongoDB backend</a></p>
-        </div>
-        <div class="item">
-          <i class="far fa-chart-bar" style="font-size: 3em;"></i>
-          <p><a href="/pres2016-regression">A Value Based Linear Regression Model to Predict the 2016 Presidential Election</a></p>
-        </div>
-        <div class="item">
-          <i class="far fa-chart-bar" style="font-size: 3em;"></i>
-          <p><a href='/chess-elo'>Showing Chess Elo Ratings Pre- and Post- Tournament</a></p>
-        </div>
+      <div class="item">
+        <i class="far fa-chart-bar" style="font-size: 3em;"></i>
+        <p><a href='https://www.codingchallenge.site' target="_blank">Full Stack CRUD Application built in Angular 2+, Node.js, and MongoDB backend</a></p>
       </div>
-      <a href="#"><div class="custom-button">Explore All</div></a>
-    </div>
-  </div>
-  <div class="work">
-    <div class="work_info">
-        <img src="../../../assets/ccilogo.png" />
-        <p>Data Science in the criminal justice field</p>
-        <div class="list_container">
-          <div class="item">
-            <i class="fa fa-gavel fa-2x" aria-hidden="true"></i>
-            <p>Using R and SQL to Advocate for Harlem Housing Repairs</p>
-          </div>
-          <div class="item">
-            <i class="fa fa-gavel fa-2x" aria-hidden="true"></i>
-            <p>Harlem Housing Repair Compliance</p>
-          </div>
-        </div>
-        <a href="#"><div class="custom-button">Explore All</div></a>
+      <div class="item">
+        <i class="far fa-chart-bar" style="font-size: 3em;"></i>
+        <p><a href='/chess-elo'>Showing Chess Elo Ratings Pre- and Post- Tournament</a></p>
+      </div>
     </div>
   </div>
 </div>
@@ -103,7 +74,7 @@
     <div class="mid1-right">
       <div class="tds_title">
         <img src="../../../assets/tdslogo.png" />
-        <h3>Recent Features in Towards Data Science</h3>
+        <h3>Features in Towards Data Science</h3>
       </div>
         <div class="medium-posts">
             <ngx-medium-widget resource="https://medium.com/@zdalexander"
@@ -116,55 +87,4 @@
         </div>
     </div>
 </div>
-
-<div class="bottom">
-    <div class="bottom-left">
-      <h2>Connect</h2>
-      <h5>Here are some of my data stories and visualizations</h5>
-    </div>
-    <div class="bottom-right">
-      <div class="email-form-wrapper">
-        <h2>Want to Collaborate?</h2>
-        <p>Please send me an e-mail if you are interested in collaborating on a project or have an idea for a data visualization or analysis.</p>
-
-
-       <!-- <h4 *ngIf="tweets$ | async;let tweets">Length: {{tweets.length}}</h4>
-        <p *ngFor="let x of tweets | async; let i=index">
-          {{x.tweetText}}
-        </p> -->
-
-
-        <form class="email-form">
-            <div class="input-field">
-              <input id="email" type="email" class="validate">
-              <label for="email">Email</label>
-            </div>
-        </form>
-      </div>
-    </div>
-</div>
-
-<footer class="page-footer">
-    <div class="container">
-      <div class="row">
-        <div class="col l6 s12">
-          <h5 class="white-text">Hire Me</h5>
-          <p>I'm available for freelance work and full-time employment.</p>
-        </div>
-        <div class="col l4 offset-l2 s12">
-          <h5 class="white-text">Find my work on</h5>
-          <ul>
-            <li><a href="#!">Github</a></li>
-            <li><a href="#!">Medium</a></li>
-            <li><a href="#!">RPubs</a></li>
-            <li><a href="#!">Twitter</a></li>
-          </ul>
-        </div>
-      </div>
-    </div>
-    <div class="footer-copyright">
-      <div class="container">
-       © 2020 Zach Alexander. All rights reserved.
-      </div>
-    </div>
-  </footer>
+<app-footer></app-footer>

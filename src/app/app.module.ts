@@ -18,6 +18,8 @@ import { MediumWidgetModule } from 'ngx-medium-widget';
 import { LineAreaChartComponent } from './components/line-area-chart/line-area-chart.component';
 import { NyStateMapComponent } from './components/ny-state-map/ny-state-map.component';
 import { NyCityMapComponent } from './components/ny-city-map/ny-city-map.component';
+import { NavbarComponent } from './components/navbar/navbar.component';
+import { FooterComponent } from './components/footer/footer.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +30,9 @@ import { NyCityMapComponent } from './components/ny-city-map/ny-city-map.compone
     CoronavirusComponent,
     LineAreaChartComponent,
     NyStateMapComponent,
-    NyCityMapComponent
+    NyCityMapComponent,
+    NavbarComponent,
+    FooterComponent
   ],
   imports: [
     BrowserModule,

@@ -10,6 +10,7 @@ import { Observable, interval } from 'rxjs';
 import * as nycCasesData from '../../../assets/nyccases.json';
 import * as nycDonation from '../../../assets/donations.json';
 import * as nycityData from '../../../assets/new-york-city-boroughs.json';
+import { PusherService } from '../../services/pusher.service';
 
 
 @Component({
@@ -35,9 +36,13 @@ export class CoronavirusComponent implements OnInit {
   virusLastUpdate;
   nyData: Array<any>;
   latestDonationCount;
+  random;
+  tweet;
+  user;
 
   constructor(
     private djangoService: DjangoService,
+    private pusherService: PusherService,
     private spinner: NgxSpinnerService
   ) { }
 
@@ -64,6 +69,29 @@ export class CoronavirusComponent implements OnInit {
     this.sumDonations();
 
     this.nyCityMap = this.addNYCityModel()['features'];
+
+    const tweetCount = this.djangoService.getTweetCount();
+    const tweetData = this.djangoService.getFirstTweet();
+
+    tweetCount.subscribe(data => {
+      this.random = data[0].count;
+    })
+
+    tweetData.subscribe(data => {
+      this.tweet = data[0].tweetText;
+      this.user = data[0].user;
+    })
+
+    this.pusherService.subScribeToChannel('my-channel', ['tweetcount'], (data) => {
+      this.random = data.number;
+      console.log(data);
+    });
+
+    this.pusherService.subScribeToChannel('my-channel', ['tweetdetails'], (data) => {
+      this.tweet = data.tweet;
+      this.user = data.user;
+      console.log(data);
+    });
 
     // setTimeout(() => {
     //   // this.loadTwitterData();
@@ -246,4 +274,9 @@ export class CoronavirusComponent implements OnInit {
 //       .attr('class', 'most recentpoint');
 //     });
 //   }
+
+ngAfterViewInit(): void {
+  // @ts-ignore
+  twttr.widgets.load();
+}
 }

@@ -3,6 +3,14 @@
     <app-ny-city-map *ngIf="nyCityMap" [data]="nyCityMap"></app-ny-city-map>
   </div>
 </div>
+
+<h5>{{random}}</h5>
+<h5>{{tweet}}</h5>
+
+<!-- <a class="twitter-timeline" 
+[href]="'https://twitter.com/' + user" 
+data-chrome="nofooter noborders"
+data-tweet-limit="1"></a> -->
   
 <div class = "nystorm">
     <div class="line_chart">
@@ -36,7 +44,7 @@ Last updated on: {{virusLastUpdate | date: 'MMMM d':'+0000'}} at {{virusLastUpda
 <div class = "tweetstorm">
   <div>
     <h5>A sample of <strong>coronavirus</strong> tweets <br> across the country since <br> noon on Friday, March 13th</h5>
-    <!--<h1 class = "tweetcounter">
+    <h1 class = "tweetcounter">
       {{(tweets | async).length}}
     </h1>
     <small class = "update" *ngFor="let x of tweetrecent | async; let i=index">

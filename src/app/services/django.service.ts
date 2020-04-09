@@ -8,9 +8,10 @@ import { Observable } from 'rxjs';
 export class DjangoService {
 
   private endpoint = 'http://localhost:8000/users/';
-  private tweetendpoint = 'https://guarded-anchorage-28885.herokuapp.com/tweets-latest/';
+  private tweetendpoint = 'http://localhost:8000/tweets-latest/';
   private tweetsall = 'https://guarded-anchorage-28885.herokuapp.com/tweets-all/';
   private tweetcount = 'http://localhost:8000/tweet-count/';
+  private randomcount = 'http://localhost:8000/random/';
 
   private coronavirusapi = 'https://coronavirus-tracker-api.herokuapp.com/v2/locations?source=csbs';
 
@@ -40,5 +41,11 @@ export class DjangoService {
 
   getVirusCounts(): Observable<any> {
     return this.http.get(this.coronavirusapi);
+  }
+
+    // Get all Users
+
+  getAllRandos(): Observable<any> {
+    return this.http.get(this.randomcount);
   }
 }

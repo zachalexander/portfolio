@@ -1,5 +1,4 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
-import { HostListener } from '@angular/core';
 import * as d3 from 'd3';
 import { Observable } from 'rxjs';
 import { User } from '../../models/users';
@@ -14,8 +13,6 @@ import { DjangoService } from '../../services/django.service';
   encapsulation: ViewEncapsulation.None
 })
 export class HomeComponent implements OnInit {
-
-  mobile = false;
   showDiv = false;
   users: Observable<User[]>;
 
@@ -23,9 +20,6 @@ export class HomeComponent implements OnInit {
   constructor(private djangoService: DjangoService) { }
 
   ngOnInit() {
-    if(window.innerWidth <= 767) {
-      this.mobile = true;
-    }
     const text1 = 'Hello, welcome';
     this.typingAnimation(text1, '.line1');
 
@@ -36,35 +30,6 @@ export class HomeComponent implements OnInit {
     }, 3400);
   }
 
-  loadUserData() {
-    // test
-    this.users = this.djangoService.getAllUsers();
-  }
-
-
-  @HostListener('window:scroll', ['$event'])
-
-  onWindowScroll(e) {
-    const element = document.querySelector('.nav-wrapper');
-    const orangeDiv = document.querySelector('.mid1-left');
-    const topOfOrangeDiv = orangeDiv.getBoundingClientRect()['y'];
-
-    if (window.innerWidth >= 767) {
-      if (topOfOrangeDiv < 1800) {
-        element.classList.add('nav-wrapper-light');
-      } else {
-        element.classList.remove('nav-wrapper-light');
-      }
-    } else {
-      if (topOfOrangeDiv < 2500) {
-        element.classList.add('nav-wrapper-light');
-      } else {
-        element.classList.remove('nav-wrapper-light');
-      }
-    }
-
-
-  }
 
   typingAnimation(text, classname) {
     let progress = 0;
@@ -76,10 +41,7 @@ export class HomeComponent implements OnInit {
         } else {
           progress += 0.01;
         }
-        // console.log(progress);
-
       const text_val = text;
-
       const text_progress = Math.max(0, Math.min( text_val.length + 1, Math.floor(progress * text_val.length)));
 
       d3.select(classname)

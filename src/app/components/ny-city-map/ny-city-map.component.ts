@@ -2,6 +2,7 @@ import {  Component, OnInit, ElementRef, ViewChild, ViewEncapsulation, Input, Si
 import * as d3 from 'd3';
 import * as d3annotate from 'd3-svg-annotation';
 import * as nycCasesData from '../../../assets/nyccases.json';
+import { RadioControlValueAccessor } from '@angular/forms';
 
 @Component({
   selector: 'app-ny-city-map',
@@ -37,6 +38,18 @@ export class NyCityMapComponent implements OnInit {
 drawMap(width, height, datapull, cases, yesterdaycases, scale) {
 
   const margin = {top: 10, right: 10, bottom: 10, left: 10};
+
+  let radius = cases.cases / (width + 50);
+  let yestradius = yesterdaycases.cases / (width + 50);
+  let anotey = 170
+  let anotex = 120
+
+  if (scale === 30000) {
+    radius = cases.cases / (width + 400);
+    yestradius = yesterdaycases.cases / (width + 400);
+    anotey = 100
+    anotex = 100
+  }
 
   width = width - margin.left - margin.right;
   height = height - margin.top - margin.bottom;
@@ -80,13 +93,23 @@ drawMap(width, height, datapull, cases, yesterdaycases, scale) {
             .attr('cy', function (d) {
                 return projection(d)[1];
             })
-            .attr('r', function() {
-              return cases.cases / 400;
-            })
+            .attr('r', radius)
             .attr('fill', 'rgba(238, 162, 154, 0.5)')
             .attr('stroke', 'rgba(238, 162, 154, 1')
-            .attr('id', 'mapcircle');
-
+            .attr('id', 'mapcircle')
+            .transition()
+            .on("start", function repeat() {
+                d3.active(this)
+                    .duration(2000)
+                    .attr("stroke-width", 0.5)
+                    .attr("r", yestradius)
+                  .transition()
+                    .duration(2000)
+                    .attr('stroke-width', 0.5)
+                    .attr('r', radius + 5)
+                  .transition()
+                    .on("start", repeat);
+              });
 
         svg.selectAll('.maptext')
             .data([[-74.0060, 40.7128]])
@@ -119,14 +142,14 @@ drawMap(width, height, datapull, cases, yesterdaycases, scale) {
               },
               type: d3annotate.annotationCalloutCircle,
               subject: {
-                radius: cases.cases / 400,         // circle radius
+                radius: radius,         // circle radius
                 radiusPadding: 0  // white space around circle befor connector
               },
               color: ["darkred"],
               x: projection([-74.0060, 40.7128])[0],
               y: projection([-74.0060, 40.7128])[1],
-              dy: 170,
-              dx: 120
+              dy: anotey,
+              dx: anotex
             },
             {
               note: {
@@ -135,7 +158,7 @@ drawMap(width, height, datapull, cases, yesterdaycases, scale) {
               },
               type: d3annotate.annotationCalloutCircle,
               subject: {
-                radius: yesterdaycases.cases / 400,         // circle radius
+                radius: yestradius,  // circle radius
                 radiusPadding: 0  // white space around circle befor connector
               },
               color: ["#333"],
@@ -157,4 +180,3 @@ drawMap(width, height, datapull, cases, yesterdaycases, scale) {
 
       }
   }
-

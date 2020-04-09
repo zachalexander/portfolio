@@ -15,29 +15,28 @@ export class PresRegressionComponent implements OnInit {
 
   addValuesModel() {
     const stateDataset = stateData['default'];
-    d3.csv('../../../assets/model_data.csv')
-      .then(function(data) {
-        data.forEach(element => {
-          const dataState = element.state;
-          const dataVotes = element.model_three;
-          const dataActual = element.trump_per;
-          const dataDiff = element.diff_three;
+    d3.csv('../../../assets/model_data.csv', function(data){
+      data.forEach(element => {
+        const dataState = element.state;
+        const dataVotes = element.model_three;
+        const dataActual = element.trump_per;
+        const dataDiff = element.diff_three;
 
-          for (let i = 0; i < stateDataset.features.length; i++) {
-            const jsonState = stateDataset.features[i].properties.name;
+        for (let i = 0; i < stateDataset.features.length; i++) {
+          const jsonState = stateDataset.features[i].properties.name;
 
-            if (dataState === jsonState) {
-              stateDataset.features[i].properties['value'] = dataVotes;
-              stateDataset.features[i].properties['actual'] = dataActual;
-              stateDataset.features[i].properties['diff'] = dataDiff;
+          if (dataState === jsonState) {
+            stateDataset.features[i].properties['value'] = dataVotes;
+            stateDataset.features[i].properties['actual'] = dataActual;
+            stateDataset.features[i].properties['diff'] = dataDiff;
 
-              if (stateDataset.features[i].properties['value'] == ""){
-                stateDataset.features[i].properties['value'] = "No model calculation";
-              }
+            if (stateDataset.features[i].properties['value'] == ""){
+              stateDataset.features[i].properties['value'] = "No model calculation";
             }
           }
-        });
+        }
       });
+    });
 
     stateDataset.features.map(data => {
       stateFeatures['default'].map(features => {
