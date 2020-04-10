@@ -60,8 +60,8 @@ svg.jumbo {
     font-family: 'Playfair Display', 'Roboto', 'Arial', sans-serif;
     font-weight: 700;
     text-align: center;
-    padding: 2em;
     height: 20vh;
+    padding: 1em;
     align-items: center;
     justify-content: center;
     display: flex;
@@ -85,6 +85,12 @@ svg.jumbo {
   .navigate_trump, .navigate_chess, .navigate_insiten {
     display: flex;
     flex-direction: column;
+    padding: 4em 0;
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
 
     a.project_screenshot {
       margin: auto;
@@ -97,11 +103,12 @@ svg.jumbo {
         width: 100vw;
       }
     }
+ 
 
     .project_summary_header {
-      text-align: center;
+      text-align: left;
       padding: 1em;
-      margin: 0;
+      margin: auto;
       font-size: 1.35em;
       font-weight: 700;
 
@@ -111,7 +118,7 @@ svg.jumbo {
     }
 
     .project_description {
-      text-align: center;
+      text-align: left;
       width: 70%;
       max-width: 600px;
       line-height: 1.5em;
@@ -127,15 +134,24 @@ svg.jumbo {
 
   }
 
+  .navigate_chess {
+    background: #ECE9E6;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #FFFFFF, #ECE9E6);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #FFFFFF, #ECE9E6); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+  }
+
   .navigate_specs_wrapper {
     height: 50vh;
-    background-color: #fff;
-    width: 90%;
+    background: #ECE9E6;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #FFFFFF, #ECE9E6);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #FFFFFF, #ECE9E6); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    width: 100%;
     margin: 0 auto;
     display: flex;
     flex-direction: row;
-    max-width: 900px;
-    border: 1px solid #ddd;
+    max-width: 1400px;
+    justify-content: center;
 
     @include phone {
       border: none;
@@ -174,7 +190,7 @@ svg.jumbo {
       align-items: center;
       -webkit-box-pack: center;
       justify-content: center;
-      background:#fff;
+      max-width: 450px;
     }
 
     .navigate_specs_explainer {
@@ -191,16 +207,12 @@ svg.jumbo {
     -webkit-box-direction: normal;
     flex-direction: row;
     -webkit-box-pack: justify;
-    background: #fff;
     vertical-align: middle;
     height: 100%;
     width: 50%;
     align-items: center;
     justify-content: center;
-    background: #ECE9E6;  /* fallback for old browsers */
-    background: -webkit-linear-gradient(to right, #FFFFFF, #ECE9E6);  /* Chrome 10-25, Safari 5.1-6 */
-    background: linear-gradient(to right, #FFFFFF, #ECE9E6); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-    
+    max-width: 450px;
 
     @include phone {
       display: flex;
