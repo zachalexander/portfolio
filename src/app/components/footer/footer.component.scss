@@ -3,5 +3,26 @@
     * {
       color: #333 !important;
     }
+
+    .social_list {
+      display: flex;
+      flex-direction: row;
+    }
+
+    li {
+      margin-right: 1em;
+    }
+
+    .white-text {
+      font-size: 1em;
+      font-weight: 700;
+    }
+
+    .footer-copyright {
+      font-size: 0.85em;
+      font-weight: 700;
+    }
   }
+
+
   

@@ -23,16 +23,14 @@ export class ChessEloComponent implements OnInit {
 
   ngOnInit() {
 
-    const width = window.innerWidth;
+    let width = window.innerWidth;
 
-    const svg = d3.select('svg')
-      .attr('width', width - 80)
-      .attr('max-width', 960 - 80)
-      .attr('height', 960)
-      .append('g').classed('overall-div', true);
+    if (width >= 700) {
+      width = 900;
+    }
 
     this.getTopPlayers(chessdata);
-    this.drawEloChart(svg, width);
+    this.drawEloChart(width);
 
     this.chessPlayers = chessdata.sort(function (a, b) { return a.rating_difference - b.rating_difference; });
     this.playersByDifference = chessdata.sort(function (a, b) { return a.rating_difference - b.rating_difference; });
@@ -56,7 +54,7 @@ export class ChessEloComponent implements OnInit {
 
   rankPlayers(dataset) {
     this.rankedPlayers = chessdata.sort(function (a, b) { return b.player_pre_rating - a.player_pre_rating; });
-    console.log(this.rankedPlayers);
+
     this.rankedPlayers.map((players) => {
       if (players.rating_difference >= 156) {
         this.topFiveImprove.push(players)
@@ -75,27 +73,33 @@ export class ChessEloComponent implements OnInit {
     return this.sortedTable;
   }
 
-  drawEloChart(svg, wid) {
+  drawEloChart(wid) {
 
     this.clicked = false;
-
+    
     const margin = { top: 20, right: 150, bottom: 80, left: 150 };
-    const width = (wid) - margin.left - margin.right;
+    const width = wid - margin.left - margin.right;
     const height = 960 - margin.top - margin.bottom;
-    const pre = svg.append('g').attr('transform', 'translate(' + margin.left + ',' + margin.top + ')');
 
     chessdata.sort(function (a, b) { return b.player_pre_rating - a.player_pre_rating; });
-
+    
     const yScale = d3.scaleBand().rangeRound([0, height]).padding(0.05);
     yScale.domain(chessdata.map((d) => d['player_name']));
-
+      
     const xScale = d3.scaleLinear().rangeRound([0, width]);
-    xScale.domain([0, d3.max(chessdata, function (d) { return d['player_pre_rating'] + d['rating_difference']; })]).nice();
+    xScale.domain([0, d3.max(chessdata, function (d) { return d['player_pre_rating']; }) + 23]).nice();
+
+    const svg = d3.select('svg')
+    .attr('width', wid - 80)
+    .attr('height', 960)
+    .append('g').classed('overall-div', true);
+    
+    const pre = svg.append('g').attr('transform', 'translate(' + margin.left + ',' + margin.top + ')');
 
     d3.select('svg')
       .append('rect')
       .attr('y', '2')
-      .attr('x', function (d) { return width / 2; })
+      .attr('x', function (d) { return width / 3.5; })
       .attr('height', '12')
       .attr('width', '12')
       .attr('fill', 'rgba(210, 210, 210, 0.5)');
@@ -103,7 +107,7 @@ export class ChessEloComponent implements OnInit {
     d3.select('svg')
       .append('text')
       .attr('y', '12')
-      .attr('x', function (d) { return (width / 2) + 25; })
+      .attr('x', function (d) { return (width / 3.5) + 25; })
       .attr('height', '12')
       .attr('width', '12')
       .attr('fill', 'rgba(210, 210, 210, 0.5)')
@@ -116,7 +120,7 @@ export class ChessEloComponent implements OnInit {
       .classed('bars', true)
       .enter().append('rect')
       .attr('y', function (d) { return yScale(d['player_name']); })
-      .attr('x', function (d) { return ((xScale(d['player_pre_rating']) + width) - width) - xScale(d['player_pre_rating']); })
+      .attr('x', function (d) { return xScale(d['player_pre_rating']) - xScale(d['player_pre_rating']); })
       .attr('height', yScale.bandwidth())
       .attr('width', function (d) {
         return xScale(d['player_pre_rating']);
@@ -184,7 +188,12 @@ export class ChessEloComponent implements OnInit {
 
   addPointChange() {
     this.clicked = true;
-    const wid = window.innerWidth;
+    
+    let wid = window.innerWidth;
+
+    if (wid >= 700) {
+      wid = 900;
+    }
 
     const svg = d3.select('svg')
       .append('g').classed('overall-div', true)
@@ -206,13 +215,13 @@ export class ChessEloComponent implements OnInit {
     yScale.domain(chessdata.map((d) => d['player_name']));
 
     const xScale = d3.scaleLinear().rangeRound([0, width]);
-    xScale.domain([0, d3.max(chessdata, function (d) { return d['player_pre_rating'] + d['rating_difference']; })]).nice();
+    xScale.domain([0, d3.max(chessdata, function (d) { return d['player_pre_rating'];}) + 23]).nice();
 
 
     d3.select('svg')
       .append('rect')
       .attr('y', '2')
-      .attr('x', function (d) { return width / 1.1; })
+      .attr('x', function (d) { return width / 1.5; })
       .attr('height', '12')
       .attr('width', '8')
       .attr('fill', '#E87461');
@@ -220,7 +229,7 @@ export class ChessEloComponent implements OnInit {
     d3.select('svg')
       .append('rect')
       .attr('y', '2')
-      .attr('x', function (d) { return width / 1.1 + 8; })
+      .attr('x', function (d) { return width / 1.5 + 8; })
       .attr('height', '12')
       .attr('width', '8')
       .attr('fill', '#7AC74F');
@@ -228,7 +237,7 @@ export class ChessEloComponent implements OnInit {
     d3.select('svg')
       .append('text')
       .attr('y', '12')
-      .attr('x', function (d) { return (width / 1.1 + 8) + 25; })
+      .attr('x', function (d) { return (width / 1.5 + 8) + 25; })
       .attr('height', '12')
       .attr('width', '12')
       .attr('fill', 'rgba(210, 210, 210, 0.5)')
@@ -299,16 +308,21 @@ export class ChessEloComponent implements OnInit {
 
   removePointChange() {
     this.clicked = false;
-    const width = window.innerWidth;
+    let wid = window.innerWidth;
+
+    if (wid >= 700) {
+      wid = 900;
+    }
+
     d3.selectAll('g').remove();
     d3.selectAll('text').remove();
     d3.selectAll('rect').remove();
 
     const svg = d3.select('svg')
-      .attr('width', width - 80)
+      .attr('width', wid - 80)
       .attr('height', 960)
       .append('g').classed('overall-div', true);
-    this.drawEloChart(svg, width);
+    this.drawEloChart(wid);
 
     this.playersByDifference = chessdata.sort(function (a, b) { return a.rating_difference - b.rating_difference; });
   }

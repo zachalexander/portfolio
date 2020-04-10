@@ -30,6 +30,10 @@ export class HomeComponent implements OnInit {
     }, 3400);
   }
 
+  scroll(el: HTMLElement) {
+    el.scrollIntoView({behavior:"smooth"});
+  }
+
 
   typingAnimation(text, classname) {
     let progress = 0;
@@ -52,7 +56,7 @@ export class HomeComponent implements OnInit {
         .attr('font-weight', '700')
         .text(text_val.substring(0, text_progress));
       }
-    }, 0.0000001);
+    }, 0.000000001);
   }
 
 

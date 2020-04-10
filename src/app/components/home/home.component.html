@@ -8,7 +8,7 @@
     <svg *ngIf="showDiv" class="line2">
       <text transform="translate(15 35)"></text>
     </svg>
-    <a class="waves-effect waves-light btn square-btn">Explore</a>
+    <a class="waves-effect waves-light btn square-btn" (click)="scroll(target)">Explore</a>
   </div>
 </div>
 <!-- 
@@ -16,22 +16,9 @@
 
 <img src="../../../assets/ccilogo.png" /> -->
 
-<div class="navigate">
+<div class="navigate" #target>
   <h1 class="navigate_title">Projects</h1>
 
-  <div class="navigate_trump">
-    <h5 class="project_title">A Value Based Linear Regression Model to Predict the 2016 Presidential Election</h5>
-    <a class="trump_screenshot" href='/pres2016-regression'><img class="trump_screenshot" src="../../../assets/img/trump-regression.gif"></a>
-    <h5 class="project_summary_header">Summary</h5>
-    <p class="project_description">
-      A classmate and I created a predictive model that calculates the proportion of votes for 
-      Donald Trump in the 2016 election based on responses to a select number of 
-      value-based questions from the American Values Survey, administered by the Public 
-      Religion Research Institute (PRRI) in 2017. We used R to manipulate our data, run our regression
-      models, and calculate our predictions. I used D3.js to create a map of our model's performance against
-      the actual percentage of voters that voted for Donald Trump in each state.
-    </p>
-  </div>
   <div class="navigate_specs_wrapper">
     <div class="navigate_specs_column">
       <h5 class="navigate_specs">Front-end Specifications</h5>
@@ -43,20 +30,51 @@
       <img src="../../../assets/angularlogo.png" />
     </div>
   </div>
+
+
+  <div class="navigate_trump">
+    <a href='/pres2016-regression'><h5 class="project_title">A Value Based Linear Regression Model to Predict the 2016 Presidential Election</h5></a>
+    <a class="project_screenshot" href='/pres2016-regression'><img class="project_screenshot" src="../../../assets/img/trump-regression.gif"></a>
+    <h5 class="project_summary_header">Overview</h5>
+    <p class="project_description">
+      A classmate and I created a predictive model that calculates the proportion of votes for 
+      Donald Trump in the 2016 election based on responses to a select number of 
+      value-based questions from the American Values Survey, administered by the Public 
+      Religion Research Institute (PRRI) in 2017. We used R to manipulate our data, run our regression
+      models, and calculate our predictions. I used D3.js to create a map of our model's performance against
+      the actual percentage of voters that voted for Donald Trump in each state.
+    </p>
+  </div>
+
+  <div class="navigate_chess">
+    <a href='/chess-elo'><h5 class="project_title">From Text File to D3.js Visualization</h5></a>
+    <a class="project_screenshot" href='/chess-elo'><img class="project_screenshot" src="../../../assets/img/elo-ratings.gif"></a>
+    <h5 class="project_summary_header">Overview</h5>
+    <p class="project_description">
+      As part of a graduate school assignment, we were given a raw text file
+      and were asked to convert it into a clean dataset using R. We also were instructed
+      to create visualizations and do some basic analyses. I decided to also create a 
+      mock news story about the dataset and a d3.js visualization.
+    </p>
+  </div>
+
+  <div class="navigate_insiten">
+    <a href='http://www.codingchallenge.site/' target="_blank"><h5 class="project_title">Full Stack CRUD Application to Track Business Acquisitions</h5></a>
+    <a class="project_screenshot" href='http://www.codingchallenge.site/' target="_blank"><img class="project_screenshot" src="../../../assets/img/insiten.gif"></a>
+    <h5 class="project_summary_header">Overview</h5>
+    <p class="project_description">
+      A full stack application developed to keep track of potential business acquisitions.
+      This application utilizes Angular 2+ for all front-end work, with Node.js and MongoDB 
+      for all back-end work. It features reactive forms, and a visualization comparing target
+      revenues. This was built in one week as part of a sprint.
+    </p>
+  </div>
   <div class="projects">
     <div class="list-container">
-      <h5 class="projects_title">Projects List:</h5>
+      <h5 class="projects_title">Other Projects:</h5>
       <div class="item">
         <i class="far fa-chart-bar" style="font-size: 3em;"></i>
         <p><a href="/coronavirus">Python and Tweepy to Analyze Reaction to the coronavirus</a></p>
-      </div>
-      <div class="item">
-        <i class="far fa-chart-bar" style="font-size: 3em;"></i>
-        <p><a href='https://www.codingchallenge.site' target="_blank">Full Stack CRUD Application built in Angular 2+, Node.js, and MongoDB backend</a></p>
-      </div>
-      <div class="item">
-        <i class="far fa-chart-bar" style="font-size: 3em;"></i>
-        <p><a href='/chess-elo'>Showing Chess Elo Ratings Pre- and Post- Tournament</a></p>
       </div>
     </div>
   </div>
@@ -72,16 +90,12 @@
       </div>
     </div>
     <div class="mid1-right">
-      <div class="tds_title">
-        <img src="../../../assets/tdslogo.png" />
-        <h3>Features in Towards Data Science</h3>
-      </div>
         <div class="medium-posts">
             <ngx-medium-widget resource="https://medium.com/@zdalexander"
             postsLimit="4"
             postsPerLine="1"
             pictureSize="small"
-            [postfields]="['description', 'claps', 'publishAt']"
+            [postfields]="['description', 'publishAt']"
             postRatio="landscape">
           </ngx-medium-widget>
         </div>

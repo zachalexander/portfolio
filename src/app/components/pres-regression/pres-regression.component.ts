@@ -65,7 +65,7 @@ export class PresRegressionComponent implements OnInit {
 
     d3.select('svg').remove();
     setTimeout(() => {
-      const margin = {top: 10, right: 20, bottom: 10, left: 20};
+      const margin = {top: 10, right: 80, bottom: 10, left: 80};
 
       width = 1000 - margin.left - margin.right;
       height = 600 - margin.top - margin.bottom;

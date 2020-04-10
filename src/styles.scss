@@ -1,9 +1,8 @@
 /* You can add global styles to this file, and also import other style files */
 
 @import '~bootstrap/dist/css/bootstrap.min.css';
-@import url('https://fonts.googleapis.com/css?family=Lato:400,700,900&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Gotu&display=swap');
 @import url('https://fonts.googleapis.com/css?family=Roboto:400,700,900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&display=swap');
 
 body, nav {
   font-family: 'Roboto', 'Arial', sans-serif;
@@ -15,6 +14,7 @@ body, nav {
   text-transform: none;
   line-height: 1;
   z-index: 1;
+  -webkit-font-smoothing: subpixel-antialiased;
 }
 
 
@@ -23,6 +23,15 @@ body, nav {
     @content;
   }
 }
+
+@mixin ipad{
+  @media only screen 
+  and (min-device-width : 768px) 
+  and (max-device-width : 1024px)  { 
+    @content;
+  }
+}
+
 
 @mixin smalldevice {
   @media only screen and (min-width: 600px) {
@@ -135,4 +144,10 @@ td {
 
 td.state_title {
   text-align: center !important;
+}
+
+.medium-widget-article__clap {
+  font-family: 'Roboto', Arial, sans-serif;
+  font-weight: 700 !important;
+  color: #ddd !important;
 }

@@ -20,6 +20,7 @@ import { NyStateMapComponent } from './components/ny-state-map/ny-state-map.comp
 import { NyCityMapComponent } from './components/ny-city-map/ny-city-map.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { FooterComponent } from './components/footer/footer.component';
+import { NavbarxhomeComponent } from './components/navbarxhome/navbarxhome.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,8 @@ import { FooterComponent } from './components/footer/footer.component';
     NyStateMapComponent,
     NyCityMapComponent,
     NavbarComponent,
-    FooterComponent
+    FooterComponent,
+    NavbarxhomeComponent
   ],
   imports: [
     BrowserModule,
