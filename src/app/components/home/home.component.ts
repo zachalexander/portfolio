@@ -2,9 +2,8 @@ import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import * as d3 from 'd3';
 import { Observable } from 'rxjs';
 import { User } from '../../models/users';
-import { Tweets } from '../../models/tweets';
-import { TweetCount } from '../../models/tweetcount';
 import { DjangoService } from '../../services/django.service';
+import * as jumboCases from '../../../assets/jumbotron.json';
 
 @Component({
   selector: 'app-home',
@@ -15,6 +14,7 @@ import { DjangoService } from '../../services/django.service';
 export class HomeComponent implements OnInit {
   showDiv = false;
   users: Observable<User[]>;
+  fakecases;
 
 
   constructor(private djangoService: DjangoService) { }
@@ -22,6 +22,7 @@ export class HomeComponent implements OnInit {
   ngOnInit() {
     const text1 = 'Hello, welcome';
     this.typingAnimation(text1, '.line1');
+    this.drawJumbo();
 
     setTimeout(() => {
       this.showDiv = true;
@@ -32,6 +33,10 @@ export class HomeComponent implements OnInit {
 
   scroll(el: HTMLElement) {
     el.scrollIntoView({behavior:"smooth"});
+  }
+
+  drawJumbo() {
+    this.fakecases = jumboCases;
   }
 
 

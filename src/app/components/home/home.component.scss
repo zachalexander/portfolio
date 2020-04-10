@@ -5,6 +5,12 @@
   flex-direction: column;
   justify-content: center;
   margin: auto;
+  position: relative;
+  z-index: 5;
+}
+
+svg.jumbo {
+    position: absolute;
 }
 
 .top {

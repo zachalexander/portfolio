@@ -21,6 +21,7 @@ import { NyCityMapComponent } from './components/ny-city-map/ny-city-map.compone
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { NavbarxhomeComponent } from './components/navbarxhome/navbarxhome.component';
+import { SimplelinechartComponent } from './components/simplelinechart/simplelinechart.component';
 
 @NgModule({
   declarations: [
@@ -34,7 +35,8 @@ import { NavbarxhomeComponent } from './components/navbarxhome/navbarxhome.compo
     NyCityMapComponent,
     NavbarComponent,
     FooterComponent,
-    NavbarxhomeComponent
+    NavbarxhomeComponent,
+    SimplelinechartComponent
   ],
   imports: [
     BrowserModule,
