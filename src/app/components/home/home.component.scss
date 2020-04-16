@@ -1,5 +1,119 @@
 @import './../../../styles.scss';
 
+
+@include iphone5 {
+  // .top {
+  //   height: 100vh;
+  // }
+
+  .navigate {
+    height: 500vh;
+  }
+
+  .mid1 {
+    height: 250vh;
+  }
+}
+
+@include iphone5L {
+  // .top {
+  //   height: 100vh;
+  // }
+
+  .navigate {
+    height: 700vh;
+  }
+
+  .mid1 {
+    height: 250vh;
+  }
+}
+
+
+@include iphone678 {
+  // .top {
+  //   height: 100vh;
+  // }
+
+  .navigate {
+    height: 450vh;
+  }
+
+  .mid1 {
+    height: 200vh;
+  }
+}
+
+@include iphone678L {
+  // .top {
+  //   height: 100vh;
+  // }
+
+  .navigate {
+    height: 800vh;
+  }
+
+  .mid1 {
+    height: 200vh;
+  }
+}
+
+@include iphone678plus {
+  // .top {
+  //   height: 100vh;
+  // }
+
+  .navigate {
+    height: 400vh;
+  }
+
+  .mid1 {
+    height: 200vh;
+  }
+}
+
+@include iphone678plusL {
+  // .top {
+  //   height: 100vh;
+  // }
+
+  .navigate {
+    height: 800vh;
+  }
+
+  .mid1 {
+    height: 200vh;
+  }
+}
+
+@include iphoneX {
+  // .top {
+  //   height: 100vh;
+  // }
+
+  .navigate {
+    height: 375vh;
+  }
+
+  .mid1 {
+    height: 200vh;
+  }
+}
+
+@include iphoneXL {
+  // .top {
+  //   height: 100vh;
+  // }
+
+  .navigate {
+    height: 750vh;
+  }
+
+  .mid1 {
+    height: 200vh;
+  }
+}
+
 .top-wrapper {
   display: flex;
   flex-direction: column;
@@ -22,10 +136,6 @@ svg.jumbo {
   align-items: center;
   margin: auto;
 
-  @include ipad {
-    height: 60vh;
-  }
-
   .line1, .line2 {
     font-family: 'Playfair Display', 'Roboto', 'Arial', sans-serif;
   }
@@ -38,7 +148,7 @@ svg.jumbo {
 }
 
 .navigate {
-  height: 500vh;
+  // height: 550vh;
   background: #fff;
   display: flex;
   flex-direction: column;
@@ -48,19 +158,14 @@ svg.jumbo {
   -webkit-transform: translate3d(0,0,0);
   -webkit-overflow-scrolling: touch;
 
-  @include phone {
-    height: 400vh;
-  }
-
-  @include ipad {
-    height: 250vh;
-  }
+  // @include ipad {
+  //   height: 250vh;
+  // }
 
   .navigate_title {
     font-family: 'Playfair Display', 'Roboto', 'Arial', sans-serif;
     font-weight: 700;
     text-align: center;
-    height: 20vh;
     padding: 1em;
     align-items: center;
     justify-content: center;
@@ -158,9 +263,6 @@ svg.jumbo {
       width: 100%;
     }
 
-    @include ipad {
-      height: 20vh;
-    }
 
     .navigate_specs {
       text-align: center;
@@ -299,7 +401,7 @@ svg.jumbo {
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
-  height: 150vh;
+  // height: 125vh;
   align-items: center;
   background: #333;
   background: -webkit-linear-gradient(to right, #222, #333);
@@ -316,13 +418,6 @@ svg.jumbo {
     text-align: center;
   }
 
-  @include phone {
-    height: 200vh;
-  }
-
-  @include ipad {
-    height: 60vh;
-  }
 }
 
 .mid1-left {
@@ -333,10 +428,6 @@ svg.jumbo {
   width: 100%;
   height: 20vh;
   margin-top: 7em;
-
-  @include ipad {
-    height: 10vh;
-  }
 
   .medium-logo {
     img {
@@ -454,153 +545,3 @@ td {
 
 }
 
-.bottom {
-  display: grid;
-
-  h2, h5, p {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    color: #333;
-    padding: 10px;
-    text-align: center;
-  }
-
-  button {
-    display: flex !important;
-    justify-content: center !important;
-    align-items: center !important;
-  }
-
-  @include phone {
-    display: grid;
-    grid-template-columns: repeat(1, 1fr);
-    grid-template-rows: 1fr 1fr;
-    grid-template-areas: "."
-                         ".";
-    height: 150vh;
-  }
-
-  @include smalldevice {
-    display: grid;
-    grid-template-columns: repeat(1, 1fr);
-    grid-template-rows: 1fr 1fr;
-    grid-template-areas: "."
-                         ".";
-    height: 150vh;
-  }
-
-  @include meddevice {
-    display: grid;
-    grid-template-columns: repeat(1, 1fr);
-    grid-template-rows: 1fr 1fr;
-    grid-template-areas: "."
-                         ".";
-    height: 150vh;
-  }
-
-
-  @include lgdevice {
-    display: grid;
-    grid-template-columns: 1.5fr 1fr;
-    grid-template-rows: 1fr;
-    grid-template-areas: ". .";
-    height: 75vh;
-  }
-
-  @include xldevice {
-    display: grid;
-    grid-template-columns: 1.5fr 1fr;
-    grid-template-rows: 1fr;
-    grid-template-areas: ". .";
-    height: 100vh;
-  }
-
-}
-
-.bottom-left {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  background-image: linear-gradient(120deg, #fdfbfb 0%, #ebedee 100%);
-}
-
-.bottom-right {
-  background: #333;
-  background: -webkit-linear-gradient(to right, #222, #333);
-  background: linear-gradient(to right, #222, #333);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  h2, h5, p {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    color: #fff;
-    padding: 10px;
-    text-align: center;
-  }
-
-  @include phone {
-    .email-form-wrapper {
-      padding: 3em;
-
-      .email-form {
-        padding: 4em 0 0 0;
-        max-width: 300px;
-        margin: auto;
-      }
-    }
-  }
-
-  @include smalldevice {
-    .email-form-wrapper {
-      padding: 8em;
-
-      .email-form {
-        padding: 4em 0 0 0;
-        width: 300px;
-        margin: auto;
-      }
-    }
-  }
-
-  @include meddevice {
-    .email-form-wrapper {
-      padding: 14em;
-
-      .email-form {
-        padding: 4em 0 0 0;
-        width: 300px;
-        margin: auto;
-      }
-    }
-  }
-
-  @include lgdevice {
-    .email-form-wrapper {
-      padding: 0 30px 0 30px;
-
-      .email-form {
-        padding: 0;
-        width: 300px;
-        margin: auto;
-      }
-    }
-  }
-
-  @include xldevice {
-    .email-form-wrapper {
-      padding: 0 80px 0 80px;
-
-      .email-form {
-        padding: 0;
-        width: 300px;
-        margin: auto;
-      }
-    }
-  }
-
-}

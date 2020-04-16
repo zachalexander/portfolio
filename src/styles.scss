@@ -18,6 +18,117 @@ body, nav {
 }
 
 
+@mixin iphone5 {
+  @media only screen 
+  and (min-device-width : 320px) 
+  and (max-device-width : 568px) { 
+    @content;
+  }
+}
+
+@mixin iphone5L {
+  @media only screen 
+  and (min-device-width : 320px) 
+  and (max-device-width : 568px) 
+  and (orientation : landscape) { 
+    @content;
+  }
+}
+
+
+@mixin iphone678 {
+  @media only screen 
+  and (min-device-width : 375px) 
+  and (max-device-width : 667px) { 
+    @content;
+  }
+}
+
+@mixin iphone678L {
+  @media only screen 
+  and (min-device-width : 375px) 
+  and (max-device-width : 667px) 
+  and (orientation : landscape) { 
+    @content;
+  }
+}
+
+@mixin iphone678plus {
+  @media only screen 
+  and (min-device-width : 414px) 
+  and (max-device-width : 736px) { 
+    @content;
+  }
+}
+
+@mixin iphone678plusL {
+  @media only screen 
+  and (min-device-width : 414px) 
+  and (max-device-width : 736px) 
+  and (orientation : landscape) { 
+    @content;
+  }
+}
+
+@mixin iphoneX {
+  @media only screen 
+  and (min-device-width : 375px) 
+  and (max-device-width : 812px)
+  and (-webkit-device-pixel-ratio : 3) { 
+    @content;
+  }
+}
+
+@mixin iphoneXL {
+  @media only screen 
+  and (min-device-width : 375px) 
+  and (max-device-width : 812px) 
+  and (-webkit-device-pixel-ratio : 3)
+  and (orientation : landscape) { 
+    @content;
+  }
+}
+
+@mixin ipad {
+  @media only screen 
+  and (min-device-width : 768px) 
+  and (max-device-width : 1024px) {
+    @content;
+  }
+}
+
+@mixin ipadL {
+  @media only screen 
+  and (min-device-width : 768px) 
+  and (max-device-width : 1024px) 
+  and (orientation : landscape) {
+    @content;
+  }
+}
+
+@mixin desktop {
+  /* Desktops and laptops ----------- */
+  @media only screen 
+  and (min-width : 1224px) {
+    @content;
+  }
+}
+
+
+// /* Large screens ----------- */
+// @media only screen 
+// and (min-width : 1824px) {
+// /* Styles */
+// }
+
+// /* iPhone 4 ----------- */
+// @media
+// only screen and (-webkit-min-device-pixel-ratio : 1.5),
+// only screen and (min-device-pixel-ratio : 1.5) {
+// /* Styles */
+// }
+
+
 @mixin phone {
   @media only screen and (max-width: 600px) {
     @content;

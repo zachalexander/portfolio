@@ -39,6 +39,7 @@ export class CoronavirusComponent implements OnInit {
   random;
   tweet;
   user;
+  url;
 
   constructor(
     private djangoService: DjangoService,
@@ -92,6 +93,12 @@ export class CoronavirusComponent implements OnInit {
       this.user = data.user;
       console.log(data);
     });
+
+    this.pusherService.subScribeToChannel('my-channel', ['videodetails'], (data) => {
+      console.log(data);
+      this.url = data.includes.media[0].preview_image_url;
+    });
+
 
     // setTimeout(() => {
     //   // this.loadTwitterData();
