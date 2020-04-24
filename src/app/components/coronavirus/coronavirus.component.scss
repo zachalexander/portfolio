@@ -1,5 +1,342 @@
 @import './../../../styles.scss';
 
+
+
+@include iphone5 {
+
+  .video-grid {
+    position: absolute;
+    display: grid;
+    justify-content: center;
+    grid-template-rows: 400px;
+    grid-template-columns: repeat(1, 400px);
+    grid-gap: 10px 10px;
+  }
+
+  .video-overlay {
+    position: absolute;
+    display: grid;
+    justify-content: center;
+    grid-template-rows: 400px;
+    grid-template-columns: repeat(1, 400px);
+    grid-gap: 10px 10px;
+  }
+  // .top {
+  //   height: 100vh;
+  // }
+
+  .navigate {
+    height: 500vh;
+  }
+
+  .mid1 {
+    height: 250vh;
+  }
+}
+
+@include iphone5L {
+  .video-grid {
+    position: absolute;
+    display: grid;
+    justify-content: center;
+    grid-template-rows: 400px;
+    grid-template-columns: repeat(1, 400px);
+    grid-gap: 10px 10px;
+  }
+
+  .video-overlay {
+    position: absolute;
+    display: grid;
+    justify-content: center;
+    grid-template-rows: 400px;
+    grid-template-columns: repeat(1, 400px);
+    grid-gap: 10px 10px;
+  }
+  // .top {
+  //   height: 100vh;
+  // }
+
+  .navigate {
+    height: 700vh;
+  }
+
+  .mid1 {
+    height: 250vh;
+  }
+}
+
+
+@include iphone678 {
+  .video-grid {
+    position: absolute;
+    display: grid;
+    justify-content: center;
+    grid-template-rows: 400px;
+    grid-template-columns: repeat(1, 400px);
+    grid-gap: 10px 10px;
+  }
+
+  .video-overlay {
+    position: absolute;
+    display: grid;
+    justify-content: center;
+    grid-template-rows: 400px;
+    grid-template-columns: repeat(1, 400px);
+    grid-gap: 10px 10px;
+  }
+  // .top {
+  //   height: 100vh;
+  // }
+
+  .navigate {
+    height: 450vh;
+  }
+
+  .mid1 {
+    height: 200vh;
+  }
+}
+
+@include iphone678L {
+  .video-grid {
+    position: absolute;
+    display: grid;
+    justify-content: center;
+    grid-template-rows: 400px;
+    grid-template-columns: repeat(1, 400px);
+    grid-gap: 10px 10px;
+  }
+
+  .video-overlay {
+    position: absolute;
+    display: grid;
+    justify-content: center;
+    grid-template-rows: 400px;
+    grid-template-columns: repeat(1, 400px);
+    grid-gap: 10px 10px;
+  }
+  // .top {
+  //   height: 100vh;
+  // }
+
+  .navigate {
+    height: 800vh;
+  }
+
+  .mid1 {
+    height: 200vh;
+  }
+}
+
+@include iphone678plus {
+  .video-grid {
+    position: absolute;
+    display: grid;
+    justify-content: center;
+    grid-template-rows: 400px;
+    grid-template-columns: repeat(1, 400px);
+    grid-gap: 10px 10px;
+  }
+
+  .video-overlay {
+    position: absolute;
+    display: grid;
+    justify-content: center;
+    grid-template-rows: 400px;
+    grid-template-columns: repeat(1, 400px);
+    grid-gap: 10px 10px;
+  }
+  // .top {
+  //   height: 100vh;
+  // }
+
+  .navigate {
+    height: 400vh;
+  }
+
+  .mid1 {
+    height: 200vh;
+  }
+}
+
+@include iphone678plusL {
+  .video-grid {
+    position: absolute;
+    display: grid;
+    justify-content: center;
+    grid-template-rows: 400px;
+    grid-template-columns: repeat(1, 400px);
+    grid-gap: 10px 10px;
+  }
+
+  .video-overlay {
+    position: absolute;
+    display: grid;
+    justify-content: center;
+    grid-template-rows: 400px;
+    grid-template-columns: repeat(1, 400px);
+    grid-gap: 10px 10px;
+  }
+  // .top {
+  //   height: 100vh;
+  // }
+
+  .navigate {
+    height: 800vh;
+  }
+
+  .mid1 {
+    height: 200vh;
+  }
+}
+
+@include iphoneX {
+  .video-grid {
+    position: absolute;
+    display: grid;
+    justify-content: center;
+    grid-template-rows: 400px;
+    grid-template-columns: repeat(1, 400px);
+    grid-gap: 10px 10px;
+  }
+
+  .video-overlay {
+    position: absolute;
+    display: grid;
+    justify-content: center;
+    grid-template-rows: 400px;
+    grid-template-columns: repeat(1, 400px);
+    grid-gap: 10px 10px;
+  }
+  // .top {
+  //   height: 100vh;
+  // }
+
+  .navigate {
+    height: 375vh;
+  }
+
+  .mid1 {
+    height: 200vh;
+  }
+}
+
+@include iphoneXL {
+
+  .video-grid {
+    position: absolute;
+    display: grid;
+    justify-content: center;
+    grid-template-rows: 400px;
+    grid-template-columns: repeat(1, 400px);
+    grid-gap: 10px 10px;
+  }
+
+  .video-overlay {
+    position: absolute;
+    display: grid;
+    justify-content: center;
+    grid-template-rows: 400px;
+    grid-template-columns: repeat(1, 400px);
+    grid-gap: 10px 10px;
+  }
+  // .top {
+  //   height: 100vh;
+  // }
+
+  .navigate {
+    height: 750vh;
+  }
+
+  .mid1 {
+    height: 200vh;
+  }
+}
+
+
+.title-div {
+  max-width: 50%;
+  margin: 4em auto;
+  text-align: center;
+  max-width: 400;
+
+  .title {
+    text-align: center;
+    font-weight: 900;
+    font-family: 'Playfair Display', 'Roboto', 'Arial', sans-serif;
+  }
+  
+  .callout-coronavirus {
+    text-align: center;
+    line-height: 1.25em;
+    margin: 2em auto;
+  }
+}
+
+.view {
+  position: relative;
+  display: flex;
+  justify-content: center;
+}
+
+// .video-grid {
+//   position: absolute;
+//   display: grid;
+//   justify-content: center;
+//   grid-template-rows: 400px;
+//   grid-template-columns: repeat(2, 400px);
+//   grid-gap: 10px 10px;
+// }
+
+// .video-overlay {
+//   position: absolute;
+//   display: grid;
+//   justify-content: center;
+//   grid-template-rows: 400px;
+//   grid-template-columns: repeat(2, 400px);
+//   grid-gap: 10px 10px;
+// }
+
+.overlay {
+  display: flex;
+  align-items: top;
+  justify-content: top;
+  margin: auto;
+  height: 400px;
+  width: 400px;
+  border: none;
+  z-index: 100;
+  font-weight: 700;
+  color: #333;
+}
+
+.overlay-screen {
+  display: flex;
+  height: 50px;
+  background-color: #f8f9faa6;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+
+  a {
+    text-decoration: none;
+    color: #333;
+  }
+
+  a:hover {
+    text-decoration: underline;
+  }
+}
+
+video {
+  margin: auto;
+  height: 400px;
+  width: 400px;
+  border: none;
+  z-index: 1;
+}
+
 .nystorm {
   display:grid;
   grid-template-columns: 1fr;
@@ -55,4 +392,68 @@ path.line {
 
 text {
   font-family: 'Roboto', 'Arial', sans-serif;
+}
+
+
+.update-content {
+  display: flex;
+  justify-content: center;
+  margin: 2em auto;
+}
+
+@keyframes bounce { 
+  0% { transform: translateY(0); }
+  100% { transform: translateY(-5px); }
+}
+
+@keyframes flash {
+  0% { color: yellow}
+  100% {color: #fff}
+}
+
+.updatebutton {
+  color: #fff;
+  margin: auto;
+  border-radius: 20px;
+  border: 1px solid #333;
+  font-weight: 700;
+  animation: bounce 0.8s;
+  animation-direction: alternate;
+  animation-iteration-count: infinite;
+  
+}
+
+.updateticker {
+  animation: flash 2s;
+}
+
+.pagination {
+  display: flex;
+  justify-content: center;
+
+  li {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  li.active {
+    background-color: #333;
+  }
+
+  li.waves-effect.recent {
+    font-size: 0.85em;
+    color: #555;
+    margin: 0 1em;
+  }
+
+  a {
+    display: flex;
+  }
+}
+
+vg-controls {
+  display: flex;
+  pointer-events: initial;
+  justify-content: space-between
 }

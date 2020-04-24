@@ -1,51 +1,51 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import VideoInterface from '../interfaces/video.interface';
 
 @Injectable({
   providedIn: 'root'
 })
 export class DjangoService {
 
-  private endpoint = 'http://localhost:8000/users/';
-  private tweetendpoint = 'http://localhost:8000/tweets-latest/';
-  private tweetsall = 'https://guarded-anchorage-28885.herokuapp.com/tweets-all/';
-  private tweetcount = 'http://localhost:8000/tweet-count/';
-  private randomcount = 'http://localhost:8000/random/';
+  private pageNr = 1;
+
+  // private tweetendpoint = 'http://localhost:8000/tweets-latest/';
+  // private tweetsall = 'https://guarded-anchorage-28885.herokuapp.com/tweets-all/';
+  private tweetsall = `https://twitter-streaming-videos.herokuapp.com/tweets-all/?page=${this.pageNr}`;
+  private tweetsfull = "https://twitter-streaming-videos.herokuapp.com/tweets-full/";
+  // private tweetcount = 'http://localhost:8000/tweet-count/';
 
   private coronavirusapi = 'https://coronavirus-tracker-api.herokuapp.com/v2/locations?source=csbs';
 
   constructor(private http: HttpClient) { }
 
-  // Get all Users
 
-  getAllUsers(): Observable<any> {
-    return this.http.get(this.endpoint);
-  }
 
     // Get all Users
 
-  getAllTweets(): Observable<any> {
-    return this.http.get(this.tweetsall);
+  getAllTweets(): Observable<VideoInterface[]> {
+    return this.http.get<VideoInterface[]>(this.tweetsall);
   }
 
-  getFirstTweet(): Observable<any> {
-    return this.http.get(this.tweetendpoint);
+  getFullTweets(): Observable<VideoInterface[]> {
+    return this.http.get<VideoInterface[]>(this.tweetsfull);
   }
 
-      // Get all Users
+  // getFirstTweet(): Observable<any> {
+  //   return this.http.get(this.tweetendpoint);
+  // }
 
-  getTweetCount(): Observable<any> {
-    return this.http.get(this.tweetcount);
-  }
+  // getTweetCount(): Observable<any> {
+  //   return this.http.get(this.tweetcount);
+  // }
 
   getVirusCounts(): Observable<any> {
     return this.http.get(this.coronavirusapi);
   }
 
-    // Get all Users
-
-  getAllRandos(): Observable<any> {
-    return this.http.get(this.randomcount);
+  paginatePage(value): Observable<VideoInterface[]> {
+    this.tweetsall = 'http://localhost:8000/tweets-all/?page=' + value;
+    return this.http.get<VideoInterface[]>(this.tweetsall);
   }
 }

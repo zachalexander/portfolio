@@ -1,5 +1,6 @@
 import { DjangoService } from './../../services/django.service';
-import { Component, OnInit} from '@angular/core';
+import {  Component, OnInit, ElementRef, ViewChild, ViewEncapsulation, Input, SimpleChanges, OnChanges } from '@angular/core';
+import { Router, NavigationEnd} from '@angular/router';
 import { Tweets } from '../../models/tweets';
 import { TweetCount } from '../../models/tweetcount';
 import { VirusCounts } from '../../models/viruscounts';
@@ -11,7 +12,9 @@ import * as nycCasesData from '../../../assets/nyccases.json';
 import * as nycDonation from '../../../assets/donations.json';
 import * as nycityData from '../../../assets/new-york-city-boroughs.json';
 import { PusherService } from '../../services/pusher.service';
-
+import { DomSanitizer } from '@angular/platform-browser';
+import VideoInterface from '../../interfaces/video.interface';
+import * as d3 from 'd3';
 
 @Component({
   selector: 'app-coronavirus',
@@ -20,6 +23,8 @@ import { PusherService } from '../../services/pusher.service';
 })
 export class CoronavirusComponent implements OnInit {
 
+  private twitter: any;
+
   tweets: Observable<Tweets[]>;
   tweetcount: Observable<TweetCount[]>;
   tweetrecent: Observable<Tweets[]>;
@@ -27,6 +32,7 @@ export class CoronavirusComponent implements OnInit {
   dates;
   nyStateMap: Array<any>;
   nyCityMap: Array<any>;
+  videolinks: VideoInterface[] = [];
   arrTweets;
   recentTweet;
   subscription$;
@@ -36,67 +42,91 @@ export class CoronavirusComponent implements OnInit {
   virusLastUpdate;
   nyData: Array<any>;
   latestDonationCount;
-  random;
+  updatecount;
   tweet;
   user;
   url;
+  safeURL;
+  updatedisplay;
+  update = false;
+  flash = false;
+  colorchange = false;
+  pages;
+  pagenumbers = [];
+  pagesten = [];
+  pageLinks = [];
+  clickedLI;
+  elevenormore;
+  firstvalue = true;
+  twitterurl;
+  closebanner;
+
+  isLoading = false;
+  loadedAll = false;
+  isFirstLoad = true;
+
+  boxarray = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16]
 
   constructor(
     private djangoService: DjangoService,
     private pusherService: PusherService,
-    private spinner: NgxSpinnerService
+    private spinner: NgxSpinnerService,
+    public sanitizer: DomSanitizer
   ) { }
 
-  addValuesModel() {
-    const stateDataset = stateData['default'];
-    return stateDataset.features;
-  }
+  // addValuesModel() {
+  //   const stateDataset = stateData['default'];
+  //   return stateDataset.features;
+  // }
 
-  addNYStateModel() {
-    const nyStateDataset = nystateData['features'];
-    return nyStateDataset;
-  }
+  // addNYStateModel() {
+  //   const nyStateDataset = nystateData['features'];
+  //   return nyStateDataset;
+  // }
 
-  addNYCityModel() {
-    const nyCityDataset = nycityData['features'];
-    return nycityData;
-  }
+  // addNYCityModel() {
+  //   const nyCityDataset = nycityData['features'];
+  //   return nycityData;
+  // }
 
   ngOnInit() {
-    // this.loadTwitterData();
-    this.spinner.show();
-    this.loadVirusData();
-    this.drawNYCases();
-    this.sumDonations();
+    this.showTwitterVideos();
+    this.pagination();
 
-    this.nyCityMap = this.addNYCityModel()['features'];
+    setTimeout(() => {
+      this.clickedLI = document.getElementById('page_num_1').parentElement;
+      this.clickedLI.classList.add('active');
+      this.clickedLI.classList.remove('waves-effect');
+    }, 1000);
 
-    const tweetCount = this.djangoService.getTweetCount();
-    const tweetData = this.djangoService.getFirstTweet();
+    this.updatecount = [{
+      count: 0
+    }];
 
-    tweetCount.subscribe(data => {
-      this.random = data[0].count;
-    })
-
-    tweetData.subscribe(data => {
-      this.tweet = data[0].tweetText;
-      this.user = data[0].user;
-    })
+    // this.nyCityMap = this.addNYCityModel()['features'];
 
     this.pusherService.subScribeToChannel('my-channel', ['tweetcount'], (data) => {
-      this.random = data.number;
-      console.log(data);
+      this.update = true;
+      this.flash = true;
+      this.updatecount.map(count => {
+        count.count = count.count + 1;
+      })
+      this.updatedisplay = this.updatecount[0].count;
+      setTimeout(() => {
+        this.colorchange = true;
+      }, 2000);
+      this.colorchange = false;
     });
 
-    this.pusherService.subScribeToChannel('my-channel', ['tweetdetails'], (data) => {
-      this.tweet = data.tweet;
-      this.user = data.user;
-      console.log(data);
-    });
+    // this.pusherService.subScribeToChannel('my-channel', ['tweetdetails'], (data) => {
+    //   this.tweet = data.tweet;
+    //   this.user = data.user;
+    //   console.log(data);
+    // });
 
     this.pusherService.subScribeToChannel('my-channel', ['videodetails'], (data) => {
-      console.log(data);
-      this.url = data.includes.media[0].preview_image_url;
+      this.url = data;
+      this.safeURL = this.sanitizer.bypassSecurityTrustResourceUrl(this.url);
     });
 
 
@@ -113,71 +143,164 @@ export class CoronavirusComponent implements OnInit {
     //   this.loadVirusData();
     //   // this.drawMap(1000, 600, this.addValuesModel());
     // });
-
-    setTimeout(() => {
-      this.spinner.hide();
-    }, 3000);
   }
 
-  sumDonations () {
-    const sum = [];
-    nycDonation['food_bank'].map(donations => {
-      sum.push(donations.amount);
-    });
-    this.latestDonationCount = sum.reduce((a, b) => a + b, 0);
-  }
+  // sumDonations () {
+  //   const sum = [];
+  //   nycDonation['food_bank'].map(donations => {
+  //     sum.push(donations.amount);
+  //   });
+  //   this.latestDonationCount = sum.reduce((a, b) => a + b, 0);
+  // }
 
-  loadTwitterData() {
-    this.tweets = this.djangoService.getAllTweets();
-    this.tweetrecent = this.djangoService.getFirstTweet();
-    this.tweetcount = this.djangoService.getTweetCount();
-  }
+  // loadTwitterData() {
 
-  loadVirusData() {
-    this.virusCounts = this.djangoService.getVirusCounts();
-    this.virusCounts.subscribe(data => {
-      this.virusLastUpdate = data['locations'][0].last_updated;
-      const sumCases = [];
-      const nyCases = [];
-       data['locations'].map(cases => {
-        if (cases.province === 'New York') {
-          sumCases.push(cases.latest.confirmed);
-          nyCases.push(cases);
-          this.nyData = nyCases;
-          this.nyStateMap = this.addNYStateModel();
-        }
+  //   this.tweets = this.djangoService.getAllTweets();
+  // //   // this.tweetrecent = this.djangoService.getFirstTweet();
+  // //   // this.tweetcount = this.djangoService.getTweetCount();
+  // }
+
+  // changePage() {
+  //   this.djangoService.getPageTweets().subscribe(res => {
+
+  //   })
+  // }
+
+  showTwitterVideos(): void {
+    this.djangoService.getAllTweets().subscribe(res => {
+      this.videolinks.push(...res);
+      this.videolinks.map(links => {
+        links.linkSafe = this.sanitizer.bypassSecurityTrustResourceUrl(links.tweetId);
+        links.twitterurl = 'https://www.twitter.com/' + links.username;
       });
+    })
+    console.log(this.videolinks);
+  }
 
-      this.nyStateMap.map(polygons => {
-        this.nyData.map(cases => {
-          if(polygons.properties.NAME === cases.county){
-            polygons.properties['latitude'] = parseFloat(cases['coordinates'].latitude);
-            polygons.properties['longitude'] = parseFloat(cases['coordinates'].longitude);
-            polygons.properties['confirmed'] = parseInt(cases['latest'].confirmed);
-          }
-        })
-      })
-      this.nyLatest = sumCases.reduce((a, b) => a + b, 0);
+  closeBanner(value) {
+    this.closebanner = document.getElementById("overlay_num_" + value);
+    this.closebanner.classList.add('hide');
+  }
+
+  pagination(): void {
+    this.djangoService.getFullTweets().subscribe(res => {
+      this.pages = res.length;
+      if ((this.pages / 16) <= 1) {
+        this.pages = 1;
+      } else {
+        this.pages = Math.floor(this.pages / 16) + 1;
+      }
+      this.pagenumbers = Array.from(Array(this.pages).keys()).map(x => x + 1);
+      if (this.pagenumbers.length > 10) {
+        this.elevenormore = true;
+        this.pagesten = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+      } else {
+        this.elevenormore = false;
+        this.pagesten = this.pagenumbers;
+      }
     });
-    return this.nyData;
   }
 
-  findYesterday() {
-    const today = new Date().toLocaleDateString();
-    const yesterday = new Date(today);
-    yesterday.setDate(yesterday.getDate() - 1);
-    const yestMonth = yesterday.getMonth() + 1;
-    yestMonth.toString();
-    const yestYear = yesterday.getFullYear().toString().substring(2);
-    const yestDay = yesterday.getDate();
-    const yesterday_fnl = yestMonth + '/' + yestDay + '/' + yestYear;
-    yesterday_fnl.toString();
-    return yesterday_fnl;
+  cyclePageUp() {
+    this.firstvalue = false;
+    this.pagesten.shift();
+    const last_item = (this.pagesten.slice(-1).pop());
+    const page_num_length = this.pagenumbers.slice(-1).pop();
+    const final_item = last_item + 1;
+
+    if (page_num_length === final_item) {
+      this.elevenormore = false;
+    }
+    this.pagesten.push(last_item + 1);
   }
 
-  drawNYCases() {
-    this.dates = nycCasesData;
+  cyclePageDown() {
+    this.firstvalue = false;
+    this.pagesten.pop();
+    let first_value = this.pagesten.slice(0, 1).shift();
+    first_value = first_value - 1;
+    console.log(first_value);
+    this.pagesten.unshift(first_value);
+
+    if (first_value === 1) {
+      this.firstvalue = true;
+    }
+
   }
+
+  getPageNumber(x) {
+    return 'page_num_' + x;
+  }
+
+  getOverlayNum(x) {
+    return 'overlay_num_' + x;
+  }
+
+  changePage(value) {
+    this.clickedLI.classList.remove('active');
+    this.clickedLI.classList.add('waves-effect');
+
+    this.clickedLI = document.getElementById("page_num_" + value).parentElement;
+    this.clickedLI.classList.add('active');
+    this.clickedLI.classList.remove('waves-effect');
+
+    this.djangoService.paginatePage(value).subscribe(res => {
+      this.videolinks.length = 0;
+      this.videolinks.splice(0, this.videolinks.length);
+      this.videolinks.push(...res);
+      this.videolinks.map(links => {
+        links.linkSafe = this.sanitizer.bypassSecurityTrustResourceUrl(links.tweetId);
+        links.twitterurl = 'https://www.twitter.com/' + links.username;
+      });
+    })
+  }
+  
+
+  // loadVirusData() {
+  //   this.virusCounts = this.djangoService.getVirusCounts();
+  //   this.virusCounts.subscribe(data => {
+  //     this.virusLastUpdate = data['locations'][0].last_updated;
+  //     const sumCases = [];
+  //     const nyCases = [];
+  //      data['locations'].map(cases => {
+  //       if (cases.province === 'New York') {
+  //         sumCases.push(cases.latest.confirmed);
+  //         nyCases.push(cases);
+  //         this.nyData = nyCases;
+  //         this.nyStateMap = this.addNYStateModel();
+  //       }
+  //     });
+
+  //     this.nyStateMap.map(polygons => {
+  //       this.nyData.map(cases => {
+  //         if(polygons.properties.NAME === cases.county){
+  //           polygons.properties['latitude'] = parseFloat(cases['coordinates'].latitude);
+  //           polygons.properties['longitude'] = parseFloat(cases['coordinates'].longitude);
+  //           polygons.properties['confirmed'] = parseInt(cases['latest'].confirmed);
+  //         }
+  //       })
+  //     })
+  //     this.nyLatest = sumCases.reduce((a, b) => a + b, 0);
+  //   });
+  //   return this.nyData;
+  // }
+
+  // findYesterday() {
+  //   const today = new Date().toLocaleDateString();
+  //   const yesterday = new Date(today);
+  //   yesterday.setDate(yesterday.getDate() - 1);
+  //   const yestMonth = yesterday.getMonth() + 1;
+  //   yestMonth.toString();
+  //   const yestYear = yesterday.getFullYear().toString().substring(2);
+  //   const yestDay = yesterday.getDate();
+  //   const yesterday_fnl = yestMonth + '/' + yestDay + '/' + yestYear;
+  //   yesterday_fnl.toString();
+  //   return yesterday_fnl;
+  // }
+
+  // drawNYCases() {
+  //   this.dates = nycCasesData;
+  // }
 
 // drawMap(width, height, datapull) {
 
@@ -282,8 +405,4 @@ export class CoronavirusComponent implements OnInit {
 //     });
 //   }
 
-ngAfterViewInit(): void {
-  // @ts-ignore
-  twttr.widgets.load();
-}
 }

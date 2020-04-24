@@ -3,6 +3,8 @@ import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { NgxSpinnerModule } from 'ngx-spinner';
+import { VgCoreModule } from 'videogular2/compiled/core';
+import { VgControlsModule } from 'videogular2/compiled/controls';
 
 
 import { AppRoutingModule } from './app-routing.module';
@@ -45,7 +47,9 @@ import { SimplelinechartComponent } from './components/simplelinechart/simplelin
     MediumWidgetModule,
     HttpClientModule,
     FormsModule,
-    NgxSpinnerModule
+    NgxSpinnerModule,
+    VgCoreModule,
+    VgControlsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

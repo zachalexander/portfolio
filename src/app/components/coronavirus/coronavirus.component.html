@@ -1,19 +1,65 @@
-<div class="nystorm">  
+<!-- <div class="nystorm">  
   <div class="nyc_map">
     <app-ny-city-map *ngIf="nyCityMap" [data]="nyCityMap"></app-ny-city-map>
   </div>
+</div> -->
+
+<div class="title-div">
+  <h1 class="title">Spread Joy</h1>
+  <h6 class="callout-coronavirus">COVID-19 has altered so much of our lives, and 
+    many are experiencing unprecedented heartbreak and challenges. I hope this page
+    will help spread some joy, and allow viewers to escape (even for a moment) from
+    such a difficult time in human history.
+  </h6>
+</div>
+<div *ngIf='update' class="update-content">
+  <a *ngIf='flash' href="/coronavirus"><button type="button" class="btn btn-dark updatebutton">See 
+    <strong *ngIf="colorchange" class="!updateticker">+{{updatedisplay}}</strong>
+    <strong *ngIf="!colorchange" class="updateticker"> +{{updatedisplay}}</strong>
+    new videos</button></a>
 </div>
 
-<h5>{{random}}</h5>
-<h5>{{tweet}}</h5>
-<img [src]='url'>
-{{url}}
+<ul class="pagination">
+  <li class="waves-effect recent">Most Recent</li>
+  <li *ngIf='!firstvalue' class="waves-effect"><a (click)='cyclePageDown()'><i class="material-icons">chevron_left</i></a></li>
+  <li class="waves-effect" *ngFor="let x of pagesten"><a [id]="getPageNumber(x)" (click)='changePage(x)'>{{x}}</a></li>
+  <li *ngIf='elevenormore' class="waves-effect"><a (click)='cyclePageUp()'><i class="material-icons">chevron_right</i></a></li>
+  <li class="waves-effect recent">Least Recent</li>
+</ul>
 
-<!-- <a class="twitter-timeline" 
-[href]="'https://twitter.com/' + user" 
-data-chrome="nofooter noborders"
-data-tweet-limit="1"></a> -->
-  
+<div class="view">
+  <div class="video-overlay">
+    <div class="overlay" *ngFor="let link of videolinks">
+      <div class="overlay-screen" [id]="getOverlayNum(link.id)">
+        <a href={{link.twitterurl}} target="_blank">
+          @{{link.username}}
+        </a>
+      </div>
+    </div>
+  </div>
+  <div class="video-grid">
+    <div class="indv" *ngFor="let link of videolinks">
+    
+      <vg-player>
+        <vg-controls>
+          <vg-play-pause (click)="closeBanner(link.id)"></vg-play-pause>
+          <vg-fullscreen></vg-fullscreen>
+        </vg-controls>
+      
+      
+    
+          <video #media [poster]="link.videoImage" [vgMedia]="media" id="singleVideo" preload="none" crossorigin="anonymous">
+            <source [src]="link.linkSafe" type='video/mp4'>
+          </video>  
+    
+        </vg-player>
+    </div>
+  </div>
+</div>
+
+
+
+<!--   
 <div class = "nystorm">
     <div class="line_chart">
       <app-line-area-chart *ngIf="dates" [data]="dates"></app-line-area-chart>
@@ -33,7 +79,7 @@ Last updated on: {{virusLastUpdate | date: 'MMMM d':'+0000'}} at {{virusLastUpda
     </div>
     <app-ny-state-map *ngIf="nyStateMap" [data]="nyStateMap"></app-ny-state-map>
   </div>
-</div>
+</div> -->
 
 
 
