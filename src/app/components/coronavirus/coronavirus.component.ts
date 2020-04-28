@@ -177,10 +177,10 @@ export class CoronavirusComponent implements OnInit {
     console.log(this.videolinks);
   }
 
-  closeBanner(value) {
-    this.closebanner = document.getElementById("overlay_num_" + value);
-    this.closebanner.classList.add('hide');
-  }
+  // openModal(value) {
+  //   this.closebanner = document.getElementById("overlay_num_" + value);
+  //   this.closebanner.classList.add('hide');
+  // }
 
   pagination(): void {
     this.djangoService.getFullTweets().subscribe(res => {

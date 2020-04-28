@@ -5,6 +5,8 @@ import { FormsModule } from '@angular/forms';
 import { NgxSpinnerModule } from 'ngx-spinner';
 import { VgCoreModule } from 'videogular2/compiled/core';
 import { VgControlsModule } from 'videogular2/compiled/controls';
+import { VgOverlayPlayModule } from 'videogular2/compiled/overlay-play';
+import {VgBufferingModule} from 'videogular2/compiled/buffering';
 
 
 import { AppRoutingModule } from './app-routing.module';
@@ -24,6 +26,7 @@ import { NavbarComponent } from './components/navbar/navbar.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { NavbarxhomeComponent } from './components/navbarxhome/navbarxhome.component';
 import { SimplelinechartComponent } from './components/simplelinechart/simplelinechart.component';
+import { DateAgoPipe } from './pipes/date-ago.pipe';
 
 @NgModule({
   declarations: [
@@ -38,7 +41,8 @@ import { SimplelinechartComponent } from './components/simplelinechart/simplelin
     NavbarComponent,
     FooterComponent,
     NavbarxhomeComponent,
-    SimplelinechartComponent
+    SimplelinechartComponent,
+    DateAgoPipe
   ],
   imports: [
     BrowserModule,
@@ -49,7 +53,9 @@ import { SimplelinechartComponent } from './components/simplelinechart/simplelin
     FormsModule,
     NgxSpinnerModule,
     VgCoreModule,
-    VgControlsModule
+    VgControlsModule,
+    VgOverlayPlayModule,
+    VgBufferingModule
   ],
   providers: [],
   bootstrap: [AppComponent]

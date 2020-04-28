@@ -1,258 +1,48 @@
 @import './../../../styles.scss';
 
-
-
-@include iphone5 {
-
-  .video-grid {
-    position: absolute;
+@include phone {
+  .view {
     display: grid;
     justify-content: center;
-    grid-template-rows: 400px;
-    grid-template-columns: repeat(1, 400px);
-    grid-gap: 10px 10px;
+    grid-template-rows: 50px 400px;
+    grid-template-columns: 100%;
+    margin-bottom: 70px;
   }
 
-  .video-overlay {
-    position: absolute;
-    display: grid;
-    justify-content: center;
-    grid-template-rows: 400px;
-    grid-template-columns: repeat(1, 400px);
-    grid-gap: 10px 10px;
-  }
-  // .top {
-  //   height: 100vh;
-  // }
-
-  .navigate {
-    height: 500vh;
+  .overlay-screen {
+    border: none;
   }
 
-  .mid1 {
-    height: 250vh;
-  }
-}
-
-@include iphone5L {
-  .video-grid {
-    position: absolute;
-    display: grid;
-    justify-content: center;
-    grid-template-rows: 400px;
-    grid-template-columns: repeat(1, 400px);
-    grid-gap: 10px 10px;
-  }
-
-  .video-overlay {
-    position: absolute;
-    display: grid;
-    justify-content: center;
-    grid-template-rows: 400px;
-    grid-template-columns: repeat(1, 400px);
-    grid-gap: 10px 10px;
-  }
-  // .top {
-  //   height: 100vh;
-  // }
-
-  .navigate {
-    height: 700vh;
-  }
-
-  .mid1 {
-    height: 250vh;
+  video {
+    margin: auto;
+    height: 400px;
+    width: 100%;
+    border: none;
   }
 }
 
 
-@include iphone678 {
-  .video-grid {
-    position: absolute;
+@include smalldevice {
+
+  .view {
     display: grid;
     justify-content: center;
-    grid-template-rows: 400px;
-    grid-template-columns: repeat(1, 400px);
-    grid-gap: 10px 10px;
+    grid-template-rows: 50px 600px;
+    grid-template-columns: 600px;
+    margin-bottom: 70px;
   }
 
-  .video-overlay {
-    position: absolute;
-    display: grid;
-    justify-content: center;
-    grid-template-rows: 400px;
-    grid-template-columns: repeat(1, 400px);
-    grid-gap: 10px 10px;
-  }
-  // .top {
-  //   height: 100vh;
-  // }
-
-  .navigate {
-    height: 450vh;
+  .overlay-screen {
+    border: 1px solid #ddd;
   }
 
-  .mid1 {
-    height: 200vh;
+  video {
+    margin: auto;
+    height: 600px;
+    border: none;
+    z-index: 1;
   }
 }
-
-@include iphone678L {
-  .video-grid {
-    position: absolute;
-    display: grid;
-    justify-content: center;
-    grid-template-rows: 400px;
-    grid-template-columns: repeat(1, 400px);
-    grid-gap: 10px 10px;
-  }
-
-  .video-overlay {
-    position: absolute;
-    display: grid;
-    justify-content: center;
-    grid-template-rows: 400px;
-    grid-template-columns: repeat(1, 400px);
-    grid-gap: 10px 10px;
-  }
-  // .top {
-  //   height: 100vh;
-  // }
-
-  .navigate {
-    height: 800vh;
-  }
-
-  .mid1 {
-    height: 200vh;
-  }
-}
-
-@include iphone678plus {
-  .video-grid {
-    position: absolute;
-    display: grid;
-    justify-content: center;
-    grid-template-rows: 400px;
-    grid-template-columns: repeat(1, 400px);
-    grid-gap: 10px 10px;
-  }
-
-  .video-overlay {
-    position: absolute;
-    display: grid;
-    justify-content: center;
-    grid-template-rows: 400px;
-    grid-template-columns: repeat(1, 400px);
-    grid-gap: 10px 10px;
-  }
-  // .top {
-  //   height: 100vh;
-  // }
-
-  .navigate {
-    height: 400vh;
-  }
-
-  .mid1 {
-    height: 200vh;
-  }
-}
-
-@include iphone678plusL {
-  .video-grid {
-    position: absolute;
-    display: grid;
-    justify-content: center;
-    grid-template-rows: 400px;
-    grid-template-columns: repeat(1, 400px);
-    grid-gap: 10px 10px;
-  }
-
-  .video-overlay {
-    position: absolute;
-    display: grid;
-    justify-content: center;
-    grid-template-rows: 400px;
-    grid-template-columns: repeat(1, 400px);
-    grid-gap: 10px 10px;
-  }
-  // .top {
-  //   height: 100vh;
-  // }
-
-  .navigate {
-    height: 800vh;
-  }
-
-  .mid1 {
-    height: 200vh;
-  }
-}
-
-@include iphoneX {
-  .video-grid {
-    position: absolute;
-    display: grid;
-    justify-content: center;
-    grid-template-rows: 400px;
-    grid-template-columns: repeat(1, 400px);
-    grid-gap: 10px 10px;
-  }
-
-  .video-overlay {
-    position: absolute;
-    display: grid;
-    justify-content: center;
-    grid-template-rows: 400px;
-    grid-template-columns: repeat(1, 400px);
-    grid-gap: 10px 10px;
-  }
-  // .top {
-  //   height: 100vh;
-  // }
-
-  .navigate {
-    height: 375vh;
-  }
-
-  .mid1 {
-    height: 200vh;
-  }
-}
-
-@include iphoneXL {
-
-  .video-grid {
-    position: absolute;
-    display: grid;
-    justify-content: center;
-    grid-template-rows: 400px;
-    grid-template-columns: repeat(1, 400px);
-    grid-gap: 10px 10px;
-  }
-
-  .video-overlay {
-    position: absolute;
-    display: grid;
-    justify-content: center;
-    grid-template-rows: 400px;
-    grid-template-columns: repeat(1, 400px);
-    grid-gap: 10px 10px;
-  }
-  // .top {
-  //   height: 100vh;
-  // }
-
-  .navigate {
-    height: 750vh;
-  }
-
-  .mid1 {
-    height: 200vh;
-  }
-}
-
 
 .title-div {
   max-width: 50%;
@@ -273,69 +63,45 @@
   }
 }
 
-.view {
-  position: relative;
-  display: flex;
+.video-overlay {
   justify-content: center;
-}
-
-// .video-grid {
-//   position: absolute;
-//   display: grid;
-//   justify-content: center;
-//   grid-template-rows: 400px;
-//   grid-template-columns: repeat(2, 400px);
-//   grid-gap: 10px 10px;
-// }
-
-// .video-overlay {
-//   position: absolute;
-//   display: grid;
-//   justify-content: center;
-//   grid-template-rows: 400px;
-//   grid-template-columns: repeat(2, 400px);
-//   grid-gap: 10px 10px;
-// }
-
-.overlay {
-  display: flex;
-  align-items: top;
-  justify-content: top;
-  margin: auto;
-  height: 400px;
-  width: 400px;
-  border: none;
-  z-index: 100;
-  font-weight: 700;
-  color: #333;
 }
 
 .overlay-screen {
   display: flex;
-  height: 50px;
-  background-color: #f8f9faa6;
-  width: 100%;
-  justify-content: center;
+  justify-content: space-between;
+  color: #333;
   align-items: center;
-  z-index: 1000;
+
+  p {
+    margin: 0;
+    font-weight: 700;
+    color: #666;
+    font-size: 0.90em;
+    margin-left: 1em;
+  }
 
   a {
     text-decoration: none;
     color: #333;
+    font-weight: 700;
+    margin-right: 1em;
   }
 
   a:hover {
     text-decoration: underline;
   }
+
+  i.fa.fa-twitter {
+    color: rgba(29,161,242,1.00);
+  }
+
+  i.material-icons {
+    font-size: 16px;
+  }
 }
 
-video {
-  margin: auto;
-  height: 400px;
-  width: 400px;
-  border: none;
-  z-index: 1;
-}
+
 
 .nystorm {
   display:grid;
@@ -430,6 +196,7 @@ text {
 .pagination {
   display: flex;
   justify-content: center;
+  margin-bottom: 3em;
 
   li {
     display: flex;
@@ -455,5 +222,11 @@ text {
 vg-controls {
   display: flex;
   pointer-events: initial;
-  justify-content: space-between
+  justify-content: space-between;
+  padding: 0 1em;
+  background: none;
+}
+
+.vg-overlay-play {
+  border: 1px solid #ddd;
 }

@@ -20,38 +20,26 @@
 </div>
 
 <ul class="pagination">
-  <li class="waves-effect recent">Most Recent</li>
   <li *ngIf='!firstvalue' class="waves-effect"><a (click)='cyclePageDown()'><i class="material-icons">chevron_left</i></a></li>
   <li class="waves-effect" *ngFor="let x of pagesten"><a [id]="getPageNumber(x)" (click)='changePage(x)'>{{x}}</a></li>
   <li *ngIf='elevenormore' class="waves-effect"><a (click)='cyclePageUp()'><i class="material-icons">chevron_right</i></a></li>
-  <li class="waves-effect recent">Least Recent</li>
 </ul>
 
-<div class="view">
-  <div class="video-overlay">
-    <div class="overlay" *ngFor="let link of videolinks">
-      <div class="overlay-screen" [id]="getOverlayNum(link.id)">
-        <a href={{link.twitterurl}} target="_blank">
-          @{{link.username}}
-        </a>
-      </div>
+<div class="view" *ngFor="let link of videolinks">
+    <div class="overlay-screen" [id]="getOverlayNum(link.id)">
+      <p>{{link.tweetTime | dateAgo}}</p>
+      <i class="fa fa-twitter"></i>
+      <a href={{link.twitterurl}} target="_blank">
+        {{link.username}}<li class="waves-effect"><a href={{link.twitterurl}} target="_blank"><i class="material-icons">chevron_right</i></a></li>
+      </a>
     </div>
-  </div>
   <div class="video-grid">
-    <div class="indv" *ngFor="let link of videolinks">
-    
+    <div class="indv">
       <vg-player>
-        <vg-controls>
-          <vg-play-pause (click)="closeBanner(link.id)"></vg-play-pause>
-          <vg-fullscreen></vg-fullscreen>
-        </vg-controls>
-      
-      
-    
-          <video #media [poster]="link.videoImage" [vgMedia]="media" id="singleVideo" preload="none" crossorigin="anonymous">
+        <vg-overlay-play vgFor="my-video"></vg-overlay-play>
+          <video #media [poster]="link.videoImage" [vgMedia]="media" id="my-video" preload="none" crossorigin="anonymous">
             <source [src]="link.linkSafe" type='video/mp4'>
           </video>  
-    
         </vg-player>
     </div>
   </div>
