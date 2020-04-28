@@ -28,9 +28,9 @@
 <div class="view" *ngFor="let link of videolinks">
     <div class="overlay-screen" [id]="getOverlayNum(link.id)">
       <p>{{link.tweetTime | dateAgo}}</p>
-      <i class="fa fa-twitter"></i>
       <a href={{link.twitterurl}} target="_blank">
-        {{link.username}}<li class="waves-effect"><a href={{link.twitterurl}} target="_blank"><i class="material-icons">chevron_right</i></a></li>
+        <i class="fa fa-twitter"></i>&nbsp;
+        <a href={{link.twitterurl}} target="_blank">{{link.username}}<li class="waves-effect"><i class="material-icons">chevron_right</i></li></a>
       </a>
     </div>
   <div class="video-grid">
@@ -45,6 +45,11 @@
   </div>
 </div>
 
+<ul class="pagination">
+  <li *ngIf='!firstvalue' class="waves-effect"><a (click)='cyclePageDown()'><i class="material-icons">chevron_left</i></a></li>
+  <li class="waves-effect" *ngFor="let x of pagesten"><a [id]="getPageNumber(x)" (click)='changePage(x)'>{{x}}</a></li>
+  <li *ngIf='elevenormore' class="waves-effect"><a (click)='cyclePageUp()'><i class="material-icons">chevron_right</i></a></li>
+</ul>
 
 
 <!--   
