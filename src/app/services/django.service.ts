@@ -10,11 +10,11 @@ export class DjangoService {
 
   private pageNr = 1;
 
-  // private tweetsall = `https://twitter-streaming-videos.herokuapp.com/tweets-all/?page=${this.pageNr}`;
-  // private tweetsfull = "https://twitter-streaming-videos.herokuapp.com/tweets-full/";
+  private tweetsall = `https://twitter-streaming-videos.herokuapp.com/tweets-all/?page=${this.pageNr}`;
+  private tweetsfull = "https://twitter-streaming-videos.herokuapp.com/tweets-full/";
 
-  private tweetsall = `http://localhost:8000/tweets-all/?page=${this.pageNr}`;
-  private tweetsfull = "http://localhost:8000/tweets-full/";
+  // private tweetsall = `http://localhost:8000/tweets-all/?page=${this.pageNr}`;
+  // private tweetsfull = "http://localhost:8000/tweets-full/";
   // private tweetcount = 'http://localhost:8000/tweet-count/';
 
   private coronavirusapi = 'https://coronavirus-tracker-api.herokuapp.com/v2/locations?source=csbs';
@@ -46,8 +46,8 @@ export class DjangoService {
   }
 
   paginatePage(value): Observable<VideoInterface[]> {
-    this.tweetsall = 'http://localhost:8000/tweets-all/?page=' + value;
-    // this.tweetsall = 'https://twitter-streaming-videos.herokuapp.com/tweets-all/?page=' + value;
+    // this.tweetsall = 'http://localhost:8000/tweets-all/?page=' + value;
+    this.tweetsall = 'https://twitter-streaming-videos.herokuapp.com/tweets-all/?page=' + value;
     return this.http.get<VideoInterface[]>(this.tweetsall);
   }
 }
