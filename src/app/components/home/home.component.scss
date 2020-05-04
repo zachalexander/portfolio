@@ -92,7 +92,7 @@
   // }
 
   .navigate {
-    height: 375vh;
+    height: 400vh;
   }
 
   .mid1 {
@@ -545,3 +545,43 @@ td {
 
 }
 
+
+.annotations {
+  stroke-width: 2px;
+}
+
+.myviz {
+  animation: cssAnimation 0s 1s forwards;
+  visibility: hidden;
+  
+  @keyframes cssAnimation {
+    to   { visibility: visible; }
+  }
+}
+
+.mywork {
+  animation: cssAnimation 0s 5s forwards;
+  visibility: hidden;
+  
+  @keyframes cssAnimation {
+    to   { visibility: visible; }
+  }
+}
+
+.myviz:hover {
+  cursor: pointer;
+  stroke-width: 4px;
+
+  text {
+    font-size: 1.05em;
+  }
+}
+
+.mywork:hover {
+  cursor: pointer;
+  stroke-width: 4px;
+
+  text {
+    font-size: 1.05em;
+  }
+}

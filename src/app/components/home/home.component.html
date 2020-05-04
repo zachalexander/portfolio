@@ -2,9 +2,13 @@
 
 <div class="top">
   <div class="top-wrapper">
-    <app-simplelinechart *ngIf="fakecases" [data]="fakecases"></app-simplelinechart>
+    <app-simplelinechart *ngIf="fakecases" [data]="fakecases">
+    </app-simplelinechart>
     <svg class="line1">
       <text transform="translate(15 35)" ></text>
+    </svg>
+    <svg *ngIf="!showDiv" class="line3">
+      <text transform="translate(15 35)"></text>
     </svg>
     <svg *ngIf="showDiv" class="line2">
       <text transform="translate(15 35)"></text>

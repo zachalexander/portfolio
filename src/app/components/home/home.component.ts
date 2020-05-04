@@ -24,6 +24,9 @@ export class HomeComponent implements OnInit {
     this.typingAnimation(text1, '.line1');
     this.drawJumbo();
 
+    const text3 = '';
+    this.typingAnimation(text3, '.line3');
+
     setTimeout(() => {
       this.showDiv = true;
       const text2 = 'to my portfolio.';
