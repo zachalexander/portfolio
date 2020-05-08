@@ -1,24 +1,30 @@
 <app-navbar></app-navbar>
 
 <div class="top">
-  <div class="top-wrapper">
-    <app-simplelinechart *ngIf="fakecases" [data]="fakecases">
-    </app-simplelinechart>
-    <svg class="line1">
-      <text transform="translate(15 35)" ></text>
-    </svg>
-    <svg *ngIf="!showDiv" class="line3">
-      <text transform="translate(15 35)"></text>
-    </svg>
-    <svg *ngIf="showDiv" class="line2">
-      <text transform="translate(15 35)"></text>
-    </svg>
-    <a class="waves-effect waves-light btn square-btn" (click)="scroll(target)">Explore</a>
+  <div class="top-wrapper" id="top">
+      <app-simplebarchart *ngIf="fakecasesbar" [data]="fakecasesbar">
+      </app-simplebarchart>
+      <app-simplelinechart *ngIf="fakecases" [data]="fakecases">
+      </app-simplelinechart>
+      <div class="callout_jumbo">
+        <div class="typewriter">
+          <svg class="line1">
+            <text transform="translate(15 35)" ></text>
+          </svg>
+          <svg *ngIf="!showDiv" class="line3">
+            <text transform="translate(15 35)"></text>
+          </svg>
+          <svg *ngIf="showDiv" class="line2">
+            <text transform="translate(15 35)"></text>
+          </svg>
+        </div>
+        <a class="waves-effect waves-light btn square-btn" (click)="showAnot()">Explore &nbsp;<i class="fas fa-arrow-circle-down"></i></a>
+      </div>
   </div>
 </div>
 
 <div class="navigate" #target>
-  <h1 class="navigate_title">Projects</h1>
+  <h1 class="navigate_title" w3-animate-fading>Projects</h1>
 
   <div class="navigate_specs_wrapper">
     <div class="navigate_specs_column">
@@ -33,7 +39,7 @@
   </div>
 
 
-  <div class="navigate_trump">
+  <div class="navigate_trump" #test>
     <a href='/pres2016-regression'><h5 class="project_title">A Value Based Linear Regression Model to Predict the 2016 Presidential Election</h5></a>
     <a class="project_screenshot" href='/pres2016-regression'><img class="project_screenshot" src="../../../assets/img/trump-regression.gif"></a>
     <h5 class="project_summary_header">Overview</h5>
@@ -101,5 +107,52 @@
           </ngx-medium-widget>
         </div>
     </div>
+</div>
+
+<div class="aboutme">
+  <div class="header_div">
+    <h2>Graduate School</h2>
+  </div>
+  <div class="info_div">
+    <p>Currently a <strong>Data Science Master's student</strong> at the <strong>CUNY School of Professional Studies</strong>. 
+      My prospective graduation date is May 2021.</p>
+    
+    <p>Relevant coursework <strong>completed</strong> thus far:</p>
+    <ul>
+      <li><i class="material-icons">chevron_right</i>Advanced Programming Techniques in Python</li>
+      <li><i class="material-icons">chevron_right</i>Fundamentals of Computational Mathematics</li>
+      <li><i class="material-icons">chevron_right</i>Data Acquisition and Management</li>
+      <li><i class="material-icons">chevron_right</i>Statistics for Probability and Data Analytics</li>
+      <li><i class="material-icons">chevron_right</i>Recommendation Systems</li>
+      <li><i class="material-icons">chevron_right</i>Web Analytics</li>
+    </ul>
+
+    <p><strong>Additional courses I will take</strong> before I graduate:</p>
+    <ul>
+      <li><i class="material-icons">chevron_right</i>Machine Learning and Big Data</li>
+      <li><i class="material-icons">chevron_right</i>Business Analytics and Data Mining</li>
+      <li><i class="material-icons">chevron_right</i>Predictive Analytics</li>
+      <li><i class="material-icons">chevron_right</i>Knowledge and Visual Analytics</li>
+      <li><i class="material-icons">chevron_right</i>Capstone Project</li>
+    </ul>
+    
+    <br>
+    <p>Working full time as a <strong>Senior Research and Data Associate</strong> 
+      for <strong>the Center for Court Innovation</strong>, a non-profit organization
+      that seeks to implement justice system reforms around the world.</p>
+
+      <div class="parent">
+        <div></div>
+        <div class="summary_final">
+          <small class="further_resources">Much of my graduate school work is written in Python and/or R. If interested, in viewing work from a specific course, please send me an e-mail!
+            You can also check out my R Pubs profile online.
+          </small>
+            <br>
+            <br>
+            <button type="button" class="btn btn-outline-primary"><a href="https://rpubs.com/zachalexander/" target="_blank">RPubs</a></button>
+        </div>
+        <div></div>
+      </div>
+  </div>
 </div>
 <app-footer></app-footer>

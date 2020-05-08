@@ -2,7 +2,8 @@
 
 @import '~bootstrap/dist/css/bootstrap.min.css';
 @import url('https://fonts.googleapis.com/css?family=Roboto:400,700,900&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Abril+Fatface&display=swap');
 
 body, nav {
   font-family: 'Roboto', 'Arial', sans-serif;
@@ -70,14 +71,14 @@ body, nav {
   }
 }
 
-@mixin iphoneX {
-  @media only screen 
-  and (min-device-width : 375px) 
-  and (max-device-width : 812px)
-  and (-webkit-device-pixel-ratio : 3) { 
-    @content;
-  }
-}
+// @mixin iphoneX {
+//   @media only screen 
+//   and (min-device-width : 375px) 
+//   and (max-device-width : 812px)
+//   and (-webkit-device-pixel-ratio : 3) { 
+//     @content;
+//   }
+// }
 
 @mixin iphoneXL {
   @media only screen 
@@ -85,6 +86,16 @@ body, nav {
   and (max-device-width : 812px) 
   and (-webkit-device-pixel-ratio : 3)
   and (orientation : landscape) { 
+    @content;
+  }
+}
+
+@mixin iphoneX {
+  @media only screen 
+  and (min-device-width : 375px) 
+  and (max-device-width : 812px) 
+  and (-webkit-device-pixel-ratio : 3)
+  and (orientation : portrait) { 
     @content;
   }
 }
@@ -219,10 +230,10 @@ nav {
   border-radius: 25px !important;
   color: #333;
   font-weight: 700;
-  font-size: 20px;
-  background-color: #f8f9fa !important;
-  border: 3px solid #333;
-  margin: 10px;
+  font-size: 1em;
+  max-width: 150px;
+  background-color: #ddd !important;
+  margin: 1em auto 1em 3em;
   display: flex;
   align-items: center;
   justify-content: center;

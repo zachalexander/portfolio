@@ -13,27 +13,32 @@ export class SimplelinechartComponent implements OnInit {
   @Input() private data: Array<any>;
   currentCases;
 
+  scrollable = d3.select("#test");
+
   constructor() { }
 
   ngOnInit() {
     const fakeData = jumboCases['fakedata'];
+    this.scrollable;
     this.currentCases = fakeData[Object.keys(fakeData)[Object.keys(fakeData).length - 1]];
     const width = window.innerWidth;
-    const height = window.innerHeight;
+    const height = document.getElementById('top').clientHeight;
 
-    let yheight = 100;
-    let annote = 10;
-    let anote2 = 2;
+    let yheight = 500;
+    let annote = 15;
+    let anote2 = 6;
+    let anote3 = 1;
 
     if (width <= 600) {
-      yheight = 300;
-      annote = 12;
-      anote2 = 3;
+      yheight = 400;
+      annote = 13;
+      anote2 = 6;
+      anote3 = 1;
     }
-    this.drawfakeCases(width, height, this.data, this.currentCases, yheight, annote, anote2);
+    this.drawfakeCases(width, height, this.data, this.currentCases, yheight, annote, anote2, anote3);
   }
 
-  drawfakeCases(width, height, datapull, cases, yheight, annotation, anote2) {
+  drawfakeCases(width, height, datapull, cases, yheight, annotation, anote2, anote3) {
 
     // Add annotation to the chart
 
@@ -44,21 +49,21 @@ export class SimplelinechartComponent implements OnInit {
     const x = d3.scaleTime().range([0, width]);
     x.domain(d3.extent(datapull, function(d) { return parseTime(d.date); }));
 
-    const y = d3.scaleLinear().range([yheight, height]);
-    y.domain([d3.max(datapull, function(d) { return d.cases; }), 0]);
+    const y = d3.scaleLinear().range([0, yheight]);
+    y.domain([0, d3.max(datapull, function(d) { return d.cases; })]);
 
     const area = d3.area()
     .x(function(d) { return x(parseTime(d.date)); })
     .y0(height)
-    .y1(function(d) { return y(d.cases); })
+    .y1(function(d) { return height - y(d.cases); })
     .curve(d3.curveMonotoneX);
 
     const valueline = d3.line()
     .x(function(d) { return x(parseTime(d.date)); })
-    .y(function(d) { return y(d.cases); })
+    .y(function(d) { return height - y(d.cases); })
     .curve(d3.curveMonotoneX);
 
-    const svg = d3.select('.top').append('svg')
+    const svg = d3.select('.top-wrapper').append('svg')
                 .attr('width',  width)
                 .attr('height', height)
                 .attr('x', 0)
@@ -76,7 +81,7 @@ export class SimplelinechartComponent implements OnInit {
           svg.append('path')
               .datum(datapull)
               .attr('class', 'area')
-              .attr('fill', 'rgba(75, 108, 183, 0.3)')
+              .attr('fill', 'rgb(221, 221, 221, 0.3)')
               .attr('d', area);
 
     const path = svg.append('path')
@@ -84,7 +89,7 @@ export class SimplelinechartComponent implements OnInit {
                     .attr('class', 'line') // Assign a class for styling
                     .attr('fill', 'none')
                     .attr('stroke-width', '3px')
-                    .attr('stroke', '#182848')
+                    .attr('stroke', '#ddd')
                     .attr('d', valueline);
 
 
@@ -100,58 +105,8 @@ export class SimplelinechartComponent implements OnInit {
                 .ease(d3.easeLinear)
                 .attr('stroke-dashoffset', 0);
         });
-        
-    const annotations = [
-      {
-        note: {
-          title: 'See my d3.js visualizations'
-        },
-        type: d3annotate.annotationCalloutCircle,
-        subject: {
-          radius: 15,         // circle radius
-          radiusPadding: 0  // white space around circle befor connector
-        },
-        className: 'myviz',
-        color: ['#182848'],
-        x: x(parseTime(datapull[anote2].date)),
-        y: y(datapull[anote2].cases),
-        dy: 100,
-        dx: 100
-      },
-      {
-        note: {
-          title: 'Read about my work'
-        },
-        type: d3annotate.annotationCalloutCircle,
-        subject: {
-          radius: 15,         // circle radius
-          radiusPadding: 0
-        },
-        className: 'mywork',
-        color: ['#182848'],
-        x: x(parseTime(datapull[annotation].date)),
-        y: y(datapull[annotation].cases),
-        dy: -100,
-        dx: -100
-      }
-    ]
-
-        const makeAnnotations = d3annotate.annotation()
-        .annotations(annotations);
-
-          d3.select('#annotate')
-          .append('g')
-          .attr('class', 'annotation-group')
-          .call(makeAnnotations);
-
-        d3.select('.myviz')
-          .on('click', function(){
-            console.log('test1')
-        });
-
-        d3.select('.mywork')
-          .on('click', function(){console.log('test2')});
 
   }
 
 }
+

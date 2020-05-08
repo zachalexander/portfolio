@@ -8,7 +8,6 @@ nav {
   text-transform: none;
   line-height: 1;
   z-index: 1;
-  color: #333;
 }
 
 
@@ -25,11 +24,27 @@ nav {
       text-align: center;
       font-family: 'Playfair Display', 'Arial', sans-serif;
       font-weight: 900;
+      color: #ddd;
     }
 
     .button-wrapper {
       display: flex;
       flex-direction: row;
+
+      .btn-floating.btn-small.waves-effect.waves-light.navs {
+        border: 2px solid #ddd;
+        background-color: transparent !important;
+        margin-right: 12px;
+        margin-bottom: 5px;
+        box-shadow: none !important;
+      
+        i {
+          line-height: 25px !important;
+          color: #ddd !important;
+        }
+
+        z-index: 1;
+      }
     }
   }
   
@@ -41,11 +56,28 @@ nav {
     }
   }
   
-  .nav-wrapper.nav-wrapper-light {
+.nav-wrapper.nav-wrapper-light {
     background-color: #fff;
     border-bottom: 2px solid #333;
     height: 50px;
     z-index: 100;
+
+    .name {
+      color: #333;
+    }
+
+    .button-wrapper {
+      .btn-floating.btn-small.waves-effect.waves-light.navs {
+        border: 2px solid #333 !important;
+        color: #333;
+      
+        i {
+          line-height: 25px !important;
+          color: #333 !important;
+        }
+      }
+    }
+
 }
 
 
@@ -57,29 +89,8 @@ nav {
     }
   }
   
-
-  .btn-floating.btn-large.waves-effect.waves-light.navs {
-    border: 3px solid #333;
-    background-color: transparent !important;
-    z-index: 1;
-
-  }
-  
-  .btn-floating.btn-small.waves-effect.waves-light.navs {
-    border: 2px solid #333;
-    background-color: transparent !important;
-    margin-right: 12px;
-    margin-bottom: 5px;
-    box-shadow: none !important;
-  
-    i {
-      line-height: 25px !important;
-    }
-    z-index: 1;
-  }
-  
   .btn-floating.waves-effect.waves-light.top {
-    border: 3px solid #333;
+    border: 3px solid #ddd;
     background-color: transparent !important;
     z-index: 1;
   }

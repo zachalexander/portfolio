@@ -7,6 +7,7 @@ import { VgCoreModule } from 'videogular2/compiled/core';
 import { VgControlsModule } from 'videogular2/compiled/controls';
 import { VgOverlayPlayModule } from 'videogular2/compiled/overlay-play';
 import {VgBufferingModule} from 'videogular2/compiled/buffering';
+import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 
 
 import { AppRoutingModule } from './app-routing.module';
@@ -26,6 +27,7 @@ import { NavbarComponent } from './components/navbar/navbar.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { NavbarxhomeComponent } from './components/navbarxhome/navbarxhome.component';
 import { SimplelinechartComponent } from './components/simplelinechart/simplelinechart.component';
+import { SimplebarchartComponent } from './components/simplebarchart/simplebarchart.component';
 import { DateAgoPipe } from './pipes/date-ago.pipe';
 
 @NgModule({
@@ -42,7 +44,9 @@ import { DateAgoPipe } from './pipes/date-ago.pipe';
     FooterComponent,
     NavbarxhomeComponent,
     SimplelinechartComponent,
-    DateAgoPipe
+    SimplebarchartComponent,
+    DateAgoPipe,
+    SimplebarchartComponent
   ],
   imports: [
     BrowserModule,
@@ -55,7 +59,8 @@ import { DateAgoPipe } from './pipes/date-ago.pipe';
     VgCoreModule,
     VgControlsModule,
     VgOverlayPlayModule,
-    VgBufferingModule
+    VgBufferingModule,
+    BsDropdownModule.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent]
