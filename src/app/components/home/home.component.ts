@@ -24,6 +24,7 @@ export class HomeComponent implements OnInit {
   annote;
   anote2;
   anote3;
+  anote4;
 
 
   constructor(private djangoService: DjangoService) { }
@@ -34,17 +35,17 @@ export class HomeComponent implements OnInit {
     this.height = document.getElementById('top').clientHeight;
 
     this.yheight = 500;
-    this.annote = 15;
-    this.anote2 = 6;
-    this.anote3 = 1;
+    this.annote = 17;
+    this.anote2 = 14;
+    this.anote3 = 5;
+    this.anote4 = 2;
 
     if (this.width <= 600) {
       this.yheight = 400;
-      this.annote = 13;
-      this.anote2 = 6;
-      this.anote3 = 1;
+      this.annote = 12;
+      this.anote2 = 9;
     }
-    
+
     const text1 = 'Hello, welcome';
     this.typingAnimation(text1, '.line1');
     this.drawJumbo();
@@ -58,18 +59,65 @@ export class HomeComponent implements OnInit {
       const text2 = 'to my portfolio.';
       this.typingAnimation(text2, '.line2');
     }, 3400);
+
+
+  d3.select('.circle-background')
+    .attr('height', 300)
+    .attr('width', this.width)
+    .append('defs')
+      .append('pattern')
+      .attr('id', 'image')
+      .attr('patternUnits', 'userSpaceOnUse')
+      .attr('height', 300)
+      .attr('width', this.width)
+        .append('image')
+        .attr('id', 'image')
+        .attr('x', 0)
+        .attr('y', 0)
+        .attr('height', 300)
+        .attr('width', this.width)
+        .attr('xlink:href', '../../../assets/img/trump-regression.gif');
+
+      d3.select('.circle-background').append('circle')
+      .attr('id', 'top')
+      .attr('cx', this.width / 2)
+      .attr('cy', 150)
+      .attr('r', 150)
+      .attr('fill', 'url(#image)')
+
+      
+  d3.select('.circle-background-insiten')
+  .attr('height', 300)
+  .attr('width', this.width)
+  .append('defs')
+    .append('pattern')
+    .attr('id', 'image-chess')
+    .attr('patternUnits', 'userSpaceOnUse')
+    .attr('height', 300)
+    .attr('width', this.width)
+      .append('image')
+      .attr('id', 'image-chess')
+      .attr('x', 0)
+      .attr('y', 0)
+      .attr('height', 300)
+      .attr('width', this.width)
+      .attr('xlink:href', '../../../assets/img/insiten.gif');
+
+    d3.select('.circle-background-insiten').append('circle')
+    .attr('id', 'top')
+    .attr('cx', this.width / 2)
+    .attr('cy', 150)
+    .attr('r', 150)
+    .attr('fill', 'url(#image-chess)')
+
   }
 
   scroll(el: HTMLElement) {
-    el.scrollIntoView({behavior:"smooth"});
+    el.scrollIntoView({behavior:'smooth'});
   }
 
   showAnot() {
     this.fakecases = this.fakecases['fakedata'];
-
-    d3.selectAll('text.annotation-note-title')
-      .attr('x', 25)
-      .attr('dy', 25);
 
     const parseTime = d3.timeParse('%m/%d/%Y');
 
@@ -78,7 +126,7 @@ export class HomeComponent implements OnInit {
 
     const y = d3.scaleLinear().range([0, this.yheight]);
     y.domain([0, d3.max(this.fakecases, function(d) { return d.cases; })]);
-    
+
     const annotations = [
       {
         note: {
@@ -108,8 +156,8 @@ export class HomeComponent implements OnInit {
         },
         className: 'mywork',
         color: ['#dddddd'],
-        x: x(parseTime(this.fakecases[this.annote].date)),
-        y: this.height - y(this.fakecases[this.annote].cases),
+        x: x(parseTime(this.fakecases[this.anote4].date)),
+        y: this.height - y(this.fakecases[this.anote4].cases),
         dy: 20,
         dx: 20
       },
@@ -128,8 +176,24 @@ export class HomeComponent implements OnInit {
         y: this.height - y(this.fakecases[this.anote3].cases),
         dy: 20,
         dx: 20
+      },
+      {
+        note: {
+          title: 'About Me'
+        },
+        type: d3annotate.annotationCalloutCircle,
+        subject: {
+          radius: 5,         // circle radius
+          radiusPadding: 0
+        },
+        className: 'aboutme',
+        color: ['#dddddd'],
+        x: x(parseTime(this.fakecases[this.annote].date)),
+        y: this.height - y(this.fakecases[this.annote].cases),
+        dy: 20,
+        dx: 20
       }
-    ]
+    ];
 
   const makeAnnotations = d3annotate.annotation()
   .annotations(annotations);
@@ -139,13 +203,17 @@ export class HomeComponent implements OnInit {
     .attr('class', 'annotation-group')
     .call(makeAnnotations);
 
+    d3.selectAll('.annotation-note-bg')
+      .attr('rx', 25)
+      .attr('fill-opacity', 1)
+
     d3.select('.myviz')
     .on('click', function() {
       function scrollTween(offset) {
         return function() {
-          var i = d3.interpolateNumber(window.pageYOffset || document.documentElement.scrollTop, offset);
-          return function(t) { 
-            if(t <= 0.15) {
+          let i = d3.interpolateNumber(window.pageYOffset || document.documentElement.scrollTop, offset);
+          return function(t) {
+            if (t <= 0.15) {
               scrollTo(0, i(t));
             }
           };
@@ -153,44 +221,44 @@ export class HomeComponent implements OnInit {
       }
       d3.transition()
       .duration(7500)
-      .tween("scroll", scrollTween(document.body.getBoundingClientRect().height - window.innerHeight));  
+      .tween('scroll', scrollTween(document.body.getBoundingClientRect().height - window.innerHeight));
     });
 
   d3.select('.mywork')
     .on('click', function() {
       function scrollTween(offset) {
         return function() {
-          var i = d3.interpolateNumber(window.pageYOffset || document.documentElement.scrollTop, offset);
-          return function(t) { 
-            if(t <= 0.95) {
+          let i = d3.interpolateNumber(window.pageYOffset || document.documentElement.scrollTop, offset);
+          return function(t) {
+            if (t <= 0.95) {
               scrollTo(0, i(t));
             }
           };
         };
-    };
+    }
 
     d3.transition()
     .duration(7500)
-    .tween("scroll", scrollTween(document.body.getBoundingClientRect().height - window.innerHeight));
-  }); 
+    .tween('scroll', scrollTween(document.body.getBoundingClientRect().height - window.innerHeight));
+  });
 
   d3.select('.mediumposts')
     .on('click', function() {
       function scrollTween(offset) {
         return function() {
-          var i = d3.interpolateNumber(window.pageYOffset || document.documentElement.scrollTop, offset);
-          return function(t) { 
-            if(t <= 0.70) {
+          let i = d3.interpolateNumber(window.pageYOffset || document.documentElement.scrollTop, offset);
+          return function(t) {
+            if (t <= 0.70) {
               scrollTo(0, i(t));
             }
           };
         };
-    };
+    }
 
     d3.transition()
     .duration(7500)
-    .tween("scroll", scrollTween(document.body.getBoundingClientRect().height - window.innerHeight));
-    }); 
+    .tween('scroll', scrollTween(document.body.getBoundingClientRect().height - window.innerHeight));
+    });
   }
 
   drawJumbo() {

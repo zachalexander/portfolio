@@ -57,23 +57,24 @@ nav {
   }
   
 .nav-wrapper.nav-wrapper-light {
-    background-color: #fff;
-    border-bottom: 2px solid #333;
+    background: #232526;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #414345, #232526);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #414345, #232526); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
     height: 50px;
     z-index: 100;
 
     .name {
-      color: #333;
+      color: #ddd;
     }
 
     .button-wrapper {
       .btn-floating.btn-small.waves-effect.waves-light.navs {
-        border: 2px solid #333 !important;
-        color: #333;
+        border: 2px solid #ddd !important;
+        color: #ddd;
       
         i {
           line-height: 25px !important;
-          color: #333 !important;
+          color: #ddd !important;
         }
       }
     }

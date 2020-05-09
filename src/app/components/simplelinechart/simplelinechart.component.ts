@@ -35,6 +35,7 @@ export class SimplelinechartComponent implements OnInit {
       anote2 = 6;
       anote3 = 1;
     }
+
     this.drawfakeCases(width, height, this.data, this.currentCases, yheight, annote, anote2, anote3);
   }
 

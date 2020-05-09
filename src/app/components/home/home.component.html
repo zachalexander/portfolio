@@ -24,8 +24,7 @@
 </div>
 
 <div class="navigate" #target>
-  <h1 class="navigate_title" w3-animate-fading>Projects</h1>
-
+  <h1 class="navigate_title">Projects</h1>
   <div class="navigate_specs_wrapper">
     <div class="navigate_specs_column">
       <h5 class="navigate_specs">Front-end Specifications</h5>
@@ -39,9 +38,10 @@
   </div>
 
 
-  <div class="navigate_trump" #test>
-    <a href='/pres2016-regression'><h5 class="project_title">A Value Based Linear Regression Model to Predict the 2016 Presidential Election</h5></a>
-    <a class="project_screenshot" href='/pres2016-regression'><img class="project_screenshot" src="../../../assets/img/trump-regression.gif"></a>
+  <div class="navigate_trump">
+    <a href='/pres2016-regression'><h5 class="project_title">Linear Regression and Election Data</h5></a>
+    <svg class="circle-background">
+    </svg>
     <h5 class="project_summary_header">Overview</h5>
     <p class="project_description">
       A classmate and I created a predictive model that calculates the proportion of votes for 
@@ -51,6 +51,7 @@
       models, and calculate our predictions. I used D3.js to create a map of our model's performance against
       the actual percentage of voters that voted for Donald Trump in each state.
     </p>
+    <a href='/pres2016-regression' class="waves-effect waves-light btn square-btn navigate" (click)="showAnot()">Read More<i class="far fa-arrow-alt-circle-right"></i></a>
   </div>
 
   <div class="navigate_chess">
@@ -63,11 +64,15 @@
       to create visualizations and do some basic analyses. I decided to also create a 
       mock news story about the dataset and a d3.js visualization.
     </p>
+    <a href='/chess-elo' class="waves-effect waves-light btn square-btn navigate" (click)="showAnot()">Read More<i class="far fa-arrow-alt-circle-right"></i></a>
+
   </div>
 
   <div class="navigate_insiten">
     <a href='http://www.codingchallenge.site/' target="_blank"><h5 class="project_title">Full Stack CRUD Application to Track Business Acquisitions</h5></a>
-    <a class="project_screenshot" href='http://www.codingchallenge.site/' target="_blank"><img class="project_screenshot" src="../../../assets/img/insiten.gif"></a>
+    <!-- <a class="project_screenshot" href='http://www.codingchallenge.site/' target="_blank"><img class="project_screenshot" src="../../../assets/img/insiten.gif"></a> -->
+    <svg class="circle-background-insiten">
+    </svg>
     <h5 class="project_summary_header">Overview</h5>
     <p class="project_description">
       A full stack application developed to keep track of potential business acquisitions.
@@ -75,6 +80,7 @@
       for all back-end work. It features reactive forms, and a visualization comparing target
       revenues. This was built in one week as part of a sprint.
     </p>
+    <a href='http://www.codingchallenge.site/' target="_blank" class="waves-effect waves-light btn square-btn navigate" (click)="showAnot()">Read More<i class="far fa-arrow-alt-circle-right"></i></a>
   </div>
   <div class="projects">
     <div class="list-container">
@@ -122,7 +128,7 @@
       <li><i class="material-icons">chevron_right</i>Advanced Programming Techniques in Python</li>
       <li><i class="material-icons">chevron_right</i>Fundamentals of Computational Mathematics</li>
       <li><i class="material-icons">chevron_right</i>Data Acquisition and Management</li>
-      <li><i class="material-icons">chevron_right</i>Statistics for Probability and Data Analytics</li>
+      <li><i class="material-icons">chevron_right</i>Statistics and Probability for Data Analytics</li>
       <li><i class="material-icons">chevron_right</i>Recommendation Systems</li>
       <li><i class="material-icons">chevron_right</i>Web Analytics</li>
     </ul>
