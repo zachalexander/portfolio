@@ -58,6 +58,79 @@ svg.jumbobar {
   }
 }
 
+.aboutme-nav {
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  height: auto;
+  background-image: url(../../../assets/div-shape.svg), none;
+
+  .navigate_title {
+    font-family: 'Playfair Display', 'Roboto', 'Arial', sans-serif;
+    font-weight: 700;
+    text-align: center;
+    padding: 1em;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    z-index: 25;
+    height: auto;
+  } 
+
+  .aboutme-wrapper {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: auto;
+  }
+
+  .svg-wrapper {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+
+    img {
+      max-height: 200px;
+      z-index: 100;
+      image-rendering: auto;
+      image-rendering: crisp-edges;
+    }
+
+    .aboutme-wrapper {
+      z-index: 100;
+
+    }
+
+    .aboutme-context {
+      z-index: 100;
+      font-size: 1.25em;
+      z-index: 100;
+      max-width: 400px;
+      width: 90%;
+      margin: 1em auto 0em auto;
+      padding: 2em;
+      border-radius: 1em;
+      text-align: center;
+      background-color: #ddd;
+      color: #333;
+    }
+
+  }
+
+  .front-specs-bg {
+    position: absolute;
+    display: block;
+    height: auto;
+  }
+
+  .front-specs-text {
+    position: absolute;
+    line-height: 1.5em;
+    max-width: 400px;
+  }
+}
 
 .navigate {
   height: auto;
@@ -797,14 +870,15 @@ rect.bar {
 }
 
 .square-btn.navigate {
-  color: #ddd !important;
+  color: #333 !important;
   min-width: 10em;
   box-shadow: none;
   display: flex;
   margin: 2em auto;
   flex-direction: row;
   justify-content: space-around;
-  background-color: #172121 !important;
+  background-color: transparent !important;
+  border: 2px solid #333 !important;
   text-transform: capitalize;
   font-weight: 200;
 }

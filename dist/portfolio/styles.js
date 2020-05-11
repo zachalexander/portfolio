@@ -621,9 +621,9 @@ if(false) {}
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\Users\zalexander\Desktop\portfolio\node_modules\bootstrap\dist\css\bootstrap.min.css */"./node_modules/bootstrap/dist/css/bootstrap.min.css");
-__webpack_require__(/*! C:\Users\zalexander\Desktop\portfolio\node_modules\videogular2\fonts\videogular.css */"./node_modules/videogular2/fonts/videogular.css");
-module.exports = __webpack_require__(/*! C:\Users\zalexander\Desktop\portfolio\src\styles.scss */"./src/styles.scss");
+__webpack_require__(/*! /Users/zdalexander/Desktop/portfolio/node_modules/bootstrap/dist/css/bootstrap.min.css */"./node_modules/bootstrap/dist/css/bootstrap.min.css");
+__webpack_require__(/*! /Users/zdalexander/Desktop/portfolio/node_modules/videogular2/fonts/videogular.css */"./node_modules/videogular2/fonts/videogular.css");
+module.exports = __webpack_require__(/*! /Users/zdalexander/Desktop/portfolio/src/styles.scss */"./src/styles.scss");
 
 
 /***/ })

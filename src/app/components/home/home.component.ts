@@ -91,12 +91,12 @@ export class HomeComponent implements OnInit {
   .attr('width', this.width)
   .append('defs')
     .append('pattern')
-    .attr('id', 'image-chess')
+    .attr('id', 'image-insiten')
     .attr('patternUnits', 'userSpaceOnUse')
     .attr('height', 300)
     .attr('width', this.width)
       .append('image')
-      .attr('id', 'image-chess')
+      .attr('id', 'image-insiten')
       .attr('x', 0)
       .attr('y', 0)
       .attr('height', 300)
@@ -108,7 +108,18 @@ export class HomeComponent implements OnInit {
     .attr('cx', this.width / 2)
     .attr('cy', 150)
     .attr('r', 150)
-    .attr('fill', 'url(#image-chess)')
+    .attr('fill', 'url(#image-insiten)');
+
+    const path = "M485.84,279.69c-41.33,18.57-311.11,133-445.33,0-81.41-96.56-16-234.37,0-248.29s404.47-62,445.33,0C529.43,144,527.18,261.13,485.84,279.69Z"
+
+    d3.select('.front-specs-bg')
+      .attr('fill', 'transparent')
+      .attr('stroke', '#333')
+      .append('path')
+      .attr('d', path)
+      .attr('fill', '#ECE9E6')
+      .attr('stroke', 'none');
+
 
   }
 

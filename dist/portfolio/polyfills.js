@@ -5778,7 +5778,7 @@ window.global = window;
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! C:\Users\zalexander\Desktop\portfolio\src\polyfills.ts */"./src/polyfills.ts");
+module.exports = __webpack_require__(/*! /Users/zdalexander/Desktop/portfolio/src/polyfills.ts */"./src/polyfills.ts");
 
 
 /***/ })
