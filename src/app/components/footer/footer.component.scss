@@ -1,7 +1,9 @@
+@import './../../../styles.scss';
+
 .page-footer {
-    background-image: linear-gradient(120deg, #fdfbfb 0%, #ebedee 100%);
+    background: $Interaction-2-hex;
     * {
-      color: #333 !important;
+      color: $Interaction-5-hex !important;
     }
 
     .social_list {
@@ -22,6 +24,11 @@
       font-size: 0.85em;
       font-weight: 700;
     }
+  }
+
+  .col.l6.s12 {
+    display: flex;
+    flex-direction: column;
   }
 
 

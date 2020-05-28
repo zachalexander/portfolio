@@ -116,7 +116,7 @@ align-content: center;
 
 div#tooltip {
   margin: auto;
-  width: 350px;
+  max-width: 350px;
   align-content: center;
   pointer-events: none !important;
   text-align: center;
@@ -126,15 +126,15 @@ div#tooltip {
 }
 
 div#tooltip.hidden {
-  margin: auto;
-  width: 350px;
+  max-width: 300px;
   border: 1px dashed #ddd;
   align-content: center;
   pointer-events: none !important;
   text-align: center;
   border: 1px dashed #ddd;
   padding: 1em;
-  align-items: center;
+  align-items: center;  
+  margin: auto;
 }
 
 path {

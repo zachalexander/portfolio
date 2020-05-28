@@ -5,6 +5,25 @@
 @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;900&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Abril+Fatface&display=swap');
 
+
+/* COLOR SCHEME */
+
+
+/* Color Theme Swatches in Hex */
+$Interaction-1-hex: #091026;
+$Interaction-2-hex: #2D3340;
+$Interaction-3-hex: #BF8C6F;
+$Interaction-4-hex: #D9B29C;
+$Interaction-5-hex: #F2F2F2;
+
+/* Color Theme Swatches in RGBA */
+$Interaction-1-rgba: rgba(8,16,38, 1);
+$Interaction-2-rgba: rgba(45,51,63, 1);
+$Interaction-3-rgba: rgba(191,140,110, 1);
+$Interaction-4-rgba: rgba(216,178,156, 1);
+$Interaction-5-rgba: rgba(242,242,242, 1);
+
+
 body, nav {
   font-family: 'Roboto', 'Arial', sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -17,6 +36,7 @@ body, nav {
   z-index: 1;
   -webkit-font-smoothing: subpixel-antialiased;
 }
+
 
 
 @mixin iphone5 {
@@ -131,6 +151,12 @@ body, nav {
   }
 }
 
+@mixin responsive {
+  @media (max-width: 900px) {
+    @content;
+  }
+}
+
 @mixin ipad{
   @media only screen 
   and (min-device-width : 768px) 
@@ -154,6 +180,12 @@ body, nav {
 
 @mixin lgdevice {
   @media only screen and (min-width: 992px) {
+    @content;
+  }
+}
+
+@mixin lgdevice-alt {
+  @media only screen and (max-width: 991px) {
     @content;
   }
 }
@@ -228,11 +260,11 @@ nav {
 .square-btn {
   height: 3em !important;
   border-radius: 25px !important;
-  color: #333;
+  color: $Interaction-2-hex !important;
   font-weight: 700;
   font-size: 1em;
   max-width: 150px;
-  background-color: #ddd !important;
+  background-color: #fff !important;
   margin: 1em auto 1em 3em;
   display: flex;
   align-items: center;

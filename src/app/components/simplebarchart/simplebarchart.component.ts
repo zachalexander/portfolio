@@ -11,26 +11,40 @@ export class SimplebarchartComponent implements OnInit {
 
   @Input() private data: Array<any>;
   currentCasesBar;
+  mobile;
 
   constructor() { }
 
   ngOnInit() {
+
     const fakeDataBar = jumboCasesBar['fakedatabar'];
     this.currentCasesBar = fakeDataBar[Object.keys(fakeDataBar)[Object.keys(fakeDataBar).length - 1]];
     const width = window.innerWidth;
     const height = document.getElementById('top').clientHeight;
+    const widthsvg = document.getElementById('top').clientWidth;
+    let yheight = 250;
 
-    let yheight = 500;
+    if(width >= 600) {
+      this.mobile = false;
+    } else {
+      this.mobile = true;
+    }
 
     if (width <= 600) {
-      yheight = 400;
+      yheight = 250;
     }
-    this.drawfakeCasesBar(width, height, this.data, this.currentCasesBar, yheight);
+
+    this.drawfakeCasesBar(width, height, this.data, this.currentCasesBar, yheight, widthsvg);
   }
 
-  drawfakeCasesBar(width, height, datapull, cases, yheight) {
+  drawfakeCasesBar(width, height, datapull, cases, yheight, widthsvg) {
 
     datapull = datapull.fakedatabar;
+    let translate = 0;
+
+    if (width >= 450) {
+      width = widthsvg + 30;
+    }
 
     const parseTime = d3.timeParse('%m/%d/%Y');
 
@@ -51,7 +65,7 @@ export class SimplebarchartComponent implements OnInit {
                 .attr('y', 0)
                 .attr('class', 'jumbobar')
                 .append('g')
-                .attr('transform', 'translate(0, 0)');
+                .attr('transform', 'translate(' + translate + ', 0)');
 
       svg.selectAll('.bar')
             .data(datapull)
@@ -60,7 +74,7 @@ export class SimplebarchartComponent implements OnInit {
             .attr('x', function(d) { return xBar(parseTime(d.date)); })
             .attr('width', xBar.bandwidth())
             .attr('y', function(d) { return height - yBar(d.cases); })
-            .attr('height', function(d) { return yBar(d.cases); });
+            .attr('height', function(d) { return yBar(d.cases); })
 
       }
 }

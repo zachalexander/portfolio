@@ -1,5 +1,4 @@
 <app-navbar></app-navbar>
-
 <div class="top">
   <div class="top-wrapper" id="top">
       <app-simplebarchart *ngIf="fakecasesbar" [data]="fakecasesbar">
@@ -8,110 +7,114 @@
       </app-simplelinechart>
       <div class="callout_jumbo">
         <div class="typewriter">
-          <svg class="line1">
-            <text transform="translate(15 35)" ></text>
-          </svg>
-          <svg *ngIf="!showDiv" class="line3">
-            <text transform="translate(15 35)"></text>
-          </svg>
-          <svg *ngIf="showDiv" class="line2">
-            <text transform="translate(15 35)"></text>
-          </svg>
+          <div class="line1">
+            Hello, welcome <br> to my portfolio.
+          </div>
         </div>
-        <a class="waves-effect waves-light btn square-btn" (click)="showAnot()">Explore &nbsp;<i class="fas fa-arrow-circle-down"></i></a>
       </div>
   </div>
+  <!-- <div class="graphic-fill">
+  </div> -->
 </div>
 
-<div class="aboutme-nav">
-  <svg class="front-specs-bg" viewBox="0 0 518.19 343.67" preserveAspectRatio="xMidYMid"></svg>
-  <h1 class="navigate_title">About Me</h1>
+<div class="aboutme-nav" id="aboutme-nav">
+  <img class="svg-aboutzach" src='../../../assets/aboutzach.svg'>
   <div class="aboutme-wrapper">
-    <div class="svg-wrapper">
-      <img class="zach-photo" src='../../../assets/zachvector.png'/>
-        <h5 class="aboutme-context">Master's in Data Science graduate student at the CUNY School of Professional Studies. Prospective graduation date of May 2021.</h5>
-        <h5 class="aboutme-context">Working full time as a <strong>Senior Research and Data Associate</strong> 
-        for <strong>the Center for Court Innovation</strong>, a non-profit organization
-        that seeks to implement justice system reforms around the world.</h5>
+    <div class="svg-wrapper-zach">
+        <h5 class="aboutme-context-zach"><span class='highlight'><strong>Hey!</strong> I'm Zach, a <strong>data scientist</strong> passionate about bridging <strong>knowledge</strong> and <strong>communities</strong>.</span></h5>
+        <a href='#' class="waves-effect waves-light btn square-btn navigate" (click)="showAnot()">My Resume</a>
+      </div>
+    <div class="col wrapper">
+      <div class="svg-wrapper-cuny">
+        <div class="call-out">
+          <h5 class="aboutme-context"><span class='highlight'>Currently working on my <a href = 'https://sps.cuny.edu/academics/graduate/master-science-data-science-ms' target="_blank">
+            Master's in Data Science</a> at the School of Professional Studies.</span>
+          </h5>
+        </div>
+      </div>
+      <div class="svg-wrapper-cci">
+        <div class="call-out">
+          <h5 class="aboutme-context"><span class='highlight'><a href = 'https://www.courtinnovation.org/about/people/zachary-alexander' target="_blank">Senior Research and Data Associate</a> at the Center for Court Innovation.</span></h5>  
+        </div>
+      </div>
     </div>
   </div>
 </div>
 
-<div class="navigate" #target>
-  <h1 class="navigate_title">Projects</h1>
-  <div class="navigate_specs_wrapper">
-    <div class="navigate_specs_column">
-      <h5 class="navigate_specs">Front-end Specifications</h5>
-      <p class="navigate_specs_explainer">Most of my projects utilize a combination of <strong>D3.js</strong> and <strong>Angular 2+</strong> for my front-end work</p>
-    </div>
-    <div class="logos">
-      <img src="../../../assets/d3logo.png" />
-      <p class="plus">+</p>
-      <img src="../../../assets/angularlogo.png" />
-    </div>
-  </div>
-
-
+<div class="navigate" id="navigate">
+  <img class="svg-projects" src='../../../assets/projects3.svg'>
   <div class="navigate_trump">
-    <a href='/pres2016-regression'><h5 class="project_title">Linear Regression and Election Data</h5></a>
+    <a href='/pres2016-regression'><h5 class="project_title"><span class='highlight-title'>Linear Regression and Election Data</span></h5></a>
     <svg class="circle-background">
     </svg>
-    <h5 class="project_summary_header">Overview</h5>
-    <p class="project_description">
-      A classmate and I created a predictive model that calculates the proportion of votes for 
-      Donald Trump in the 2016 election based on responses to a select number of 
-      value-based questions from the American Values Survey, administered by the Public 
-      Religion Research Institute (PRRI) in 2017. We used R to manipulate our data, run our regression
-      models, and calculate our predictions. I used D3.js to create a map of our model's performance against
-      the actual percentage of voters that voted for Donald Trump in each state.
-    </p>
-    <a href='/pres2016-regression' class="waves-effect waves-light btn square-btn navigate" (click)="showAnot()">Read More<i class="far fa-arrow-alt-circle-right"></i></a>
+    <!-- <h5 class="project_summary_header">Overview</h5> -->
+    <div class='proj-wrapper'>
+      <p class="project_description">
+        <span class='highlight-desc'>A classmate and I created a predictive model that calculates the proportion of votes for 
+        Donald Trump in the 2016 election based on responses to a select number of 
+        value-based questions from the American Values Survey, administered by the Public 
+        Religion Research Institute (PRRI) in 2017. We used R to manipulate our data, run our regression
+        models, and calculate our predictions. I used D3.js to create a map of our model's performance against
+        the actual percentage of voters that voted for Donald Trump in each state.</span>
+      </p>
+    </div>
+    <a href='/pres2016-regression' class="waves-effect waves-light btn square-btn navigate" (click)="showAnot()">Read More</a>
   </div>
-
+</div>
+<div class="navigate-upside">
   <div class="navigate_chess">
-    <a href='/chess-elo'><h5 class="project_title">From Text File to D3.js Visualization</h5></a>
+    <a href='/chess-elo'><h5 class="project_title"><span class='highlight-title-alt'>From Text File to D3.js Visualization</span></h5></a>
     <a class="project_screenshot" href='/chess-elo'><img class="project_screenshot" src="../../../assets/img/elo-ratings.gif"></a>
-    <h5 class="project_summary_header">Overview</h5>
+    <!-- <h5 class="project_summary_header">Overview</h5> -->
+    <div class='proj-wrapper'>
     <p class="project_description">
-      As part of a graduate school assignment, we were given a raw text file
+      <span class='highlight-desc'>As part of a graduate school assignment, we were given a raw text file
       and were asked to convert it into a clean dataset using R. We also were instructed
       to create visualizations and do some basic analyses. I decided to also create a 
-      mock news story about the dataset and a d3.js visualization.
+      mock news story about the dataset and a d3.js visualization.</span>
     </p>
-    <a href='/chess-elo' class="waves-effect waves-light btn square-btn navigate" (click)="showAnot()">Read More<i class="far fa-arrow-alt-circle-right"></i></a>
-
+    </div>
+    <a href='/chess-elo' class="waves-effect waves-light btn square-btn navigate" (click)="showAnot()">Read More</a>
   </div>
-
+</div>
+<div class="navigate">
   <div class="navigate_insiten">
-    <a href='http://www.codingchallenge.site/' target="_blank"><h5 class="project_title">Full Stack CRUD Application to Track Business Acquisitions</h5></a>
-    <!-- <a class="project_screenshot" href='http://www.codingchallenge.site/' target="_blank"><img class="project_screenshot" src="../../../assets/img/insiten.gif"></a> -->
+    <a href='http://www.codingchallenge.site/' target="_blank"><h5 class="project_title"><span class='highlight-title'>Full Stack CRUD Application to Track Business Acquisitions</span></h5></a>
     <svg class="circle-background-insiten">
     </svg>
-    <h5 class="project_summary_header">Overview</h5>
+    <!-- <h5 class="project_summary_header">Overview</h5> -->
+    <div class='proj-wrapper'>
     <p class="project_description">
-      A full stack application developed to keep track of potential business acquisitions.
+      <span class='highlight-desc'>A full stack application developed to keep track of potential business acquisitions.
       This application utilizes Angular 2+ for all front-end work, with Node.js and MongoDB 
       for all back-end work. It features reactive forms, and a visualization comparing target
-      revenues. This was built in one week as part of a sprint.
+      revenues. This was built in one week as part of a sprint.</span>
     </p>
-    <a href='http://www.codingchallenge.site/' target="_blank" class="waves-effect waves-light btn square-btn navigate" (click)="showAnot()">Read More<i class="far fa-arrow-alt-circle-right"></i></a>
-  </div>
-  <div class="projects">
-    <div class="list-container">
-      <h5 class="projects_title">Other Projects:</h5>
-      <div class="item">
-        <i class="far fa-chart-bar" style="font-size: 3em;"></i>
-        <p><a href="/coronavirus">Python and Tweepy to Analyze Reaction to the coronavirus</a></p>
-      </div>
     </div>
+    <a href='http://www.codingchallenge.site/' target="_blank" class="waves-effect waves-light btn square-btn navigate" (click)="showAnot()">Read More</a>
   </div>
 </div>
 
-<div class="mid1">
+<!-- <div class="navigate_specs_wrapper">
+  <div class="navigate_specs_column">
+    <h5 class="navigate_specs">Front-end Specifications</h5>
+    <p class="navigate_specs_explainer">Most of my projects utilize a combination of <strong>D3.js</strong> and <strong>Angular 2+</strong> for my front-end work</p>
+  </div>
+  <div class="logos">
+    <img src="../../../assets/d3logo.png" />
+    <p class="plus">+</p>
+    <img src="../../../assets/angularlogo.png" />
+  </div>
+</div> -->
+
+
+
+<div class="mid1" id="medium">
+  <div class="medium-wrapper">
     <div class="mid1-left">
       <div class="medium-container">
         <div class="medium-logo">
-          <img src="../../../assets/mediumlogo.png" />
+          <img src="../../../assets/mediumlogo2.svg" />
           <h2>Publications</h2>
         </div>
       </div>
@@ -119,7 +122,7 @@
     <div class="mid1-right">
         <div class="medium-posts">
             <ngx-medium-widget resource="https://medium.com/@zdalexander"
-            postsLimit="4"
+            postsLimit="3"
             postsPerLine="1"
             pictureSize="small"
             [postfields]="['description', 'publishAt']"
@@ -127,42 +130,43 @@
           </ngx-medium-widget>
         </div>
     </div>
+  </div>
 </div>
 
-<div class="aboutme">
-  <div class="header_div">
-    <h2>Graduate Studies</h2>
-  </div>
+<div class="gradschool" id='gradschool'>
+  <img class="svg-graduate" src='../../../assets/graduate_studies.svg'>
   <div class="info_div">
-    <p>Relevant coursework <strong>completed</strong> thus far:</p>
-    <ul>
-      <li><i class="material-icons">chevron_right</i>Advanced Programming Techniques in Python</li>
-      <li><i class="material-icons">chevron_right</i>Fundamentals of Computational Mathematics</li>
-      <li><i class="material-icons">chevron_right</i>Data Acquisition and Management</li>
-      <li><i class="material-icons">chevron_right</i>Statistics and Probability for Data Analytics</li>
-      <li><i class="material-icons">chevron_right</i>Recommendation Systems</li>
-      <li><i class="material-icons">chevron_right</i>Web Analytics</li>
-    </ul>
-
-    <p><strong>Additional courses I will take</strong> before I graduate:</p>
-    <ul>
-      <li><i class="material-icons">chevron_right</i>Machine Learning and Big Data</li>
-      <li><i class="material-icons">chevron_right</i>Business Analytics and Data Mining</li>
-      <li><i class="material-icons">chevron_right</i>Predictive Analytics</li>
-      <li><i class="material-icons">chevron_right</i>Knowledge and Visual Analytics</li>
-      <li><i class="material-icons">chevron_right</i>Capstone Project</li>
-    </ul>
+    <div class="gradclass">
+      <p>Relevant coursework <strong>completed</strong> thus far:</p>
+      <ul>
+        <li><i class="material-icons">chevron_right</i>Advanced Programming Techniques in Python</li>
+        <li><i class="material-icons">chevron_right</i>Fundamentals of Computational Mathematics</li>
+        <li><i class="material-icons">chevron_right</i>Data Acquisition and Management</li>
+        <li><i class="material-icons">chevron_right</i>Statistics and Probability for Data Analytics</li>
+        <li><i class="material-icons">chevron_right</i>Recommender Systems</li>
+        <li><i class="material-icons">chevron_right</i>Web Analytics</li>
+      </ul>
+  
+      <p><strong>Additional courses I will take</strong> before I graduate:</p>
+      <ul>
+        <li><i class="material-icons">chevron_right</i>Machine Learning and Big Data</li>
+        <li><i class="material-icons">chevron_right</i>Business Analytics and Data Mining</li>
+        <li><i class="material-icons">chevron_right</i>Predictive Analytics</li>
+        <li><i class="material-icons">chevron_right</i>Knowledge and Visual Analytics</li>
+        <li><i class="material-icons">chevron_right</i>Capstone Project</li>
+      </ul>
+    </div>
 
       <div class="parent">
         <div></div>
         <div class="summary_final">
           <small class="further_resources">Much of my graduate school work is written in Python and/or R. If interested, in viewing work from a specific course, please send me an e-mail!
-            You can also check out my R Pubs profile online.
+            You can also check out my RPubs profile online.
           </small>
             <br>
             <br>
-            <button type="button" class="btn btn-outline-primary"><a href="https://rpubs.com/zachalexander/" target="_blank">RPubs</a></button>
-        </div>
+            <a href='https://rpubs.com/zachalexander/' target="_blank" class="waves-effect waves-light btn square-btn rpubs">RPubs</a>
+          </div>
         <div></div>
       </div>
   </div>

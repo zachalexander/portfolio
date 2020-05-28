@@ -52,7 +52,7 @@ export class PresRegressionComponent implements OnInit {
 
   ngOnInit() {
     this.spinner.show();
-    this.drawMap(1000, 600, this.addValuesModel());
+    this.drawMap(800, 400, this.addValuesModel());
 
     setTimeout(() => {
       this.spinner.hide();
@@ -61,14 +61,20 @@ export class PresRegressionComponent implements OnInit {
 
   drawMap(width, height, datapull) {
 
-    console.log(datapull);
+    let viewbox = 1400;
+    viewbox.toString();
+    if (window.innerWidth >= 800) {
+      viewbox = 1000;
+      viewbox.toString();
+    }
 
     d3.select('svg').remove();
     setTimeout(() => {
       const margin = {top: 10, right: 80, bottom: 10, left: 80};
 
-      width = 1000 - margin.left - margin.right;
-      height = 600 - margin.top - margin.bottom;
+      width = width - margin.left - margin.right;
+      height = height - margin.top - margin.bottom;
+
 
       const projection = d3.geoAlbersUsa();
 
@@ -88,14 +94,11 @@ export class PresRegressionComponent implements OnInit {
       const svg = d3.select('.graphic')
                   .append('svg')
                   .attr('class', 'map')
+                  .attr('id', 'map')
                   .attr('x', 0)
                   .attr('y', 0)
                   .attr('viewBox', '0 0 1000 600')
-                  .attr('preserveAspectRatio', 'xMidYMid')
-                  // .attr('width', width)
-                  // .attr('height', height);
-                  // .attr('width', width + margin.top + margin.bottom)
-                  // .attr('height', height + margin.right + margin.left);
+                  .attr('preserveAspectRatio', 'xMidYMid');
 
       const legend = svg.selectAll('g')
         .data(ext_color_domain)
@@ -107,7 +110,7 @@ export class PresRegressionComponent implements OnInit {
 
       legend.append('rect')
         .attr('x', 820)
-        .attr('y', function (d, i) { return (height - (i * ls_h) - 2 * ls_h) - 40; })
+        .attr('y', function (d, i) { return (height - (i * ls_h) - 2 * ls_h) + 100; })
         .attr('width', ls_w)
         .attr('height', ls_h)
         .style('stroke', '#333')
@@ -117,13 +120,13 @@ export class PresRegressionComponent implements OnInit {
 
       legend.append('text')
         .attr('x', 850)
-        .attr('y', function (d, i) { return (height - (i * ls_h) - ls_h - 4) - 40; })
+        .attr('y', function (d, i) { return (height - (i * ls_h) - ls_h - 4) + 100; })
         .text(function (d, i) { return legend_labels[i]; });
 
 
       legend.append('text')
         .attr('x', 790)
-        .attr('y', (height - (5.5 * ls_h) - ls_h - 4) - 40)
+        .attr('y', (height - (5.5 * ls_h) - ls_h - 4) + 100)
         .text('Percent for Trump (Actual)');
 
       const color = d3.scaleQuantile<string>()
