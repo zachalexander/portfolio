@@ -13,7 +13,9 @@ td.state_title {
 }
 
 .graphic {
-text-align: center;
+  text-align: center;
+  max-width: 600px;
+  margin: auto;
 }
 
 .mesh {
@@ -115,26 +117,27 @@ align-content: center;
 }
 
 div#tooltip {
-  margin: auto;
-  max-width: 350px;
+  margin: 0 auto 2em auto;
+  max-width: 300px;
   align-content: center;
   pointer-events: none !important;
   text-align: center;
-  border: 1px dashed #ddd;
-  padding: 1em;
+  border: 2px solid #ddd;
+  padding: 0.75em;
   align-items: center;
+  font-size: 0.90em;
 }
 
 div#tooltip.hidden {
+  margin: 0 auto 2em auto;
   max-width: 300px;
-  border: 1px dashed #ddd;
   align-content: center;
   pointer-events: none !important;
   text-align: center;
-  border: 1px dashed #ddd;
-  padding: 1em;
-  align-items: center;  
-  margin: auto;
+  border: 2px solid #ddd;
+  padding: 0.75em;
+  align-items: center;
+  font-size: 0.90em;
 }
 
 path {
@@ -153,6 +156,7 @@ h4.senator_name {
   text-align: center;
   font-weight: 600;
   padding: 4em 2em 2em 2em;
+  font-family: 'Abril Fatface', 'Roboto', sans-serif;
 }
 
 .button_div {
@@ -166,6 +170,10 @@ h4.senator_name {
   margin: auto;
   line-height: 2;
   padding: 10px;
+
+  h4 {
+    font-family: 'Abril Fatface', 'Roboto', sans-serif;
+  }
 }
 
 ._backlink {

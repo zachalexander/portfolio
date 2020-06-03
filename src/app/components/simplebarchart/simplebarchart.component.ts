@@ -31,7 +31,7 @@ export class SimplebarchartComponent implements OnInit {
     }
 
     if (width <= 600) {
-      yheight = 250;
+      yheight = 200;
     }
 
     this.drawfakeCasesBar(width, height, this.data, this.currentCasesBar, yheight, widthsvg);

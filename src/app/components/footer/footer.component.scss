@@ -23,6 +23,8 @@
     .footer-copyright {
       font-size: 0.85em;
       font-weight: 700;
+      max-width: 600px;
+      margin: auto;
     }
   }
 
@@ -31,5 +33,8 @@
     flex-direction: column;
   }
 
+  .footer-wrap {
+    max-width: 600px;
+  }
 
   

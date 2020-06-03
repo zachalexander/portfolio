@@ -42,7 +42,7 @@ export class SimplelinechartComponent implements OnInit {
     let mobilex = -40;
 
     if (width <= 600) {
-      yheight = 250;
+      yheight = 200;
       anote4 = 50;
       anote3 = 33;
       anote2 = 17;
@@ -108,7 +108,7 @@ export class SimplelinechartComponent implements OnInit {
                     .attr('class', 'line') // Assign a class for styling
                     .attr('fill', 'none')
                     .attr('stroke-width', '3px')
-                    .attr('stroke', '#fff')
+                    .attr('stroke', '#f2f2f2')
                     .attr('d', valueline);
 
                     const annotations = [
@@ -186,6 +186,10 @@ export class SimplelinechartComponent implements OnInit {
       .append('g')
       .attr('class', 'annotation-group')
       .call(makeAnnotations);
+
+      d3.selectAll('.annotation-note-bg')
+        .attr('rx', 10)
+        .attr('ry', 10)
                 
 
     const totalLength = path.node().getTotalLength();

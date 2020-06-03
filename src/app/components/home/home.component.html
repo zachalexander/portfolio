@@ -18,21 +18,21 @@
 </div>
 
 <div class="aboutme-nav" id="aboutme-nav">
-  <img class="svg-aboutzach" src='../../../assets/aboutzach.svg'>
+  <img class="svg-aboutzach" src='../../../assets/aboutzach.svg' data-aos="fade-right">
   <div class="aboutme-wrapper">
-    <div class="svg-wrapper-zach">
+    <div class="svg-wrapper-zach" data-aos="fade-left">
         <h5 class="aboutme-context-zach"><span class='highlight'><strong>Hey!</strong> I'm Zach, a <strong>data scientist</strong> passionate about bridging <strong>knowledge</strong> and <strong>communities</strong>.</span></h5>
-        <a href='#' class="waves-effect waves-light btn square-btn navigate" (click)="showAnot()">My Resume</a>
+        <a href='/resume' target="_blank" class="waves-effect waves-light btn square-btn navigate" (click)="showAnot()">My Resume</a>
       </div>
     <div class="col wrapper">
-      <div class="svg-wrapper-cuny">
+      <div class="svg-wrapper-cuny" data-aos="fade-right">
         <div class="call-out">
           <h5 class="aboutme-context"><span class='highlight'>Currently working on my <a href = 'https://sps.cuny.edu/academics/graduate/master-science-data-science-ms' target="_blank">
             Master's in Data Science</a> at the School of Professional Studies.</span>
           </h5>
         </div>
       </div>
-      <div class="svg-wrapper-cci">
+      <div class="svg-wrapper-cci" data-aos="fade-left">
         <div class="call-out">
           <h5 class="aboutme-context"><span class='highlight'><a href = 'https://www.courtinnovation.org/about/people/zachary-alexander' target="_blank">Senior Research and Data Associate</a> at the Center for Court Innovation.</span></h5>  
         </div>
@@ -41,101 +41,159 @@
   </div>
 </div>
 
-<div class="navigate" id="navigate">
-  <img class="svg-projects" src='../../../assets/projects3.svg'>
-  <div class="navigate_trump">
-    <a href='/pres2016-regression'><h5 class="project_title"><span class='highlight-title'>Linear Regression and Election Data</span></h5></a>
-    <svg class="circle-background">
-    </svg>
-    <!-- <h5 class="project_summary_header">Overview</h5> -->
-    <div class='proj-wrapper'>
-      <p class="project_description">
-        <span class='highlight-desc'>A classmate and I created a predictive model that calculates the proportion of votes for 
-        Donald Trump in the 2016 election based on responses to a select number of 
-        value-based questions from the American Values Survey, administered by the Public 
-        Religion Research Institute (PRRI) in 2017. We used R to manipulate our data, run our regression
-        models, and calculate our predictions. I used D3.js to create a map of our model's performance against
-        the actual percentage of voters that voted for Donald Trump in each state.</span>
-      </p>
+<div class="projects-div" id="navigate">
+  <img class="svg-projects" src='../../../assets/projects4.svg' data-aos="fade-up">
+  <div class="projects-wrapper"  *ngIf="!mobile">
+
+    <div class="navigate_trump">
     </div>
-    <a href='/pres2016-regression' class="waves-effect waves-light btn square-btn navigate" (click)="showAnot()">Read More</a>
-  </div>
-</div>
-<div class="navigate-upside">
-  <div class="navigate_chess">
-    <a href='/chess-elo'><h5 class="project_title"><span class='highlight-title-alt'>From Text File to D3.js Visualization</span></h5></a>
-    <a class="project_screenshot" href='/chess-elo'><img class="project_screenshot" src="../../../assets/img/elo-ratings.gif"></a>
-    <!-- <h5 class="project_summary_header">Overview</h5> -->
-    <div class='proj-wrapper'>
-    <p class="project_description">
-      <span class='highlight-desc'>As part of a graduate school assignment, we were given a raw text file
-      and were asked to convert it into a clean dataset using R. We also were instructed
-      to create visualizations and do some basic analyses. I decided to also create a 
-      mock news story about the dataset and a d3.js visualization.</span>
-    </p>
-    </div>
-    <a href='/chess-elo' class="waves-effect waves-light btn square-btn navigate" (click)="showAnot()">Read More</a>
-  </div>
-</div>
-<div class="navigate">
-  <div class="navigate_insiten">
-    <a href='http://www.codingchallenge.site/' target="_blank"><h5 class="project_title"><span class='highlight-title'>Full Stack CRUD Application to Track Business Acquisitions</span></h5></a>
-    <svg class="circle-background-insiten">
-    </svg>
-    <!-- <h5 class="project_summary_header">Overview</h5> -->
-    <div class='proj-wrapper'>
-    <p class="project_description">
-      <span class='highlight-desc'>A full stack application developed to keep track of potential business acquisitions.
-      This application utilizes Angular 2+ for all front-end work, with Node.js and MongoDB 
-      for all back-end work. It features reactive forms, and a visualization comparing target
-      revenues. This was built in one week as part of a sprint.</span>
-    </p>
-    </div>
-    <a href='http://www.codingchallenge.site/' target="_blank" class="waves-effect waves-light btn square-btn navigate" (click)="showAnot()">Read More</a>
-  </div>
-</div>
 
-<!-- <div class="navigate_specs_wrapper">
-  <div class="navigate_specs_column">
-    <h5 class="navigate_specs">Front-end Specifications</h5>
-    <p class="navigate_specs_explainer">Most of my projects utilize a combination of <strong>D3.js</strong> and <strong>Angular 2+</strong> for my front-end work</p>
-  </div>
-  <div class="logos">
-    <img src="../../../assets/d3logo.png" />
-    <p class="plus">+</p>
-    <img src="../../../assets/angularlogo.png" />
-  </div>
-</div> -->
-
-
-
-<div class="mid1" id="medium">
-  <div class="medium-wrapper">
-    <div class="mid1-left">
-      <div class="medium-container">
-        <div class="medium-logo">
-          <img src="../../../assets/mediumlogo2.svg" />
-          <h2>Publications</h2>
-        </div>
+    <div class="navigate_trump_context">
+      <div class='proj-wrapper'>
+        <p class="project_description">
+          <a href='/pres2016-regression'><h5 class="project_title"><span class='highlight-title'>Linear Regression and Election Data</span></h5></a>
+          <span class='highlight-desc'>A classmate and I created a predictive model that calculates the proportion of votes for 
+          Donald Trump in the 2016 election based on responses to a select number of 
+          value-based questions from the American Values Survey, administered by the Public 
+          Religion Research Institute (PRRI) in 2017. We used R to manipulate our data, run our regression
+          models, and calculate our predictions. I used D3.js to create a map of our model's performance against
+          the actual percentage of voters that voted for Donald Trump in each state.</span>
+        </p>
+        <a href='/pres2016-regression' class="waves-effect waves-light btn square-btn navigate" (click)="showAnot()">Read More</a>
       </div>
     </div>
-    <div class="mid1-right">
-        <div class="medium-posts">
-            <ngx-medium-widget resource="https://medium.com/@zdalexander"
-            postsLimit="3"
-            postsPerLine="1"
-            pictureSize="small"
-            [postfields]="['description', 'publishAt']"
-            postRatio="landscape">
-          </ngx-medium-widget>
-        </div>
+
+    
+  <div class="navigate_chess_context">
+    <div class='proj-wrapper'>
+      <p class="project_description">
+        <a href='/chess-elo'><h5 class="project_title"><span class='highlight-title'>From Text File to D3.js Visualization</span></h5></a>
+          <span class='highlight-desc'>As part of a graduate school assignment, we were given a raw text file
+            and were asked to convert it into a clean dataset using R. We also were instructed
+            to create visualizations and do some basic analyses. I decided to also create a 
+            mock news story about the dataset and a d3.js visualization.</span>
+      </p>
+      <a href='/chess-elo' class="waves-effect waves-light btn square-btn navigate" (click)="showAnot()">Read More</a>
     </div>
   </div>
-</div>
+
+  <div class="navigate_chess">
+  </div>
+    
+
+    <div class="navigate_insiten">
+    </div>
+
+    <div class="navigate_insiten_context">
+      <div class='proj-wrapper'>
+        <p class="project_description">
+          <a href='http://www.codingchallenge.site/'><h5 class="project_title"><span class='highlight-title'>Full Stack CRUD Application</span></h5></a>
+            <span class='highlight-desc'>A full stack application developed to keep track of potential business acquisitions.
+              This application utilizes Angular 2+ for all front-end work, with Node.js and MongoDB 
+              for all back-end work. It features reactive forms, and a visualization comparing target
+              revenues. This was built in one week as part of a sprint.</span>
+        </p>
+        <a href='http://www.codingchallenge.site' target="_blank" class="waves-effect waves-light btn square-btn navigate" (click)="showAnot()">Go to site</a>
+      </div>
+    </div>
+
+  </div>
+
+
+  <div class="projects-wrapper"  *ngIf="mobile">
+
+    <div class="navigate_trump">
+    </div>
+
+    <div class="navigate_trump_context">
+      <div class='proj-wrapper'>
+        <p class="project_description">
+          <a href='/pres2016-regression'><h5 class="project_title"><span class='highlight-title'>Linear Regression and Election Data</span></h5></a>
+          <span class='highlight-desc'>A classmate and I created a predictive model that calculates the proportion of votes for 
+          Donald Trump in the 2016 election based on responses to a select number of 
+          value-based questions from the American Values Survey, administered by the Public 
+          Religion Research Institute (PRRI) in 2017. We used R to manipulate our data, run our regression
+          models, and calculate our predictions. I used D3.js to create a map of our model's performance against
+          the actual percentage of voters that voted for Donald Trump in each state.</span>
+        </p>
+        <a href='/pres2016-regression' class="waves-effect waves-light btn square-btn navigate" (click)="showAnot()">Read More</a>
+      </div>
+    </div>
+
+    <div class="navigate_chess">
+    </div>
+
+  <div class="navigate_chess_context">
+    <div class='proj-wrapper'>
+      <p class="project_description">
+        <a href='/chess-elo'><h5 class="project_title"><span class='highlight-title'>From Text File to D3.js Visualization</span></h5></a>
+          <span class='highlight-desc'>As part of a graduate school assignment, we were given a raw text file
+            and were asked to convert it into a clean dataset using R. We also were instructed
+            to create visualizations and do some basic analyses. I decided to also create a 
+            mock news story about the dataset and a d3.js visualization.</span>
+      </p>
+      <a href='/chess-elo' class="waves-effect waves-light btn square-btn navigate" (click)="showAnot()">Read More</a>
+    </div>
+  </div>
+
+
+    
+
+    <div class="navigate_insiten">
+    </div>
+
+    <div class="navigate_insiten_context">
+      <div class='proj-wrapper'>
+        <p class="project_description">
+          <a href='http://www.codingchallenge.site/'><h5 class="project_title"><span class='highlight-title'>Full Stack CRUD Application</span></h5></a>
+            <span class='highlight-desc'>A full stack application developed to keep track of potential business acquisitions.
+              This application utilizes Angular 2+ for all front-end work, with Node.js and MongoDB 
+              for all back-end work. It features reactive forms, and a visualization comparing target
+              revenues. This was built in one week as part of a sprint.</span>
+        </p>
+        <a href='http://www.codingchallenge.site' target="_blank" class="waves-effect waves-light btn square-btn navigate" (click)="showAnot()">Go to site</a>
+      </div>
+    </div>
+
+    <!-- <div class="navigate_specs_wrapper">
+      <div class="navigate_specs_column">
+        <h5 class="navigate_specs">Front-end Specifications</h5>
+        <p class="navigate_specs_explainer">Most of my projects utilize a combination of <strong>D3.js</strong> and <strong>Angular 2+</strong> for my front-end work</p>
+      </div>
+      <div class="logos">
+        <img src="../../../assets/d3logo.png" />
+        <p class="plus">+</p>
+        <img src="../../../assets/angularlogo.png" />
+      </div>
+    </div> -->
+
+  </div>
+</div> 
+
+
+
+  <div class="mid1" data-aos="fade-up" id="medium">
+    <div class="medium-logo">
+      <img src="../../../assets/mediumlogo2.svg" />
+      <h2>Publications</h2>
+    </div>
+    <div class="medium-posts" >
+        <ngx-medium-widget resource="https://medium.com/@zdalexander"
+        postsLimit="3"
+        postsPerLine="1"
+        pictureSize="small"
+        [postfields]="['description', 'publishAt']"
+        postRatio="landscape">
+      </ngx-medium-widget>
+    </div>
+  </div>
+
+
+
 
 <div class="gradschool" id='gradschool'>
-  <img class="svg-graduate" src='../../../assets/graduate_studies.svg'>
-  <div class="info_div">
+  <img class="svg-graduate" src='../../../assets/graduate_studies.svg' data-aos="fade-up">
+  <div class="info_div" data-aos="fade-up">
     <div class="gradclass">
       <p>Relevant coursework <strong>completed</strong> thus far:</p>
       <ul>
@@ -171,4 +229,5 @@
       </div>
   </div>
 </div>
+
 <app-footer></app-footer>

@@ -6,6 +6,8 @@ import { DjangoService } from '../../services/django.service';
 import * as jumboCases from '../../../assets/jumbotron.json';
 import * as jumboCasesBar from '../../../assets/jumbotronbar.json';
 import * as d3annotate from 'd3-svg-annotation';
+import * as AOS from 'aos';
+
 
 @Component({
   selector: 'app-home',
@@ -31,6 +33,8 @@ export class HomeComponent implements OnInit {
   constructor(private djangoService: DjangoService) { }
 
   ngOnInit() {
+
+    AOS.init();
 
     this.width = window.innerWidth;
     this.height = document.getElementById('top').clientHeight;

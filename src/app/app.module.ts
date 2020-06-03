@@ -8,6 +8,7 @@ import { VgControlsModule } from 'videogular2/compiled/controls';
 import { VgOverlayPlayModule } from 'videogular2/compiled/overlay-play';
 import {VgBufferingModule} from 'videogular2/compiled/buffering';
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 
 import { AppRoutingModule } from './app-routing.module';
@@ -16,6 +17,7 @@ import { HomeComponent } from './components/home/home.component';
 import { PresRegressionComponent } from './components/pres-regression/pres-regression.component';
 import { ChessEloComponent } from './components/chess-elo/chess-elo.component';
 import { CoronavirusComponent } from './components/coronavirus/coronavirus.component';
+import { ResumeComponent } from './components/resume/resume.component';
 
 
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
@@ -29,6 +31,7 @@ import { NavbarxhomeComponent } from './components/navbarxhome/navbarxhome.compo
 import { SimplelinechartComponent } from './components/simplelinechart/simplelinechart.component';
 import { SimplebarchartComponent } from './components/simplebarchart/simplebarchart.component';
 import { DateAgoPipe } from './pipes/date-ago.pipe';
+
 
 @NgModule({
   declarations: [
@@ -46,10 +49,12 @@ import { DateAgoPipe } from './pipes/date-ago.pipe';
     SimplelinechartComponent,
     SimplebarchartComponent,
     DateAgoPipe,
-    SimplebarchartComponent
+    SimplebarchartComponent,
+    ResumeComponent
   ],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
     AppRoutingModule,
     FontAwesomeModule,
     MediumWidgetModule,
