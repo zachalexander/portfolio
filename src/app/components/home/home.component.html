@@ -21,8 +21,8 @@
   <img class="svg-aboutzach" src='../../../assets/aboutzach.svg' data-aos="fade-right">
   <div class="aboutme-wrapper">
     <div class="svg-wrapper-zach" data-aos="fade-left">
-        <h5 class="aboutme-context-zach"><span class='highlight'><strong>Hey!</strong> I'm Zach, a <strong>data scientist</strong> passionate about bridging <strong>knowledge</strong> and <strong>communities</strong>.</span></h5>
-        <a href='/resume' target="_blank" class="waves-effect waves-light btn square-btn navigate" (click)="showAnot()">My Resume</a>
+        <h5 class="aboutme-context-zach"><span class='highlight'><strong>Hey!</strong> I'm Zach, a <strong>data scientist</strong> passionate about utilizing <strong>data</strong> to <strong>inform</strong> the public.</span></h5>
+        <a href='/resume' target="_blank" class="waves-effect waves-light btn square-btn navigate" (click)="resumeClick()">My Resume</a>
       </div>
     <div class="col wrapper">
       <div class="svg-wrapper-cuny" data-aos="fade-right">
@@ -42,7 +42,7 @@
 </div>
 
 <div class="projects-div" id="navigate">
-  <img class="svg-projects" src='../../../assets/projects4.svg' data-aos="fade-up">
+  <img class="svg-projects" src='../../../assets/projects.svg' data-aos="fade-up">
   <div class="projects-wrapper"  *ngIf="!mobile">
 
     <div class="navigate_trump">
@@ -59,7 +59,7 @@
           models, and calculate our predictions. I used D3.js to create a map of our model's performance against
           the actual percentage of voters that voted for Donald Trump in each state.</span>
         </p>
-        <a href='/pres2016-regression' class="waves-effect waves-light btn square-btn navigate" (click)="showAnot()">Read More</a>
+        <a href='/pres2016-regression' class="waves-effect waves-light btn square-btn navigate" (click)="regressionClick()">Read More</a>
       </div>
     </div>
 
@@ -73,7 +73,7 @@
             to create visualizations and do some basic analyses. I decided to also create a 
             mock news story about the dataset and a d3.js visualization.</span>
       </p>
-      <a href='/chess-elo' class="waves-effect waves-light btn square-btn navigate" (click)="showAnot()">Read More</a>
+      <a href='/chess-elo' class="waves-effect waves-light btn square-btn navigate" (click)="chessClick()">Read More</a>
     </div>
   </div>
 
@@ -93,7 +93,7 @@
               for all back-end work. It features reactive forms, and a visualization comparing target
               revenues. This was built in one week as part of a sprint.</span>
         </p>
-        <a href='http://www.codingchallenge.site' target="_blank" class="waves-effect waves-light btn square-btn navigate" (click)="showAnot()">Go to site</a>
+        <a href='http://www.codingchallenge.site' target="_blank" class="waves-effect waves-light btn square-btn navigate" (click)="insitenClick()">Go to site</a>
       </div>
     </div>
 
@@ -174,7 +174,7 @@
 
   <div class="mid1" data-aos="fade-up" id="medium">
     <div class="medium-logo">
-      <img src="../../../assets/mediumlogo2.svg" />
+      <img src="../../../assets/mediumlogo.svg" />
       <h2>Publications</h2>
     </div>
     <div class="medium-posts" >
@@ -223,7 +223,7 @@
           </small>
             <br>
             <br>
-            <a href='https://rpubs.com/zachalexander/' target="_blank" class="waves-effect waves-light btn square-btn rpubs">RPubs</a>
+            <a href='https://rpubs.com/zachalexander/' target="_blank" class="waves-effect waves-light btn square-btn rpubs" (click)="rpubsClick()">RPubs</a>
           </div>
         <div></div>
       </div>

@@ -7,6 +7,7 @@ import * as jumboCases from '../../../assets/jumbotron.json';
 import * as jumboCasesBar from '../../../assets/jumbotronbar.json';
 import * as d3annotate from 'd3-svg-annotation';
 import * as AOS from 'aos';
+import {GoogleAnalyticsService} from './../../services/google-analytics.service';
 
 
 @Component({
@@ -30,7 +31,10 @@ export class HomeComponent implements OnInit {
   mobile;
 
 
-  constructor(private djangoService: DjangoService) { }
+  constructor(
+    private djangoService: DjangoService,
+    private googleAnalyticsService: GoogleAnalyticsService
+  ) { }
 
   ngOnInit() {
 
@@ -39,7 +43,7 @@ export class HomeComponent implements OnInit {
     this.width = window.innerWidth;
     this.height = document.getElementById('top').clientHeight;
 
-    if(this.width >= 600) {
+    if (this.width >= 600) {
       this.mobile = false;
     } else {
       this.mobile = true;
@@ -82,9 +86,9 @@ export class HomeComponent implements OnInit {
       .attr('cx', this.width / 2)
       .attr('cy', 150)
       .attr('r', 150)
-      .attr('fill', 'url(#image)')
+      .attr('fill', 'url(#image)');
 
-      
+
   d3.select('.circle-background-insiten')
   .attr('height', 300)
   .attr('width', this.width)
@@ -113,7 +117,7 @@ export class HomeComponent implements OnInit {
   }
 
   scroll(el: HTMLElement) {
-    el.scrollIntoView({behavior:'smooth'});
+    el.scrollIntoView({behavior: 'smooth'});
   }
 
 
@@ -123,5 +127,35 @@ export class HomeComponent implements OnInit {
 
   drawJumboBar() {
     this.fakecasesbar = jumboCasesBar;
+  }
+
+  resumeClick() {
+    this
+    .googleAnalyticsService
+    .eventEmitter('resume_click', 'employer_interest', 'resume', 'click', 1);
+  }
+
+  regressionClick() {
+    this
+    .googleAnalyticsService
+    .eventEmitter('regression_click', 'data_interest', 'regression', 'click', 1);
+  }
+
+  chessClick() {
+    this
+    .googleAnalyticsService
+    .eventEmitter('chess_click', 'data_interest', 'chess', 'click', 1);
+  }
+
+  insitenClick() {
+    this
+    .googleAnalyticsService
+    .eventEmitter('insiten_click', 'data_interest', 'insiten', 'click', 1);
+  }
+
+  rpubsClick() {
+    this
+    .googleAnalyticsService
+    .eventEmitter('rpubs_click', 'employer_interest', 'rpubs', 'click', 1);
   }
 }

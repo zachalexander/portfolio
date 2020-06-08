@@ -43,7 +43,7 @@ export class SimplebarchartComponent implements OnInit {
     let translate = 0;
 
     if (width >= 450) {
-      width = widthsvg + 30;
+      width = widthsvg;
     }
 
     const parseTime = d3.timeParse('%m/%d/%Y');

@@ -33,8 +33,6 @@ rect.bar {
   margin: auto;
   height: auto;
   position: relative;
-  // background: url('../../../assets/jumbotron-bg2.svg') no-repeat center center;
-  // background-size: contain, cover;
   background: -webkit-linear-gradient(left, $Interaction-2-hex, $Interaction-1-hex);
   background: -moz-linear-gradient(left, $Interaction-2-hex, $Interaction-1-hex);
   background: linear-gradient(to right, $Interaction-2-hex, $Interaction-1-hex);
@@ -90,23 +88,6 @@ svg.jumbobar {
   position: absolute;
   overflow: visible;
   z-index: 8;
-}
-
-.graphic-fill {
-  position: absolute;
-  height: 100vh;
-  width: 100vw;
-  z-index: 2;
-  background: url('../../../assets/forest-bg2.svg') no-repeat center bottom;
-  background-size: contain, cover;
-
-  @include phone {
-    background-size: cover !important;
-  }
-
-  @include ipad {
-    background-size: cover !important;
-  }
 }
 
 .typewriter {
@@ -233,7 +214,7 @@ svg.jumbobar {
     }
 
     .svg-wrapper-cuny {
-      background: url('../../../assets/cunybox2.svg') no-repeat center center;
+      background: url('../../../assets/cunybox.svg') no-repeat center center;
       height: auto;
       min-height: 400px;
       justify-content: center;
@@ -624,7 +605,7 @@ svg.jumbobar {
   padding: 1em;
   line-height: 1.5em;
 
-  background: url('../../../assets/gradbg7.svg') center center no-repeat;
+  background: url('../../../assets/gradbg.svg') center center no-repeat;
   background-size: contain, cover;
 
   @include phone {

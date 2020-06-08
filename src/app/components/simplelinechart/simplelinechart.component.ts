@@ -25,7 +25,7 @@ export class SimplelinechartComponent implements OnInit {
     const width = window.innerWidth;
     const height = document.getElementById('top').clientHeight;
 
-    const widthsvg = document.getElementById('top').clientWidth + 30;
+    const widthsvg = document.getElementById('top').clientWidth;
 
     if (width >= 600) {
       this.mobile = false;
@@ -38,8 +38,8 @@ export class SimplelinechartComponent implements OnInit {
     let anote3 = 36;
     let anote2 = 20;
     let annote = 10;
-    let mobiley = -40;
-    let mobilex = -40;
+    let mobiley = 40;
+    let mobilex = 20;
 
     if (width <= 600) {
       yheight = 200;
@@ -126,8 +126,8 @@ export class SimplelinechartComponent implements OnInit {
                         x: x(parseTime(datapull[anote2].date)),
                         y: height - y(datapull[anote2].cases),
                         align: 'middle',
-                        dy: 20,
-                        dx: 20
+                        dy: 30,
+                        dx: 30
                       },
                       {
                         note: {
@@ -142,8 +142,8 @@ export class SimplelinechartComponent implements OnInit {
                         color: ['#dddddd'],
                         x: x(parseTime(datapull[anote4].date)),
                         y: height - y(datapull[anote4].cases),
-                        dy: -40,
-                        dx: -40
+                        dy: -20,
+                        dx: -90
                       },
                       {
                         note: {
@@ -158,7 +158,7 @@ export class SimplelinechartComponent implements OnInit {
                         color: ['#dddddd'],
                         x: x(parseTime(datapull[anote3].date)),
                         y: height - y(datapull[anote3].cases),
-                        dy: 20,
+                        dy: 40,
                         dx: 20
                       },
                       {

@@ -32,6 +32,8 @@ import { SimplelinechartComponent } from './components/simplelinechart/simplelin
 import { SimplebarchartComponent } from './components/simplebarchart/simplebarchart.component';
 import { DateAgoPipe } from './pipes/date-ago.pipe';
 
+import {GoogleAnalyticsService} from './services/google-analytics.service';
+
 
 @NgModule({
   declarations: [
@@ -67,7 +69,7 @@ import { DateAgoPipe } from './pipes/date-ago.pipe';
     VgBufferingModule,
     BsDropdownModule.forRoot()
   ],
-  providers: [],
+  providers: [GoogleAnalyticsService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
