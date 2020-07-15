@@ -1,6 +1,5 @@
-import {  Component, OnInit, ElementRef, ViewChild, ViewEncapsulation, Input, SimpleChanges, OnChanges } from '@angular/core';
+import {  Component, OnInit, Input} from '@angular/core';
 import * as d3 from 'd3';
-import * as jumboCases from '../../../assets/jumbotron.json';
 import * as d3annotate from 'd3-svg-annotation';
 
 @Component({
@@ -11,20 +10,13 @@ import * as d3annotate from 'd3-svg-annotation';
 export class SimplelinechartComponent implements OnInit {
 
   @Input() private data: Array<any>;
-  currentCases;
   mobile;
-
-  scrollable = d3.select('#test');
 
   constructor() { }
 
   ngOnInit() {
-    const fakeData = jumboCases['fakedata'];
-    this.scrollable;
-    this.currentCases = fakeData[Object.keys(fakeData)[Object.keys(fakeData).length - 1]];
     const width = window.innerWidth;
     const height = document.getElementById('top').clientHeight;
-
     const widthsvg = document.getElementById('top').clientWidth;
 
     if (width >= 600) {
@@ -51,15 +43,12 @@ export class SimplelinechartComponent implements OnInit {
       mobilex = 20;
     }
 
-    this.drawfakeCases(width, height, this.data, this.currentCases, yheight, annote, anote2, anote3, anote4, widthsvg, mobiley, mobilex);
+    this.drawfakeCases(width, height, this.data, yheight, annote, anote2, anote3, anote4, widthsvg, mobiley, mobilex);
   }
 
-  drawfakeCases(width, height, datapull, cases, yheight, annote, anote2, anote3, anote4, widthsvg, mobiley, mobilex) {
-
-    // Add annotation to the chart
+  drawfakeCases(width, height, datapull, yheight, annote, anote2, anote3, anote4, widthsvg, mobiley, mobilex) {
 
     datapull = datapull.fakedata;
-    let translate = 0;
 
     if (width >= 450) {
       width = widthsvg;
@@ -91,7 +80,7 @@ export class SimplelinechartComponent implements OnInit {
                 .attr('y', 0)
                 .attr('class', 'jumbo')
                 .append('g')
-                .attr('transform', 'translate(' + translate + ', 0)')
+                .attr('transform', 'translate(0, 0)')
                 .append('svg')
                 .attr('id', 'annotate')
                 .attr('width', width)
@@ -104,8 +93,8 @@ export class SimplelinechartComponent implements OnInit {
               .attr('d', area);
 
     const path = svg.append('path')
-                    .datum(datapull) // 10. Binds data to the line
-                    .attr('class', 'line') // Assign a class for styling
+                    .datum(datapull)
+                    .attr('class', 'line')
                     .attr('fill', 'none')
                     .attr('stroke-width', '3px')
                     .attr('stroke', '#f2f2f2')
@@ -118,8 +107,8 @@ export class SimplelinechartComponent implements OnInit {
                         },
                         type: d3annotate.annotationCalloutCircle,
                         subject: {
-                          radius: 5,         // circle radius
-                          radiusPadding: 0  // white space around circle befor connector
+                          radius: 5,
+                          radiusPadding: 0
                         },
                         className: 'myviz',
                         color: ['#dddddd'],
@@ -135,7 +124,7 @@ export class SimplelinechartComponent implements OnInit {
                         },
                         type: d3annotate.annotationCalloutCircle,
                         subject: {
-                          radius: 5,         // circle radius
+                          radius: 5,
                           radiusPadding: 0
                         },
                         className: 'mywork',
@@ -151,7 +140,7 @@ export class SimplelinechartComponent implements OnInit {
                         },
                         type: d3annotate.annotationCalloutCircle,
                         subject: {
-                          radius: 5,         // circle radius
+                          radius: 5,
                           radiusPadding: 0
                         },
                         className: 'mediumposts',
@@ -167,7 +156,7 @@ export class SimplelinechartComponent implements OnInit {
                         },
                         type: d3annotate.annotationCalloutCircle,
                         subject: {
-                          radius: 5,         // circle radius
+                          radius: 5,
                           radiusPadding: 0
                         },
                         className: 'aboutme',
@@ -178,61 +167,56 @@ export class SimplelinechartComponent implements OnInit {
                         dx: mobilex
                       }
                     ];
-                
-    const makeAnnotations = d3annotate.annotation()
-    .annotations(annotations);
-  
-      d3.select('#annotate')
-      .append('g')
-      .attr('class', 'annotation-group')
-      .call(makeAnnotations);
 
-      d3.selectAll('.annotation-note-bg')
-        .attr('rx', 10)
-        .attr('ry', 10)
-                
+    const makeAnnotations = d3annotate.annotation().annotations(annotations);
+
+    d3.select('#annotate')
+    .append('g')
+    .attr('class', 'annotation-group')
+    .call(makeAnnotations);
+
+    d3.selectAll('.annotation-note-bg')
+      .attr('rx', 10)
+      .attr('ry', 10);
 
     const totalLength = path.node().getTotalLength();
 
-    path
-    .attr('stroke-dasharray', totalLength + ' ' + totalLength)
-    .attr('stroke-dashoffset', totalLength)
-    .transition()
-    .on('start', function repeat() {
-        d3.active(this)
-            .duration(7000)
-            .ease(d3.easeLinear)
-            .attr('stroke-dashoffset', 0);
-    });
+    path.attr('stroke-dasharray', totalLength + ' ' + totalLength)
+        .attr('stroke-dashoffset', totalLength)
+        .transition()
+        .on('start', function repeat() {
+            d3.active(this)
+                .duration(2000)
+                .ease(d3.easeLinear)
+                .attr('stroke-dashoffset', 0);
+        });
 
-    
-    
     d3.select('.myviz')
       .on('click', function() {
         d3.transition()
         .duration(7500)
-        .tween('scroll', document.getElementById('navigate').scrollIntoView({behavior: "smooth"}));
+        .tween('scroll', document.getElementById('navigate').scrollIntoView({behavior: 'smooth'}));
       });
 
     d3.select('.aboutme')
     .on('click', function() {
       d3.transition()
       .duration(7500)
-      .tween('scroll', document.getElementById('aboutme-nav').scrollIntoView({behavior: "smooth"}));
+      .tween('scroll', document.getElementById('aboutme-nav').scrollIntoView({behavior: 'smooth'}));
     });
 
     d3.select('.mediumposts')
     .on('click', function() {
       d3.transition()
       .duration(7500)
-      .tween('scroll', document.getElementById('medium').scrollIntoView({behavior: "smooth"}));
+      .tween('scroll', document.getElementById('medium').scrollIntoView({behavior: 'smooth'}));
     });
 
     d3.select('.mywork')
     .on('click', function() {
       d3.transition()
       .duration(7500)
-      .tween('scroll', document.getElementById('gradschool').scrollIntoView({behavior: "smooth"}));
+      .tween('scroll', document.getElementById('gradschool').scrollIntoView({behavior: 'smooth'}));
     });
   }
 }

@@ -1,4 +1,4 @@
-import {  Component, OnInit, ElementRef, ViewChild, ViewEncapsulation, Input, SimpleChanges, OnChanges } from '@angular/core';
+import {  Component, OnInit, Input } from '@angular/core';
 import * as d3 from 'd3';
 import * as jumboCasesBar from '../../../assets/jumbotronbar.json';
 
@@ -24,7 +24,7 @@ export class SimplebarchartComponent implements OnInit {
     const widthsvg = document.getElementById('top').clientWidth;
     let yheight = 250;
 
-    if(width >= 600) {
+    if (width >= 600) {
       this.mobile = false;
     } else {
       this.mobile = true;
@@ -34,13 +34,12 @@ export class SimplebarchartComponent implements OnInit {
       yheight = 200;
     }
 
-    this.drawfakeCasesBar(width, height, this.data, this.currentCasesBar, yheight, widthsvg);
+    this.drawfakeCasesBar(width, height, this.data, yheight, widthsvg);
   }
 
-  drawfakeCasesBar(width, height, datapull, cases, yheight, widthsvg) {
+  drawfakeCasesBar(width, height, datapull, yheight, widthsvg) {
 
     datapull = datapull.fakedatabar;
-    let translate = 0;
 
     if (width >= 450) {
       width = widthsvg;
@@ -65,7 +64,7 @@ export class SimplebarchartComponent implements OnInit {
                 .attr('y', 0)
                 .attr('class', 'jumbobar')
                 .append('g')
-                .attr('transform', 'translate(' + translate + ', 0)');
+                .attr('transform', 'translate(0, 0)');
 
       svg.selectAll('.bar')
             .data(datapull)

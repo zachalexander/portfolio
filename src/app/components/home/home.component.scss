@@ -10,19 +10,16 @@ html, body {
 }
 
 rect.bar {
-  // fill: rgba(221,221,221, 0.9);
   fill: rgba(191,140,110, 1);
-  // fill: rgba(216,178,156, 1);
-  // fill: rgba(45,51,63, 0.9);
-  // fill: rgba(8,16,38, 0.9);
 }
 
 .area {
-  // fill: rgba(242,242,242, 0.5);
-  // fill: rgba(255, 255, 255, 0.9);
   fill: rgba(221,221,221, 0.5);
 }
 
+.line {
+  stroke-width: 2;
+}
 
 // jumbotron & top of loading viewport
 
@@ -427,8 +424,6 @@ svg.jumbobar {
   background-size: cover;
   min-height: 400px;
   min-width: 100%;
-  // position: relative;
-  // box-shadow: 0 0 5px gray;
 
   .highlight-title {
     color: $Interaction-2-hex;
@@ -461,7 +456,6 @@ svg.jumbobar {
   min-height: 400px;
   position: relative;
   min-width: 100%;
-  // box-shadow: 0 0 5px gray;
   z-index: 1;
 
   .highlight-title {
@@ -486,7 +480,6 @@ svg.jumbobar {
   min-height: 400px;
   position: relative;
   min-width: 100%;
-  // box-shadow: 0 0 5px gray;
   z-index: 1;
 
   .highlight-title {
@@ -643,9 +636,12 @@ svg.jumbobar {
 .mid1 {
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
   width: 100%;
+  height: auto;
+  max-width: 900px;
+  justify-content: space-evenly;
+  padding: 1em;
   height: auto;
 
   .medium-logo {
@@ -661,15 +657,6 @@ svg.jumbobar {
     border-color: #ddd;
     font-family: 'Abril Fatface', 'Playfair Display', 'Roboto', 'Arial', sans-serif;
   }
-}
-
-.mid1 {
-  max-width: 900px;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-evenly;
-  padding: 1em;
-  height: auto;
 
   @include phone {
     width: 100%;
@@ -761,18 +748,17 @@ td {
 
 }
 
-
 .annotations {
   stroke-width: 2px;
 }
 
 .myviz {
   opacity: 0;
-  -webkit-animation: fadein 0s 2.5s; /* Safari, Chrome and Opera > 12.1 */
-  -moz-animation: fadein 0s 2.5s; /* Firefox < 16 */
-  -ms-animation: fadein 0s 2.5s; /* Internet Explorer */
-  -o-animation: fadein 0s 2.5s; /* Opera < 12.1 */
-  animation: fadein 0s 2.5s;
+  -webkit-animation: fadein 0s 0.5s; /* Safari, Chrome and Opera > 12.1 */
+  -moz-animation: fadein 0s 0.5s; /* Firefox < 16 */
+  -ms-animation: fadein 0s 0.5s; /* Internet Explorer */
+  -o-animation: fadein 0s 0.5s; /* Opera < 12.1 */
+  animation: fadein 0s 0.5s;
   -webkit-animation-fill-mode: forwards;
   animation-fill-mode: forwards;
   fill: $Interaction-2-hex;
@@ -784,42 +770,52 @@ td {
 }
   
 @keyframes fadein {
-  99% { opacity: 0; }
+  1% { opacity: 0; }
+  25% { opacity: 0.25; }
+  50% { opacity: 0.5; }
   100%  { opacity: 1; }
 }
 
 /* Firefox < 16 */
 @-moz-keyframes fadein {
-  99% { opacity: 0; }
+  1% { opacity: 0; }
+  25% { opacity: 0.25; }
+  50% { opacity: 0.5; }
   100%  { opacity: 1; }
 }
 
 /* Safari, Chrome and Opera > 12.1 */
 @-webkit-keyframes fadein {
-  99% { opacity: 0; }
+  1% { opacity: 0; }
+  25% { opacity: 0.25; }
+  50% { opacity: 0.5; }
   100%  { opacity: 1; }
 }
 
 /* Internet Explorer */
 @-ms-keyframes fadein {
-  99% { opacity: 0; }
+  1% { opacity: 0; }
+  25% { opacity: 0.25; }
+  50% { opacity: 0.5; }
   100%  { opacity: 1; }
 }
 
 /* Opera < 12.1 */
 @-o-keyframes fadein {
-  99% { opacity: 0; }
+  1% { opacity: 0; }
+  25% { opacity: 0.25; }
+  50% { opacity: 0.5; }
   100%  { opacity: 1; }
 }
 
 .aboutme {
   opacity: 0;
-  animation-timing-function: ease-in;
-  -webkit-animation: fadein 0s 1s; /* Safari, Chrome and Opera > 12.1 */
-  -moz-animation: fadein 0s 1s; /* Firefox < 16 */
-  -ms-animation: fadein 0s 1s; /* Internet Explorer */
-  -o-animation: fadein 0s 1s; /* Opera < 12.1 */
-  animation: fadein 0s 1s;
+  // animation-timing-function: ease-in;
+  -webkit-animation: fadein 0s 0.25s; /* Safari, Chrome and Opera > 12.1 */
+  -moz-animation: fadein 0s 0.25s; /* Firefox < 16 */
+  -ms-animation: fadein 0s 0.25s; /* Internet Explorer */
+  -o-animation: fadein 0s 0.25s; /* Opera < 12.1 */
+  animation: fadein 0s 0.25s;
   -webkit-animation-fill-mode: forwards;
   animation-fill-mode: forwards;
 
@@ -830,11 +826,11 @@ td {
 
 .mywork {
   opacity: 0;
-  -webkit-animation: fadein 0s 7s; /* Safari, Chrome and Opera > 12.1 */
-  -moz-animation: fadein 0s 7s; /* Firefox < 16 */
-  -ms-animation: fadein 0s 7s; /* Internet Explorer */
-  -o-animation: fadein 0s 7s; /* Opera < 12.1 */
-  animation: fadein 0s 7s;
+  -webkit-animation: fadein 0s 1.25s; /* Safari, Chrome and Opera > 12.1 */
+  -moz-animation: fadein 0s 1.25s; /* Firefox < 16 */
+  -ms-animation: fadein 0s 1.25s; /* Internet Explorer */
+  -o-animation: fadein 0s 1.25s; /* Opera < 12.1 */
+  animation: fadein 0s 1.25s;
   -webkit-animation-fill-mode: forwards;
   animation-fill-mode: forwards;
 
@@ -846,11 +842,11 @@ td {
 
 .mediumposts {
   opacity: 0;
-  -webkit-animation: fadein 0s 5s; /* Safari, Chrome and Opera > 12.1 */
-  -moz-animation: fadein 0s 5s; /* Firefox < 16 */
-  -ms-animation: fadein 0s 5s; /* Internet Explorer */
-  -o-animation: fadein 0s 5s; /* Opera < 12.1 */
-  animation: fadein 0s 5s;
+  -webkit-animation: fadein 0s 1s; /* Safari, Chrome and Opera > 12.1 */
+  -moz-animation: fadein 0s 1s; /* Firefox < 16 */
+  -ms-animation: fadein 0s 1s; /* Internet Explorer */
+  -o-animation: fadein 0s 1s; /* Opera < 12.1 */
+  animation: fadein 0s 1s;
   -webkit-animation-fill-mode: forwards;
   animation-fill-mode: forwards;
   fill: $Interaction-2-hex;
@@ -903,7 +899,6 @@ td {
   }
 }
 
-
 .mediumposts:hover {
   cursor: pointer;
   stroke-width: 3px;
@@ -917,7 +912,6 @@ td {
     fill-opacity: 1;
   }
 }
-
 
 .parent {
   justify-content: center;
@@ -937,14 +931,6 @@ td {
   margin: 1em auto 3em auto;
   line-height: 1.25em;
   margin-bottom: 1em;
-}
-
-
-
-
-.annotation-note-title {
-  fill: $Interaction-5-hex;
-  fill-opacity: 1;
 }
 
 .annotation-subject {
@@ -980,23 +966,11 @@ td {
   font-weight: 200;
 }
 
-.bartext {
-  font-family: 'Abril Fatface', 'FontAwesome', sans-serif;
-  font-weight: 400;
-}
-
-.annotations {
-  stroke-width: 2px;
-}
-
-
 .annotation-note-bg {
   fill-opacity: 1;
   width: 7.5em;
   height: 2.25em;
   transform: translate(-9px, -3.5px);
-  // rx: 10;
-  // ry: 10;
   fill: $Interaction-5-hex;
 }
 

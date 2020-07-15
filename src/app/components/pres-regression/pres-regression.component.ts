@@ -15,7 +15,7 @@ export class PresRegressionComponent implements OnInit {
 
   addValuesModel() {
     const stateDataset = stateData['default'];
-    d3.csv('../../../assets/model_data.csv', function(data){
+    d3.csv('../../../assets/model_data.csv', function(data) {
       data.forEach(element => {
         const dataState = element.state;
         const dataVotes = element.model_three;
@@ -30,8 +30,8 @@ export class PresRegressionComponent implements OnInit {
             stateDataset.features[i].properties['actual'] = dataActual;
             stateDataset.features[i].properties['diff'] = dataDiff;
 
-            if (stateDataset.features[i].properties['value'] == ""){
-              stateDataset.features[i].properties['value'] = "No model calculation";
+            if (stateDataset.features[i].properties['value'] === '') {
+              stateDataset.features[i].properties['value'] = 'No model calculation';
             }
           }
         }
@@ -149,7 +149,7 @@ export class PresRegressionComponent implements OnInit {
         .style('stroke', '#333')
         .style('stroke-width', '1')
         .classed('svg-content-responsive', true)
-        .call(function(){
+        .call(function() {
           d3.select('#tooltip')
           .style('left', 20 + 'px')
           .style('top', 0 + 'px')
@@ -218,7 +218,8 @@ export class PresRegressionComponent implements OnInit {
             + '<tbody>'
             + '<tr>'
               + '<td class=' + 'state_title' + '>' + '<strong>' + 'Actual' + '</strong> </td>'
-              + '<td class=' + 'state_title' + '>' + '<strong>' + '<strong>' + parseFloat((d['properties'].actual)).toFixed(1) + '%' + '</strong></td>'
+              + '<td class=' + 'state_title' + '>' + '<strong>' + '<strong>' +
+              parseFloat((d['properties'].actual)).toFixed(1) + '%' + '</strong></td>'
             + '</tr>'
             + '<tr>'
               + '<td>' + 'Model' + '</td>'
@@ -226,7 +227,8 @@ export class PresRegressionComponent implements OnInit {
             + '</tr>'
           + '</tbody>'
           + '</table>'
-          + '<p class = ' + 'error_value' + '>' + '<strong>' + 'Model Error (' + parseFloat((d['properties'].diff)).toFixed(1) + '%' + ')' + '</strong>' + '</p>'
+          + '<p class = ' + 'error_value' + '>' + '<strong>' + 'Model Error (' +
+          parseFloat((d['properties'].diff)).toFixed(1) + '%' + ')' + '</strong>' + '</p>'
           );
 
             // Show the tooltip

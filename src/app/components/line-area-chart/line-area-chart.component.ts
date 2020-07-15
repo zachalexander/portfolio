@@ -1,6 +1,5 @@
-import {  Component, OnInit, ElementRef, ViewChild, ViewEncapsulation, Input, SimpleChanges, OnChanges } from '@angular/core';
+import {  Component, OnInit, ViewEncapsulation, Input } from '@angular/core';
 import * as d3 from 'd3';
-import * as d3annotate from 'd3-svg-annotation';
 import * as nycCasesData from '../../../assets/nyccases.json';
 
 @Component({
@@ -87,12 +86,12 @@ export class LineAreaChartComponent implements OnInit {
         .attr('in', 'coloredBlur');
     feMerge.append('feMergeNode')
     .attr('in', 'SourceGraphic');
-    
+
     svg.append('g')
             .attr('class', 'x axis')
             .attr('transform', 'translate(0,' + height + ')')
             .call(d3.axisBottom(x).tickFormat(d3.timeFormat('%m/%d')).ticks(8).tickPadding(5));
-   
+
     svg.append('path')
         .datum(datapull)
         .attr('class', 'area')
@@ -112,41 +111,41 @@ export class LineAreaChartComponent implements OnInit {
         const xLatest = x(parseTime(cases.date));
         const yLatest = y(cases.cases);
 
-    // 12. Appends a circle for each datapoint 
-    svg.append("circle") // Uses the enter().append() method
-        .attr("class", "dot") // Assign a class for styling
-        .attr("cx", xLatest)
-        .attr("cy", yLatest)
-        .attr("r", 4);
+    // 12. Appends a circle for each datapoint
+    svg.append('circle') // Uses the enter().append() method
+        .attr('class', 'dot') // Assign a class for styling
+        .attr('cx', xLatest)
+        .attr('cy', yLatest)
+        .attr('r', 4);
 
-    const focus = svg.append("g")
-    .attr("class", "focus")
-    .style("display", "none");
+    const focus = svg.append('g')
+    .attr('class', 'focus')
+    .style('display', 'none');
 
-    focus.append("circle")
-        .attr("r", 4);
+    focus.append('circle')
+        .attr('r', 4);
 
-    focus.append("text")
-        .attr("x", 10)
-      	.attr("dy", ".31em");
-        svg.append("rect")
-        .attr("class", "overlay")
-        .attr("width", width_new + 100)
-        .attr("height", height_new)
-        .on("mouseover", function() { 
-          focus.style("display", null);
+    focus.append('text')
+        .attr('x', 10)
+      	.attr('dy', '.31em');
+        svg.append('rect')
+        .attr('class', 'overlay')
+        .attr('width', width_new + 100)
+        .attr('height', height_new)
+        .on('mouseover', function() {
+          focus.style('display', null);
         }).style('cursor', 'crosshair')
-        .on("mouseout", function() { focus.style("display", "none"); })
-        .on("mousemove", mousemove);
+        .on('mouseout', function() { focus.style('display', 'none'); })
+        .on('mousemove', mousemove);
 
     function mousemove() {
       const x0 = x.invert(d3.mouse(this)[0]),
           i = bisectDate(datapull, x0, 1),
           d0 = datapull[i - 1],
           d1 = datapull[i];
-          let d = x0 - parseTime(d0.date) > parseTime(d1.date) - x0 ? d1 : d0;
-      focus.attr("transform", "translate(" + x(parseTime(d.date)) + "," + y(d.cases) + ")");
-      focus.select("text").text(function() { return d.cases.toLocaleString('en-US'); });
+          const d = x0 - parseTime(d0.date) > parseTime(d1.date) - x0 ? d1 : d0;
+      focus.attr('transform', 'translate(' + x(parseTime(d.date)) + ',' + y(d.cases) + ')');
+      focus.select('text').text(function() { return d.cases.toLocaleString('en-US'); });
     }
 
   }

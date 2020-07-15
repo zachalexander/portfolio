@@ -23,7 +23,6 @@ export class NavbarComponent implements OnInit {
   onWindowScroll(e) {
     const element = document.querySelector('.nav-wrapper');
     element.classList.add('nav-wrapper-light');
-    // element.classList.remove('nav-wrapper-light');
   }
 
 }

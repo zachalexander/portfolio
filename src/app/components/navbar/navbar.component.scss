@@ -60,6 +60,7 @@ nav {
 .nav-wrapper.nav-wrapper-light {
     background: #eee;  /* fallback for old browsers */
     height: 50px;
+    width: 100vw;
     z-index: 100;
     border-bottom: 1px solid $Interaction-2-hex;
 
