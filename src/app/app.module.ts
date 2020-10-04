@@ -18,6 +18,7 @@ import { PresRegressionComponent } from './components/pres-regression/pres-regre
 import { ChessEloComponent } from './components/chess-elo/chess-elo.component';
 import { CoronavirusComponent } from './components/coronavirus/coronavirus.component';
 import { ResumeComponent } from './components/resume/resume.component';
+import { FallfoliageComponent } from './components/fallfoliage/fallfoliage.component';
 
 
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
@@ -52,7 +53,8 @@ import {GoogleAnalyticsService} from './services/google-analytics.service';
     SimplebarchartComponent,
     DateAgoPipe,
     SimplebarchartComponent,
-    ResumeComponent
+    ResumeComponent,
+    FallfoliageComponent
   ],
   imports: [
     BrowserModule,

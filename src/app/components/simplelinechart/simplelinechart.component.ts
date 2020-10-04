@@ -186,7 +186,7 @@ export class SimplelinechartComponent implements OnInit {
         .transition()
         .on('start', function repeat() {
             d3.active(this)
-                .duration(2000)
+                .duration(7000)
                 .ease(d3.easeLinear)
                 .attr('stroke-dashoffset', 0);
         });

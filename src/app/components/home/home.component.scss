@@ -356,7 +356,7 @@ svg.jumbobar {
 }
 
 
-.navigate_trump, .navigate_chess, .navigate_insiten {
+.navigate_trump, .navigate_chess, .navigate_insiten, .navigate_book {
   display: flex;
   flex-direction: column;
   background: $Interaction-5-hex; 
@@ -419,6 +419,33 @@ svg.jumbobar {
   }
 }
 
+
+
+
+.navigate_book {
+  background: url('../../../assets/img/book-rec.jpg') center center no-repeat;
+  background-size: cover;
+  min-height: 350px;
+  min-width: 100%;
+  margin-top: 4em;
+
+  .highlight-title {
+    color: $Interaction-2-hex;
+    background-color: rgba(255,255,255,0.7);
+    line-height: 1.5em;
+  }
+
+
+  a {
+    visibility: visible;
+  }
+
+  @include phone {
+    max-width: 100%;
+    margin: auto;
+  }
+}
+
 .navigate_trump {
   background: url('../../../assets/img/regression.svg') center center no-repeat;
   background-size: cover;
@@ -442,12 +469,20 @@ svg.jumbobar {
   }
 }
 
-.navigate_trump_context, .navigate_chess_context, .navigate_insiten_context {
+.navigate_trump_context, .navigate_chess_context, .navigate_insiten_context, .navigate_book_context {
   display: flex;
   justify-content: center;
   align-items: center;
   padding: 2em;
   line-height: 1.25em;
+
+  .highlight-desc{
+    a {
+      text-decoration: none;
+      color: $Interaction-1-hex;
+      font-weight: 700;
+    }
+  }
 }
 
 .navigate_chess {
@@ -754,11 +789,11 @@ td {
 
 .myviz {
   opacity: 0;
-  -webkit-animation: fadein 0s 0.5s; /* Safari, Chrome and Opera > 12.1 */
-  -moz-animation: fadein 0s 0.5s; /* Firefox < 16 */
-  -ms-animation: fadein 0s 0.5s; /* Internet Explorer */
-  -o-animation: fadein 0s 0.5s; /* Opera < 12.1 */
-  animation: fadein 0s 0.5s;
+  -webkit-animation: fadein 0s 2s; /* Safari, Chrome and Opera > 12.1 */
+  -moz-animation: fadein 0s 2s; /* Firefox < 16 */
+  -ms-animation: fadein 0s 2s; /* Internet Explorer */
+  -o-animation: fadein 0s 2s; /* Opera < 12.1 */
+  animation: fadein 0s 2s;
   -webkit-animation-fill-mode: forwards;
   animation-fill-mode: forwards;
   fill: $Interaction-2-hex;
@@ -811,11 +846,11 @@ td {
 .aboutme {
   opacity: 0;
   // animation-timing-function: ease-in;
-  -webkit-animation: fadein 0s 0.25s; /* Safari, Chrome and Opera > 12.1 */
-  -moz-animation: fadein 0s 0.25s; /* Firefox < 16 */
-  -ms-animation: fadein 0s 0.25s; /* Internet Explorer */
-  -o-animation: fadein 0s 0.25s; /* Opera < 12.1 */
-  animation: fadein 0s 0.25s;
+  -webkit-animation: fadein 0s 1s; /* Safari, Chrome and Opera > 12.1 */
+  -moz-animation: fadein 0s 1s; /* Firefox < 16 */
+  -ms-animation: fadein 0s 1s; /* Internet Explorer */
+  -o-animation: fadein 0s 1s; /* Opera < 12.1 */
+  animation: fadein 0s 1s;
   -webkit-animation-fill-mode: forwards;
   animation-fill-mode: forwards;
 
@@ -826,11 +861,11 @@ td {
 
 .mywork {
   opacity: 0;
-  -webkit-animation: fadein 0s 1.25s; /* Safari, Chrome and Opera > 12.1 */
-  -moz-animation: fadein 0s 1.25s; /* Firefox < 16 */
-  -ms-animation: fadein 0s 1.25s; /* Internet Explorer */
-  -o-animation: fadein 0s 1.25s; /* Opera < 12.1 */
-  animation: fadein 0s 1.25s;
+  -webkit-animation: fadein 0s 6s; /* Safari, Chrome and Opera > 12.1 */
+  -moz-animation: fadein 0s 6s; /* Firefox < 16 */
+  -ms-animation: fadein 0s 6s; /* Internet Explorer */
+  -o-animation: fadein 0s 6s; /* Opera < 12.1 */
+  animation: fadein 0s 6s;
   -webkit-animation-fill-mode: forwards;
   animation-fill-mode: forwards;
 
@@ -842,11 +877,11 @@ td {
 
 .mediumposts {
   opacity: 0;
-  -webkit-animation: fadein 0s 1s; /* Safari, Chrome and Opera > 12.1 */
-  -moz-animation: fadein 0s 1s; /* Firefox < 16 */
-  -ms-animation: fadein 0s 1s; /* Internet Explorer */
-  -o-animation: fadein 0s 1s; /* Opera < 12.1 */
-  animation: fadein 0s 1s;
+  -webkit-animation: fadein 0s 4s; /* Safari, Chrome and Opera > 12.1 */
+  -moz-animation: fadein 0s 4s; /* Firefox < 16 */
+  -ms-animation: fadein 0s 4s; /* Internet Explorer */
+  -o-animation: fadein 0s 4s; /* Opera < 12.1 */
+  animation: fadein 0s 4s;
   -webkit-animation-fill-mode: forwards;
   animation-fill-mode: forwards;
   fill: $Interaction-2-hex;

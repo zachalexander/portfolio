@@ -21,7 +21,7 @@
   <img class="svg-aboutzach" src='../../../assets/aboutzach.svg' data-aos="fade-right">
   <div class="aboutme-wrapper">
     <div class="svg-wrapper-zach">
-        <h5 class="aboutme-context-zach"><span class='highlight'><strong>Hey!</strong> I'm Zach, a <strong>data scientist</strong> passionate about utilizing <strong>data</strong> to <strong>inform</strong> the public.</span></h5>
+        <h5 class="aboutme-context-zach"><span class='highlight'><strong>Hey!</strong> I'm Zach, a <strong>data scientist</strong> passionate about utilizing <strong>statistics </strong> and <strong>visuals</strong> to better understand the world.</span></h5>
         <a href='/resume' target="_blank" class="waves-effect waves-light btn square-btn navigate" (click)="resumeClick()">My Resume</a>
       </div>
     <div class="col wrapper">
@@ -34,7 +34,7 @@
       </div>
       <div class="svg-wrapper-cci" >
         <div class="call-out">
-          <h5 class="aboutme-context"><span class='highlight'><a href = 'https://www.courtinnovation.org/about/people/zachary-alexander' target="_blank">Senior Research and Data Associate</a> at the Center for Court Innovation.</span></h5>  
+          <h5 class="aboutme-context"><span class='highlight'><a href = 'https://www.courtinnovation.org/about/people/zachary-alexander' target="_blank">Data Engineer</a> at the Center for Court Innovation.</span></h5>  
         </div>
       </div>
     </div>
@@ -44,6 +44,25 @@
 <div class="projects-div" id="navigate">
   <img class="svg-projects" src='../../../assets/projects.svg' data-aos="fade-up">
   <div class="projects-wrapper"  *ngIf="!mobile">
+
+
+    <div class="navigate_book_context">
+      <div class='proj-wrapper'>
+        <p class="project_description">
+          <a href='https://zach-book-recommender.herokuapp.com/' target='_blank'><h5 class="project_title"><span class='highlight-title'>Full Production Web App and Book Recommender Engine in Spark</span></h5></a>
+          <span class='highlight-desc'>As a final project for one of my graduate school classes on recommender systems, I decided to build a 
+            full production book recommendation engine. Utilizing the <a href='https://www.kaggle.com/zygmunt/goodbooks-10k' target='_blank'>goodbooks-10k dataset</a>, 
+            which contains close to 1 million book ratings, I built an alternating least squares (ALS) model
+            in <strong>Spark</strong> and <strong>Databricks</strong>, deployed it to AWS, and built a front-end python Flask application 
+            to serve book recommendations to users. The application has a complete user registration/sign-in function, and serves recommendations
+            based on the ALS predictions and a method of user-based collaborative filtering.
+          </span>
+        </p>
+        <a href='https://zach-book-recommender.herokuapp.com/' target='_blank' class="waves-effect waves-light btn square-btn navigate">Explore</a>
+      </div>
+    </div>
+    <div class="navigate_book">
+    </div>
 
     <div class="navigate_trump">
     </div>
@@ -76,7 +95,6 @@
       <a href='/chess-elo' class="waves-effect waves-light btn square-btn navigate" (click)="chessClick()">Read More</a>
     </div>
   </div>
-
   <div class="navigate_chess">
   </div>
     
@@ -101,10 +119,25 @@
 
 
   <div class="projects-wrapper"  *ngIf="mobile">
-
+    <div class="navigate_book">
+    </div>
+    <div class="navigate_book_context">
+      <div class='proj-wrapper'>
+        <p class="project_description">
+          <a href='https://zach-book-recommender.herokuapp.com/' target='_blank'><h5 class="project_title"><span class='highlight-title'>Full Production Book Recommender Engine in Spark</span></h5></a>
+          <span class='highlight-desc'>As a final project for one of my graduate school classes on recommender systems, I decided to build a 
+            full production book recommendation engine. Utilizing the <a href='https://www.kaggle.com/zygmunt/goodbooks-10k' target='_blank'>goodbooks-10k dataset</a>, 
+            which contains close to 1 million book ratings, I built an alternating least squares (ALS) model
+            in <strong>Spark</strong> and <strong>Databricks</strong>, deployed it to AWS, and built a front-end python Flask application 
+            to serve book recommendations to users. The application has a complete user registration/sign-in function, and serves recommendations
+            based on the ALS predictions and a method of user-based collaborative filtering.
+          </span>
+        </p>
+        <a href='https://zach-book-recommender.herokuapp.com/' target='_blank' class="waves-effect waves-light btn square-btn navigate">Explore</a>
+      </div>
+    </div>
     <div class="navigate_trump">
     </div>
-
     <div class="navigate_trump_context">
       <div class='proj-wrapper'>
         <p class="project_description">
@@ -119,29 +152,22 @@
         <a href='/pres2016-regression' class="waves-effect waves-light btn square-btn navigate" (click)="showAnot()">Read More</a>
       </div>
     </div>
-
     <div class="navigate_chess">
     </div>
-
-  <div class="navigate_chess_context">
-    <div class='proj-wrapper'>
-      <p class="project_description">
-        <a href='/chess-elo'><h5 class="project_title"><span class='highlight-title'>From Text File to D3.js Visualization</span></h5></a>
-          <span class='highlight-desc'>As part of a graduate school assignment, we were given a raw text file
-            and were asked to convert it into a clean dataset using R. We also were instructed
-            to create visualizations and do some basic analyses. I decided to also create a 
-            mock news story about the dataset and a d3.js visualization.</span>
-      </p>
-      <a href='/chess-elo' class="waves-effect waves-light btn square-btn navigate" (click)="showAnot()">Read More</a>
+    <div class="navigate_chess_context">
+      <div class='proj-wrapper'>
+        <p class="project_description">
+          <a href='/chess-elo'><h5 class="project_title"><span class='highlight-title'>From Text File to D3.js Visualization</span></h5></a>
+            <span class='highlight-desc'>As part of a graduate school assignment, we were given a raw text file
+              and were asked to convert it into a clean dataset using R. We also were instructed
+              to create visualizations and do some basic analyses. I decided to also create a 
+              mock news story about the dataset and a d3.js visualization.</span>
+        </p>
+        <a href='/chess-elo' class="waves-effect waves-light btn square-btn navigate" (click)="showAnot()">Read More</a>
+      </div>
     </div>
-  </div>
-
-
-    
-
     <div class="navigate_insiten">
     </div>
-
     <div class="navigate_insiten_context">
       <div class='proj-wrapper'>
         <p class="project_description">
@@ -154,19 +180,6 @@
         <a href='http://www.codingchallenge.site' target="_blank" class="waves-effect waves-light btn square-btn navigate" (click)="showAnot()">Go to site</a>
       </div>
     </div>
-
-    <!-- <div class="navigate_specs_wrapper">
-      <div class="navigate_specs_column">
-        <h5 class="navigate_specs">Front-end Specifications</h5>
-        <p class="navigate_specs_explainer">Most of my projects utilize a combination of <strong>D3.js</strong> and <strong>Angular 2+</strong> for my front-end work</p>
-      </div>
-      <div class="logos">
-        <img src="../../../assets/d3logo.png" />
-        <p class="plus">+</p>
-        <img src="../../../assets/angularlogo.png" />
-      </div>
-    </div> -->
-
   </div>
 </div> 
 
@@ -179,7 +192,7 @@
     </div>
     <div class="medium-posts" >
         <ngx-medium-widget resource="https://medium.com/@zdalexander"
-        postsLimit="3"
+        postsLimit="4"
         postsPerLine="1"
         pictureSize="small"
         [postfields]="['description', 'publishAt']"
@@ -203,14 +216,13 @@
         <li><i class="material-icons">chevron_right</i>Statistics and Probability for Data Analytics</li>
         <li><i class="material-icons">chevron_right</i>Recommender Systems</li>
         <li><i class="material-icons">chevron_right</i>Web Analytics</li>
+        <li><i class="material-icons">chevron_right</i>Knowledge and Visual Analytics</li>
+        <li><i class="material-icons">chevron_right</i>Business Analytics and Data Mining</li>
       </ul>
   
       <p><strong>Additional courses I will take</strong> before I graduate:</p>
       <ul>
         <li><i class="material-icons">chevron_right</i>Machine Learning and Big Data</li>
-        <li><i class="material-icons">chevron_right</i>Business Analytics and Data Mining</li>
-        <li><i class="material-icons">chevron_right</i>Predictive Analytics</li>
-        <li><i class="material-icons">chevron_right</i>Knowledge and Visual Analytics</li>
         <li><i class="material-icons">chevron_right</i>Capstone Project</li>
       </ul>
     </div>
