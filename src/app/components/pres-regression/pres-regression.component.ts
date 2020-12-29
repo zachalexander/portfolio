@@ -139,9 +139,9 @@ export class PresRegressionComponent implements OnInit {
         .append('path')
         .attr('d', path)
         .style('fill', function(d) {
-          const value = d['properties'].actual;
+          const value = d['Change_f'];
             if (value) {
-              return color(d['properties'].actual);
+              return color(d['Change_f']);
             } else {
               return '#ddd';
             }

@@ -47,12 +47,8 @@ export class SimplebarchartComponent implements OnInit {
 
     const parseTime = d3.timeParse('%m/%d/%Y');
 
-    const xBar = d3.scaleBand()
-    .range([0, width])
-    .padding(0.05);
-
-    const yBar = d3.scaleLinear()
-        .range([0, yheight]);
+    const xBar = d3.scaleBand().range([0, width]).padding(0.05);
+    const yBar = d3.scaleLinear().range([0, yheight]);
 
     xBar.domain(datapull.map(function(d) { return parseTime(d.date); }));
     yBar.domain([0, d3.max(datapull, function(d) { return d.cases; })]);
@@ -69,11 +65,11 @@ export class SimplebarchartComponent implements OnInit {
       svg.selectAll('.bar')
             .data(datapull)
             .enter().append('rect')
-            .attr('class', 'bar')
             .attr('x', function(d) { return xBar(parseTime(d.date)); })
             .attr('width', xBar.bandwidth())
             .attr('y', function(d) { return height - yBar(d.cases); })
             .attr('height', function(d) { return yBar(d.cases); })
+            .attr('fill', 'rgba(191,140,110, 1)')
 
       }
 }

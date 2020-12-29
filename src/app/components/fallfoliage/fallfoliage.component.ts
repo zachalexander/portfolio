@@ -6,7 +6,7 @@ import * as d3 from 'd3';
 @Component({
   selector: 'app-fallfoliage',
   templateUrl: './fallfoliage.component.html',
-  styleUrls: ['./fallfoliage.component.sass']
+  styleUrls: ['./fallfoliage.component.scss']
 })
 export class FallfoliageComponent implements OnInit {
 

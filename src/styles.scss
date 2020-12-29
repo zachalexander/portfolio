@@ -4,6 +4,8 @@
 @import url('https://fonts.googleapis.com/css?family=Roboto:400,700,900&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;900&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Abril+Fatface&display=swap');
+@import '@angular/material/prebuilt-themes/deeppurple-amber.css';
+
 
 
 /* COLOR SCHEME */
@@ -289,4 +291,25 @@ td.state_title {
   font-family: 'Roboto', Arial, sans-serif;
   font-weight: 700 !important;
   color: #ddd !important;
+}
+
+g.tick line {
+  opacity: 0;
+}
+
+g.y-axis path, g.x-axis path {
+  opacity: 0;
+}
+
+g.x-axis text, g.y-axis text {
+  font-weight: 600;
+  color: #333;
+  font-size: 1em;
+  font-family: 'Montserrat', 'Roboto', 'Arial', sans-serif;
+}
+
+g.legend text {
+  font-family: 'Roboto', 'Arial', sans-serif;
+  font-family: 600;
+  font-size: 0.75em;
 }

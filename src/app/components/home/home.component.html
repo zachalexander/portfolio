@@ -21,20 +21,20 @@
   <img class="svg-aboutzach" src='../../../assets/aboutzach.svg' data-aos="fade-right">
   <div class="aboutme-wrapper">
     <div class="svg-wrapper-zach">
-        <h5 class="aboutme-context-zach"><span class='highlight'><strong>Hey!</strong> I'm Zach, a <strong>data scientist</strong> passionate about utilizing <strong>statistics </strong> and <strong>visuals</strong> to better understand the world.</span></h5>
+        <h5 class="aboutme-context-zach"><span class='highlight'><strong>Hey!</strong> I'm Zach, a <strong>data engineer</strong> passionate about <strong>developing quality data pipelines</strong> for <strong>statistics </strong> and <strong>web visuals</strong>.</span></h5>
         <a href='/resume' target="_blank" class="waves-effect waves-light btn square-btn navigate" (click)="resumeClick()">My Resume</a>
       </div>
     <div class="col wrapper">
-      <div class="svg-wrapper-cuny">
-        <div class="call-out">
-          <h5 class="aboutme-context"><span class='highlight'>Currently working on my <a href = 'https://sps.cuny.edu/academics/graduate/master-science-data-science-ms' target="_blank">
-            Master's in Data Science</a> at the School of Professional Studies.</span>
-          </h5>
-        </div>
-      </div>
       <div class="svg-wrapper-cci" >
         <div class="call-out">
           <h5 class="aboutme-context"><span class='highlight'><a href = 'https://www.courtinnovation.org/about/people/zachary-alexander' target="_blank">Data Engineer</a> at the Center for Court Innovation.</span></h5>  
+        </div>
+      </div>
+      <div class="svg-wrapper-cuny">
+        <div class="call-out">
+          <h5 class="aboutme-context"><span class='highlight'>Currently finishing up my <a href = 'https://sps.cuny.edu/academics/graduate/master-science-data-science-ms' target="_blank">
+            Master's in Data Science</a> at the School of Professional Studies.</span>
+          </h5>
         </div>
       </div>
     </div>
@@ -44,6 +44,21 @@
 <div class="projects-div" id="navigate">
   <img class="svg-projects" src='../../../assets/projects.svg' data-aos="fade-up">
   <div class="projects-wrapper"  *ngIf="!mobile">
+
+    <div class="navigate_climate">
+    </div>
+
+    <div class="navigate_climate_context">
+      <div class='proj-wrapper'>
+        <p class="project_description">
+          <a href='/climate-change'><h5 class="project_title"><span class='highlight-title'>Mapping Two Very Different Global Climate Change Scenarios in the 21st Century</span></h5></a>
+            <span class='highlight-desc'>This data visualization project explores the amount of global warming that is projected to occur for each country over the course of the next eighty years. 
+              By working with data provided by the World Bank and outputs from some of IPCC's global circulation models, we can forecast what our world may be like
+            under two very different global climate change scenarios, driven mainly by policy action (or inaction) in the 21st century. </span>
+        </p>
+        <a href='/climate-change' target="_blank" class="waves-effect waves-light btn square-btn navigate" (click)="climateClick()">Read more</a>
+      </div>
+    </div>
 
 
     <div class="navigate_book_context">
@@ -119,6 +134,22 @@
 
 
   <div class="projects-wrapper"  *ngIf="mobile">
+
+    <div class="navigate_climate">
+    </div>
+
+    <div class="navigate_climate_context">
+      <div class='proj-wrapper'>
+        <p class="project_description">
+          <a href='/climate-change'><h5 class="project_title"><span class='highlight-title'>Mapping Two Very Different Global Climate Change Scenarios in the 21st Century</span></h5></a>
+            <span class='highlight-desc'>This data visualization project explores the amount of global warming that is projected to occur for each country over the course of the next eighty years. 
+              By working with data provided by the World Bank and outputs from some of IPCC's global circulation models, we can forecast what our world may be like
+            under two very different global climate change scenarios, driven mainly by policy action (or inaction) in the 21st century. </span>
+        </p>
+        <a href='/climate-change' target="_blank" class="waves-effect waves-light btn square-btn navigate" (click)="climateClick()">Read more</a>
+      </div>
+    </div>
+    
     <div class="navigate_book">
     </div>
     <div class="navigate_book_context">

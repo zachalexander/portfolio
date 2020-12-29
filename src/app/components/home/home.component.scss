@@ -356,7 +356,7 @@ svg.jumbobar {
 }
 
 
-.navigate_trump, .navigate_chess, .navigate_insiten, .navigate_book {
+.navigate_trump, .navigate_chess, .navigate_insiten, .navigate_book, .navigate_climate {
   display: flex;
   flex-direction: column;
   background: $Interaction-5-hex; 
@@ -469,7 +469,7 @@ svg.jumbobar {
   }
 }
 
-.navigate_trump_context, .navigate_chess_context, .navigate_insiten_context, .navigate_book_context {
+.navigate_trump_context, .navigate_chess_context, .navigate_insiten_context, .navigate_book_context, .navigate_climate_context {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -511,6 +511,34 @@ svg.jumbobar {
 
 .navigate_insiten {
   background: url('../../../assets/img/insiten.gif') center center no-repeat;
+  background-size: cover;
+  min-height: 400px;
+  position: relative;
+  min-width: 100%;
+  z-index: 1;
+
+  .highlight-title {
+    color: $Interaction-2-hex;
+  }
+
+  a {
+    visibility: visible;
+  }
+
+  .highlight-title {
+    color: $Interaction-2-hex;
+    background-color: rgba(255,255,255,0.7);
+    line-height: 1.5em;
+  }
+
+  @include phone {
+    max-width: 100%;
+    margin: auto;
+  }
+}
+
+.navigate_climate {
+  background: url('../../../assets/img/a2_gif.gif') center center no-repeat;
   background-size: cover;
   min-height: 400px;
   position: relative;

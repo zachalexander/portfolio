@@ -80,6 +80,13 @@ export class HomeComponent implements OnInit {
     .eventEmitter('insiten_click', 'data_interest', 'insiten', 'click', 1);
   }
 
+  
+  climateClick() {
+    this
+    .googleAnalyticsService
+    .eventEmitter('climate_click', 'data_interest', 'climate', 'click', 1);
+  }
+
   rpubsClick() {
     this
     .googleAnalyticsService
