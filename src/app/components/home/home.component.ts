@@ -1,6 +1,5 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { Observable } from 'rxjs';
-import { User } from '../../models/users';
 import * as jumboCases from '../../../assets/jumbotron.json';
 import * as jumboCasesBar from '../../../assets/jumbotronbar.json';
 import * as AOS from 'aos';
