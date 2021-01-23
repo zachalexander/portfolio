@@ -13,7 +13,6 @@ import {GoogleAnalyticsService} from './../../services/google-analytics.service'
   encapsulation: ViewEncapsulation.None
 })
 export class HomeComponent implements OnInit {
-  users: Observable<User[]>;
   fakecases = jumboCases['fakedata'];
   fakecasesbar;
   height;
