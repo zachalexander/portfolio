@@ -73,7 +73,7 @@
     "pusher-angular": "^1.0.0",
     "pusher-js": "^5.1.1",
     "rxjs": "^6.0.0",
-    "socket.io": "^2.3.0",
+    "socket.io": "^2.4.0",
     "socket.io-client": "^2.3.0",
     "videogular2": "^7.0.1",
     "zone.js": "~0.8.26"
