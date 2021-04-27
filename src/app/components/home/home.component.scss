@@ -21,6 +21,10 @@ rect.bar {
   stroke-width: 2;
 }
 
+strong {
+  font-weight: 600 !important;
+}
+
 // jumbotron & top of loading viewport
 
 .top {
@@ -366,6 +370,7 @@ svg.jumbobar {
   a {
     text-decoration: none;
     color: inherit;
+    font-weight: 700;
   }
 
   a.project_screenshot {
@@ -576,6 +581,10 @@ svg.jumbobar {
   border-top: 2px solid $Interaction-5-hex;
   border-bottom: 2px solid $Interaction-5-hex;
 
+  h2 {
+    font-size: 1.5em;
+  }
+
   @include phone {
     border: none;
     margin-bottom: 2em;
@@ -774,6 +783,12 @@ svg.jumbobar {
   }
 }
 
+.medium-widget-article__info {
+  margin-top: 15px !important;
+  margin-left: 0px !important;
+  margin-right: -5px !important;
+}
+
   
 .medium-widget-article__description {
   font-family: 'Roboto', Arial, sans-serif;
@@ -789,16 +804,34 @@ svg.jumbobar {
 .medium-widget-article__date {
   font-family: 'Roboto', Arial, sans-serif;
   font-weight: 700 !important;
-  color: #ddd;
+  color: #f2f2f2 !important;
+  background: #2D3340 !important;
+  border: 2px solid #F2F2F2 !important;
+  opacity: 0.5;
+  padding-left: 0.75em;
+  padding-top: 0.15em;
+  padding-right: 0.75em;
+}
+
+.medium-widget-article__clap {
+  font-family: 'Roboto', Arial, sans-serif;
+  font-weight: 700 !important;
+  color: $Interaction-2-hex !important;
+  background: $Interaction-5-hex;
+  opacity: 0.5;
+  padding-right: 0.5em;
 }
 
 .medium-widget-article__image {
   margin-right: 1em !important;
+  display: none;
 
   img {
     margin: 0;
     border-radius: 0 !important;
   }
+
+
 }
 
 .state_title {

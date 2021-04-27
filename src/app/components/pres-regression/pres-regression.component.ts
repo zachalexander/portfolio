@@ -157,8 +157,8 @@ export class PresRegressionComponent implements OnInit {
           .html('<table class=' + 'table table-striped table-sm' + '>'
           + '<thead>'
             + '<tr>'
-              + '<th scope=' + 'col' + '>' + '---' + '</th>'
-              + '<th class=' + 'state_title ' + 'scope=' + 'col' + '>' + '---' + '</th>'
+              + '<th style=text-align:center scope=' + 'col' + '>' + '---' + '</th>'
+              + '<th style=text-align:center class=' + 'state_title ' + 'scope=' + 'col' + '>' + '---' + '</th>'
             + '</tr>'
           + '</thead>'
           + '<tbody>'
@@ -172,7 +172,7 @@ export class PresRegressionComponent implements OnInit {
           + '</tr>'
         + '</tbody>'
         + '</table>'
-        + '<p class = ' + 'error_value' + '> Model Error (' + '---' + '%' + ')' + '</p>'
+        + '<p style=padding:1em 0 0.25em 0;align-items:center class = ' + 'error_value' + '> Model Error (' + '---' + '%' + ')' + '</p>'
           );
         })
         .on('mouseover', function(d) {
@@ -211,14 +211,14 @@ export class PresRegressionComponent implements OnInit {
           .html('<table class=' + 'table table-striped table-sm' + '>'
             + '<thead>'
               + '<tr>'
-                + '<th class=' + 'state_title ' + 'scope=' + 'col' + '>' + d['properties'].name + '</th>'
-                + '<th class=' + 'state_title ' + 'scope=' + 'col' + '>' + '% for Trump' + '</th>'
+                + '<th style=text-align:center;width=60% class=' + 'state_title ' + 'scope=' + 'col' + '>' + d['properties'].name + '</th>'
+                + '<th style=text-align:center;width=40% class=' + 'state_title ' + 'scope=' + 'col' + '>' + '% for Trump' + '</th>'
               + '</tr>'
             + '</thead>'
             + '<tbody>'
             + '<tr>'
-              + '<td class=' + 'state_title' + '>' + '<strong>' + 'Actual' + '</strong> </td>'
-              + '<td class=' + 'state_title' + '>' + '<strong>' + '<strong>' +
+              + '<td style=text-align:center;width=60% class=' + 'state_title' + '>' + '<strong>' + 'Actual' + '</strong> </td>'
+              + '<td style=text-align:center;width=40% class=' + 'state_title' + '>' + '<strong>' + '<strong>' +
               parseFloat((d['properties'].actual)).toFixed(1) + '%' + '</strong></td>'
             + '</tr>'
             + '<tr>'
@@ -227,7 +227,7 @@ export class PresRegressionComponent implements OnInit {
             + '</tr>'
           + '</tbody>'
           + '</table>'
-          + '<p class = ' + 'error_value' + '>' + '<strong>' + 'Model Error (' +
+          + '<p style=padding:1em 0 0.25em 0;align-items:center class = ' + 'error_value' + '>' + '<strong>' + 'Model Error (' +
           parseFloat((d['properties'].diff)).toFixed(1) + '%' + ')' + '</strong>' + '</p>'
           );
 

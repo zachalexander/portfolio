@@ -35,6 +35,23 @@
 
   .footer-wrap {
     max-width: 600px;
+    margin: auto;
+    display: flex;
+    justify-content: space-between;
+  }
+
+  @include phone {
+    .footer-wrap {
+      margin: auto;
+      display: flex;
+      justify-content: space-between;
+      flex-direction: column;
+      padding: 1em;
+    }
+
+    .footer-copyright {
+      padding: 1em;
+    }
   }
 
   

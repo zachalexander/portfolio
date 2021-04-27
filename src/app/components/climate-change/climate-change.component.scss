@@ -9,16 +9,20 @@
     color: #333;
   }
 
+  a {
+    font-weight: 700;
+  }
+
   .page-title {
       display: flex;
       font-family: 'Inconsolata', 'Roboto', 'Arial', sans-serif;
       text-align: center;
       justify-content: center;
-      font-weight: 500;
-      font-size: 3.5em;
+      font-weight: 700;
+      font-size: 3.25em;
       line-height: 1.25em;
       color: #333;
-      padding-top: 1.5em;
+      padding-top: 2.5em;
       padding-bottom: 1em;
       margin: 0 auto;
   }
@@ -67,11 +71,16 @@
     font-size: 2em;
     color: #de2d26;
     font-weight: 800;
-    font-family: 'Montserrat', 'Roboto', 'Arial', sans-serif;
+    font-family: 'Inconsolata', 'Roboto', 'Arial', sans-serif;
   }
 
   .highlight {
     color: #de2d26;
+    font-weight: 700;
+  }
+
+  .highlight-scenario {
+    font-weight: 700;
   }
 
   .conditions {
@@ -119,11 +128,11 @@
 .section-title {
   text-align: center;
   font-weight: 700;
-  font-family: 'Montserrat', 'Roboto', 'Arial', sans-serif;
-  padding: 1em;
+  font-family: 'Inconsolata', 'Roboto', 'Arial', sans-serif;
+  padding: 0.75em;
   max-width: 650px;
   margin: auto;
-  font-size: 1.5em !important;
+  font-size: 2em !important;
 }
 
 .bar-graphics {
@@ -188,6 +197,7 @@
   font-weight: 600; 
   color: #333;
   font-size: 1.5em !important;
+  margin: 0.75em 0 1em 0 !important;
 }
 
 .projection-title {

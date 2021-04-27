@@ -26,6 +26,8 @@
     "@fortawesome/fontawesome-svg-core": "^1.2.28",
     "@fortawesome/free-brands-svg-icons": "^5.13.0",
     "@fortawesome/free-solid-svg-icons": "^5.13.0",
+    "@nguniversal/express-engine": "^11.2.1",
+    "@schematics/angular": "^9.1.0",
     "@theo4u/ng-alert": "^2.1.0",
     "@types/d3-dispatch": "^1.0.7",
     "@types/d3-selection": "^1.4.1",
