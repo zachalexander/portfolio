@@ -69,7 +69,7 @@ export class SimplebarchartComponent implements OnInit {
             .attr('width', xBar.bandwidth())
             .attr('y', function(d) { return height - yBar(d.cases); })
             .attr('height', function(d) { return yBar(d.cases); })
-            .attr('fill', 'rgba(191,140,110, 1)')
+            .attr('fill', '#738A90')
 
       }
 }

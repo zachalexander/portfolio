@@ -3,26 +3,17 @@
 @import url('https://fonts.googleapis.com/css?family=Roboto:400,700,900&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;900&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Abril+Fatface&display=swap');
-@import '@angular/material/prebuilt-themes/deeppurple-amber.css';
 
 
 /* COLOR SCHEME */
 
 
 /* Color Theme Swatches in Hex */
-$Interaction-1-hex: #091026;
-$Interaction-2-hex: #2D3340;
-$Interaction-3-hex: #BF8C6F;
-$Interaction-4-hex: #D9B29C;
+$Interaction-1-hex: #333333;
+$Interaction-2-hex: #5F6A72;
+$Interaction-3-hex: #738A90;
+$Interaction-4-hex: #A6CBBE;
 $Interaction-5-hex: #F2F2F2;
-
-/* Color Theme Swatches in RGBA */
-$Interaction-1-rgba: rgba(8,16,38, 1);
-$Interaction-2-rgba: rgba(45,51,63, 1);
-$Interaction-3-rgba: rgba(191,140,110, 1);
-$Interaction-4-rgba: rgba(216,178,156, 1);
-$Interaction-5-rgba: rgba(242,242,242, 1);
-
 
 body, nav {
   font-family: 'Roboto', 'Arial', sans-serif;
@@ -36,8 +27,6 @@ body, nav {
   z-index: 1;
   -webkit-font-smoothing: subpixel-antialiased;
 }
-
-
 
 @mixin iphone5 {
   @media only screen 

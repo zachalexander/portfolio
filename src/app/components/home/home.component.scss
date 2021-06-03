@@ -9,9 +9,6 @@ html, body {
   text-rendering: optimizeLegibility;
 }
 
-rect.bar {
-  fill: rgba(191,140,110, 1);
-}
 
 .area {
   fill: rgba(221,221,221, 0.5);
@@ -113,25 +110,27 @@ svg.jumbobar {
   flex-direction: column;
   background: $Interaction-5-hex;
 
-  .svg-aboutzach {
+  .aboutme-header {
     max-width: 325px;
     align-items: center;
     display: flex;
     justify-content: center;
     margin: auto;
-    padding: 3em;
+    padding: 1em;
+    font-size: 3em;
+    font-weight: 700;
+    color: $Interaction-2-hex;
+    font-family: 'Abril Fatface', 'Playfair Display', 'Roboto', 'Arial', sans-serif;
   }
 
   img {
-    max-height: 170px;
+    max-height: 250px;
+    min-width: 250px;
     z-index: 100;
+    border-radius: 50%;
     image-rendering: auto;
     image-rendering: crisp-edges;
-    margin-bottom: -2em;
-
-    .zach-photo {
-      margin-bottom: 0;
-    }
+    margin-bottom: 1em;
   }
 
   .cci-photo {
@@ -162,16 +161,17 @@ svg.jumbobar {
   }
 
 
-  .svg-wrapper-zach {
-    background: url('../../../assets/zachbox.svg') no-repeat center center;
+  .svg-wrapper-me {
     height: 600px;
-    min-height: 300px;
     justify-content: center;
     align-items: center;
     display: flex;
-    margin: -4em 1em 3em 1em;
     flex-direction: column;
     flex-basis: auto;
+    margin: 2em;
+    border: 3px solid rgba(51, 51, 51, 0.1);
+    padding: 2em;
+    background: #ddd;
 
     @include lgdevice {
       width: 600px;
@@ -181,7 +181,7 @@ svg.jumbobar {
       height: 500px;
     }
 
-    .aboutme-context-zach {
+    .aboutme-context {
       z-index: 100;
       font-size: 1.30em;
       z-index: 100;
@@ -189,7 +189,7 @@ svg.jumbobar {
       width: 90%;
       text-align: center;
       color: $Interaction-2-hex;
-      margin: 11em 0 0 0em;
+      // margin: 11em 0 0 0em;
       line-height: 1.55em;
 
       .highlight {
@@ -200,11 +200,12 @@ svg.jumbobar {
     }
   }
   
-  .col.wrapper {
+  .callout-wrapper {
     display: flex;
     flex-direction: column;
     flex-basis: auto;
-    margin-top: -1em;
+    margin: 3em 0;
+    width: 90%;
 
     @include lgdevice {
       width: 520px;
@@ -214,46 +215,29 @@ svg.jumbobar {
       height: inherit;
     }
 
-    .svg-wrapper-cuny {
-      background: url('../../../assets/cunybox.svg') no-repeat center center;
+
+    .svg-wrapper-callout1, .svg-wrapper-callout2 {
+      // background: url('../../../assets/ccibox.svg') no-repeat center center;
       height: auto;
-      min-height: 400px;
       justify-content: center;
       align-items: center;
       display: flex;
-
-      @include responsive {
-        margin: -2em 0 -2em 0;
-      }
-
-      h5 {
-        padding: 1em;
-      }
-    }
-
-    .svg-wrapper-cci {
-      background: url('../../../assets/ccibox.svg') no-repeat center center;
-      height: auto;
-      min-height: 400px;
-      justify-content: center;
-      align-items: center;
-      display: flex;
-      margin: 1.5em 0 6em 0;
+      min-height: 300px;
+      border: 3px solid rgba(51,51,51,0.1);
+      background: #ddd;
+      margin: 5em auto;
+      width: 90%;
 
       h5 {
         padding: 1em;
       }
 
-      @include responsive {
-        margin: 0 0 2em 0;
-      }
     }
 
     .call-out {
       display: flex;
       flex-direction: row;
       max-width: 300px;
-      margin-top: 6.85em;
       text-align: center; 
       color: $Interaction-2-hex;
 
@@ -271,13 +255,8 @@ svg.jumbobar {
 
     .aboutme-context {
       z-index: 100;
-      font-size: 1.30em;
-      z-index: 100;
-      max-width: 300px;
-      width: 90%;
       text-align: center;
       color: $Interaction-2-hex;
-      margin-left: 1em;
 
       h5 {
         padding: 1em;
@@ -290,16 +269,6 @@ svg.jumbobar {
     }
   }
 }
-
-// .front-specs-bg {
-//   display: block;
-//   height: auto;
-// }
-
-// .front-specs-text {
-//   line-height: 1.5em;
-//   max-width: 400px;
-// }
 
 .projects-div {
   height: auto;
@@ -318,9 +287,7 @@ svg.jumbobar {
   max-width: 900px;
   margin: auto;
   background-color: #f9f9f9;
-  // background-color: $Interaction-2-hex;
   padding: 0.5em 0.5em 0.5em 0.5em;
-  // border: 4px solid $Interaction-5-hex;
 
   @include phone {
     grid-template-columns: 1fr;
@@ -329,13 +296,17 @@ svg.jumbobar {
   }
 }
 
-.svg-projects {
+.projects-header {
   max-width: 300px;
   align-items: center;
   display: flex;
   justify-content: center;
   margin: auto;
-  padding: 3em;
+  padding: 1em;
+  font-size: 3em;
+  font-weight: 700;
+  color: $Interaction-2-hex;
+  font-family: 'Abril Fatface', 'Playfair Display', 'Roboto', 'Arial', sans-serif;
 }
 
 .project_title {
@@ -360,7 +331,7 @@ svg.jumbobar {
 }
 
 
-.navigate_trump, .navigate_chess, .navigate_insiten, .navigate_book, .navigate_climate {
+.project_one, .project_two, .project_three, .project_four, .project_five {
   display: flex;
   flex-direction: column;
   background: $Interaction-5-hex; 
@@ -424,11 +395,39 @@ svg.jumbobar {
   }
 }
 
+.project_one {
+  // project photo 1 -- feel free to change
+  background: url('../../../assets/sample1.jpg') center center no-repeat;
+  background-size: cover;
+  min-height: 400px;
+  position: relative;
+  min-width: 100%;
+  z-index: 1;
+
+  .highlight-title {
+    color: $Interaction-2-hex;
+  }
+
+  a {
+    visibility: visible;
+  }
+
+  .highlight-title {
+    color: $Interaction-2-hex;
+    background-color: rgba(255,255,255,0.7);
+    line-height: 1.5em;
+  }
+
+  @include phone {
+    max-width: 100%;
+    margin: auto;
+  }
+}
 
 
-
-.navigate_book {
-  background: url('../../../assets/img/book-rec.jpg') center center no-repeat;
+.project_two {
+  // project photo 2 -- feel free to change
+  background: url('../../../assets/sample2.jpg') center center no-repeat;
   background-size: cover;
   min-height: 350px;
   min-width: 100%;
@@ -451,8 +450,9 @@ svg.jumbobar {
   }
 }
 
-.navigate_trump {
-  background: url('../../../assets/img/regression.svg') center center no-repeat;
+.project_three {
+  // project photo 3 -- feel free to change
+  background: url('../../../assets/sample3.jpg') center center no-repeat;
   background-size: cover;
   min-height: 400px;
   min-width: 100%;
@@ -474,7 +474,7 @@ svg.jumbobar {
   }
 }
 
-.navigate_trump_context, .navigate_chess_context, .navigate_insiten_context, .navigate_book_context, .navigate_climate_context {
+.project_one_context, .project_two_context, .project_three_context, .project_four_context, .project_five_context {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -490,8 +490,9 @@ svg.jumbobar {
   }
 }
 
-.navigate_chess {
-  background: url('../../../assets/img/chess-elo.svg') center center no-repeat;
+.project_four {
+  // project photo four -- feel free to change
+  background: url('../../../assets/sample4.jpg') center center no-repeat;
   background-size: cover;
   min-height: 400px;
   position: relative;
@@ -514,36 +515,9 @@ svg.jumbobar {
   }
 }
 
-.navigate_insiten {
-  background: url('../../../assets/img/insiten.jpg.jpg') center center no-repeat;
-  background-size: cover;
-  min-height: 400px;
-  position: relative;
-  min-width: 100%;
-  z-index: 1;
-
-  .highlight-title {
-    color: $Interaction-2-hex;
-  }
-
-  a {
-    visibility: visible;
-  }
-
-  .highlight-title {
-    color: $Interaction-2-hex;
-    background-color: rgba(255,255,255,0.7);
-    line-height: 1.5em;
-  }
-
-  @include phone {
-    max-width: 100%;
-    margin: auto;
-  }
-}
-
-.navigate_climate {
-  background: url('../../../assets/img/a2.jpg') center center no-repeat;
+.project_five {
+  // project photo 5 -- feel free to change
+  background: url('../../../assets/sample5.jpg') center center no-repeat;
   background-size: cover;
   min-height: 400px;
   position: relative;
@@ -569,6 +543,7 @@ svg.jumbobar {
     margin: auto;
   }
 }
+
 
 .mid1 {
   display: flex;
@@ -624,8 +599,8 @@ svg.jumbobar {
 }
 
 
-// start of grad school
-.gradschool {
+// start of section 4
+.section4 {
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
@@ -634,13 +609,18 @@ svg.jumbobar {
   background: $Interaction-5-hex;
   padding-bottom: 4em;
 
-  .svg-graduate {
+  .section4-header {
     max-width: 450px;
     align-items: center;
     display: flex;
     justify-content: center;
     margin: auto;
-    padding: 4em 3em 3em 3em;
+    padding: 1em;
+    font-size: 3em;
+    font-weight: 700;
+    color: $Interaction-2-hex;
+    font-family: 'Abril Fatface', 'Playfair Display', 'Roboto', 'Arial', sans-serif;
+
 
     @include phone {
         max-width: 350px;
@@ -670,22 +650,18 @@ svg.jumbobar {
   padding: 1em;
   line-height: 1.5em;
 
-  background: url('../../../assets/gradbg.svg') center center no-repeat;
-  background-size: contain, cover;
-
   @include phone {
     background-size: cover !important;
   }
 
-  .gradclass {
-    margin: 6em auto 0em auto;
+  .section4-content {
 
     p {
       font-size: 1.2em;
     }
 
     @include phone {
-      margin: 5em auto 0em auto;
+      margin: 0em 4em;
     }
   }
 
@@ -805,11 +781,10 @@ svg.jumbobar {
   font-family: 'Roboto', Arial, sans-serif;
   font-weight: 700 !important;
   color: #f2f2f2 !important;
-  background: #2D3340 !important;
+  background: $Interaction-2-hex !important;
   border: 2px solid #F2F2F2 !important;
   opacity: 0.5;
   padding-left: 0.75em;
-  padding-top: 0.15em;
   padding-right: 0.75em;
 }
 
@@ -864,6 +839,40 @@ td {
   }
 
 }
+
+.mediumposts {
+  opacity: 0;
+  -webkit-animation: fadein 0s 4.5s; /* Safari, Chrome and Opera > 12.1 */
+  -moz-animation: fadein 0s 4.5s; /* Firefox < 16 */
+  -ms-animation: fadein 0s 4.5s; /* Internet Explorer */
+  -o-animation: fadein 0s 4.5s; /* Opera < 12.1 */
+  animation: fadein 0s 4.5s;
+  -webkit-animation-fill-mode: forwards;
+  animation-fill-mode: forwards;
+  fill: $Interaction-2-hex;
+
+  path.subject {
+    fill-opacity: 1;
+  }
+
+}
+
+.mywork {
+  opacity: 0;
+  -webkit-animation: fadein 0s 6.5s; /* Safari, Chrome and Opera > 12.1 */
+  -moz-animation: fadein 0s 6.5s; /* Firefox < 16 */
+  -ms-animation: fadein 0s 6.5s; /* Internet Explorer */
+  -o-animation: fadein 0s 6.5s; /* Opera < 12.1 */
+  animation: fadein 0s 6.5s;
+  -webkit-animation-fill-mode: forwards;
+  animation-fill-mode: forwards;
+  fill: $Interaction-2-hex;
+
+  path.subject {
+    fill-opacity: 1;
+  }
+
+}
   
 @keyframes fadein {
   1% { opacity: 0; }
@@ -906,7 +915,6 @@ td {
 
 .aboutme {
   opacity: 0;
-  // animation-timing-function: ease-in;
   -webkit-animation: fadein 0s 1s; /* Safari, Chrome and Opera > 12.1 */
   -moz-animation: fadein 0s 1s; /* Firefox < 16 */
   -ms-animation: fadein 0s 1s; /* Internet Explorer */
@@ -920,38 +928,6 @@ td {
   }
 }
 
-.mywork {
-  opacity: 0;
-  -webkit-animation: fadein 0s 6s; /* Safari, Chrome and Opera > 12.1 */
-  -moz-animation: fadein 0s 6s; /* Firefox < 16 */
-  -ms-animation: fadein 0s 6s; /* Internet Explorer */
-  -o-animation: fadein 0s 6s; /* Opera < 12.1 */
-  animation: fadein 0s 6s;
-  -webkit-animation-fill-mode: forwards;
-  animation-fill-mode: forwards;
-
-  path.subject {
-    fill-opacity: 1;
-  }
-
-}
-
-.mediumposts {
-  opacity: 0;
-  -webkit-animation: fadein 0s 4s; /* Safari, Chrome and Opera > 12.1 */
-  -moz-animation: fadein 0s 4s; /* Firefox < 16 */
-  -ms-animation: fadein 0s 4s; /* Internet Explorer */
-  -o-animation: fadein 0s 4s; /* Opera < 12.1 */
-  animation: fadein 0s 4s;
-  -webkit-animation-fill-mode: forwards;
-  animation-fill-mode: forwards;
-  fill: $Interaction-2-hex;
-  fill-opacity: 0.75;
-
-  path.subject {
-    fill-opacity: 1;
-  }
-}
 
 .myviz:hover {
   cursor: pointer;

@@ -120,7 +120,7 @@ export class SimplelinechartComponent implements OnInit {
                       },
                       {
                         note: {
-                          title: 'Grad School'
+                          title: 'Section Four'
                         },
                         type: d3annotate.annotationCalloutCircle,
                         subject: {
@@ -152,7 +152,7 @@ export class SimplelinechartComponent implements OnInit {
                       },
                       {
                         note: {
-                          title: 'About Zach'
+                          title: 'About Me'
                         },
                         type: d3annotate.annotationCalloutCircle,
                         subject: {
@@ -216,7 +216,7 @@ export class SimplelinechartComponent implements OnInit {
     .on('click', function() {
       d3.transition()
       .duration(7500)
-      .tween('scroll', document.getElementById('gradschool').scrollIntoView({behavior: 'smooth'}));
+      .tween('scroll', document.getElementById('section4').scrollIntoView({behavior: 'smooth'}));
     });
   }
 }
